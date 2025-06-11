@@ -56,6 +56,11 @@ func is_buffered_input(action_name: String, buffer_time_sec: float) -> bool:
 			return true
 
 	return false
+# For analog inputs and easy handling
+func horizontal_input()-> float:
+	var horizontalinput = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	return horizontalinput
+	
 func remap_action(action_name: String, new_event: InputEvent) -> void:
 	if not InputMap.has_action(action_name):
 		push_warning("Trying to remap undefined input: %s" % action_name)
