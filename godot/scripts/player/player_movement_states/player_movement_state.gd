@@ -13,7 +13,7 @@ func get_state_name() -> String:
 	
 func process(_delta: float) -> void:
 	if InputNode.is_just_pressed("jump"):
-		main_state_machine.transition(PlayerJumpState.state_name)
+		movement_state_machine.transition(PlayerJumpState.state_name)
 		pass
 	
 	animatedsprite2d.play("run")
@@ -25,7 +25,7 @@ func physics_process(_delta: float) -> void:
 	
 	# Detect absence of input to exit state
 	if input == 0.0:
-		main_state_machine.transition(PlayerIdleState.state_name)
+		movement_state_machine.transition(PlayerIdleState.state_name)
 		pass
 	
 	# Process movement

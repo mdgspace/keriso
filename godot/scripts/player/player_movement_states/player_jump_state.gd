@@ -51,9 +51,9 @@ func physics_process(_delta: float) -> void:
 	if player.is_on_floor() and _is_jumping:
 		print("touch floor")
 		if input == 0.0:
-			main_state_machine.transition(PlayerIdleState.state_name)
+			movement_state_machine.transition(PlayerIdleState.state_name)
 		else:
-			main_state_machine.transition(PlayerMovementState.state_name)
+			movement_state_machine.transition(PlayerMovementState.state_name)
 		pass
 		
 	# Process movement while on air

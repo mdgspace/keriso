@@ -12,13 +12,15 @@ var _facing: Facing = Facing.RIGHT
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animatedsprite2d = $AnimatedSprite2D
-@onready var main_state_machine = $StateMachine
-
+@onready var movement_state_machine = $MovementStateMachine
+@onready var action_state_machine = $ActionStateMachine
+#@onready var movement_state_machine = $MovementStateMachine
 
 func _ready() -> void:
-	var states: Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self)]
-	main_state_machine.start_machine(states)
-
+	var movement_states: Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self)]
+	var action_states: Array[State] = [PlayerAttackState.new(self),PlayerParryState.new(self),PlayerDefenseState.new(self)]
+	movement_state_machine.start_machine(movement_states)
+	action_state_machine.start_machine(action_states)
 
 func _physics_process(delta: float) -> void:	
 	horizontal_input = InputNode.horizontal_input()
@@ -28,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += _gravity * delta
 		
 	if not is_on_floor() and was_on_floor:
-		main_state_machine.transition("PlayerJumpState")
+		movement_state_machine.transition("PlayerJumpState")
 
 	was_on_floor = is_on_floor()
 	move_and_slide()
