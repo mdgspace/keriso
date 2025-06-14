@@ -12,11 +12,21 @@ config_version=5
 
 config/name="keriso"
 run/main_scene="res://scenes/world/node_2d.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
 InputNode="*res://scripts/core/InputManager.gd"
+SaveManagerGlobal="*res://scripts/core/SaveManager/SaveManager.gd"
+GameManagerNode="*res://scripts/core/managers/GameManager.gd"
+Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
+CheckpointSystemNode="*res://scripts/core/systems/CheckpointSystem.gd"
+RespawnSystem="*res://scripts/core/systems/RespawnSystem.gd"
+ProgressSystem="*res://scripts/core/systems/ProgressSystem.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
 
 [input]
 
@@ -50,6 +60,7 @@ interact={
 pause={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"location":0,"echo":false,"script":null)
 ]
 }
 

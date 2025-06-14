@@ -13,6 +13,7 @@ const ACTIONS := [
 ]
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Ensure all actions exist in InputMap
 	for action in ACTIONS:
 		if not InputMap.has_action(action):
