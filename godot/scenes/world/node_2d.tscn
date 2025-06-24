@@ -1,18 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl3pbws7ws077"]
+[gd_scene load_steps=5 format=3 uid="uid://cl3pbws7ws077"]
 
 [ext_resource type="PackedScene" uid="uid://c0813f30mum2g" path="res://scenes/players/player.tscn" id="1_2cehg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rlyue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl3tn"]
+size = Vector2(214, 24)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4d1mu"]
+vertices = PackedVector2Array(1092.39, -26.7734, 151.727, -6.22656, 166.352, -219.18, 1079.6, -237.797)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(157, -229, 141, 4, 1103, -17, 1089, -248)])
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_2cehg")]
 position = Vector2(-19, -41)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(2, -7)
 zoom = Vector2(3, 3)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_rlyue")
+debug_color = Color(0.491201, 0.451517, 0.95249, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(257, -12)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(399, -36)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(591, -13)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(805, -13)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(987, -36)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_4d1mu")
