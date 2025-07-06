@@ -1,0 +1,1 @@
+class_name kunoichi_enemy extends Enemy
