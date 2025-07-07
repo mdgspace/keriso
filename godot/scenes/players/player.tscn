@@ -1,8 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://c0813f30mum2g"]
+[gd_scene load_steps=36 format=3 uid="uid://c0813f30mum2g"]
 
 [ext_resource type="Texture2D" uid="uid://chqm13knk48b4" path="res://assets/characters/knight.png" id="1_6nu0v"]
 [ext_resource type="Script" uid="uid://dvdxtbxvi6oqs" path="res://scripts/player/player_controller.gd" id="1_mk0ap"]
 [ext_resource type="Script" uid="uid://dtefr2kguqvvl" path="res://scripts/core/state/state_machine.gd" id="3_3cnjg"]
+[ext_resource type="PackedScene" uid="uid://b7kvb8t8mdb0i" path="res://scenes/InventoryUI.tscn" id="4_edvpf"]
+[ext_resource type="Script" uid="uid://bpub60p0wky4y" path="res://scripts/core/ui_scripts/player_inventory.gd" id="5_olb2f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxqcu"]
 atlas = ExtResource("1_6nu0v")
@@ -222,10 +224,14 @@ animations = [{
 radius = 4.0
 height = 18.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+process_mode = 3
 z_index = 5
 position = Vector2(106, 0)
 script = ExtResource("1_mk0ap")
+
+[node name="InventoryController" type="Node" parent="."]
+script = ExtResource("5_olb2f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -12)
@@ -243,3 +249,60 @@ script = ExtResource("3_3cnjg")
 
 [node name="ActionStateMachine" type="Node" parent="."]
 script = ExtResource("3_3cnjg")
+
+[node name="InteractUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="InteractUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.225415, 0.596894, 0.502769, 1)
+
+[node name="Label" type="Label" parent="InteractUI/ColorRect"]
+layout_mode = 0
+offset_right = 299.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 25
+text = "Press E tp pickup"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Inventory" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Inventory"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1764, 0.513933, 0.412723, 1)
+
+[node name="Label" type="Label" parent="Inventory/ColorRect"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InventoryUI" parent="Inventory/ColorRect" instance=ExtResource("4_edvpf")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_top = -73.0
+offset_bottom = -73.0
+grow_horizontal = 1

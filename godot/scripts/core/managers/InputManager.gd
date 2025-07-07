@@ -9,7 +9,7 @@ var _last_input_time: Dictionary = {}
 ## Define your game actions here and add in InputMap
 const ACTIONS := [
 	"move_left", "move_right",
-	"jump", "attack", "interact", "pause"
+	"jump", "attack", "interact", "pause", "inventory"
 ]
 
 func _ready() -> void:
