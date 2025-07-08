@@ -7,11 +7,17 @@ var inventory = []
 #signals
 signal inventory_updated
 
+
+
 @onready var inventory_slot_scene = preload("res://scenes/InventorySlot.tscn")
 
 var PlayerNode: Node = null
 
 func _ready() -> void:
+	if save_id == "":
+		save_id = "inventory_manager"
+		
+	super._ready()
 	inventory.resize(20)
 	
 
@@ -62,4 +68,27 @@ func drop_item(item):
 	remove_item(item, item["quantity"])
 	
 	
-	
+func get_save_data() -> Dictionary:
+	print("Saving inventory manager")
+	var serialized_inventory := []
+	for item in inventory:
+		if item != null:
+			# Duplicate the dictionary to avoid shared reference bugs
+			serialized_inventory.append(item.duplicate(true))
+		else:
+			serialized_inventory.append(null) 
+	return {
+		"inventory": serialized_inventory
+	}
+
+
+func load_save_data(data: Dictionary) -> void:
+	if not data.has("inventory"):
+		push_warning("Save data missing 'inventory' key")
+		return
+
+	var loaded_inventory = data["inventory"]
+	inventory.resize(loaded_inventory.size())
+	for i in range(loaded_inventory.size()):
+		inventory[i] = loaded_inventory[i] # Might be null or a dictionary
+	inventory_updated.emit()

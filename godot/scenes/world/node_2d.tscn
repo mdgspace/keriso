@@ -21,7 +21,7 @@ zoom = Vector2(3, 3)
 shape = SubResource("WorldBoundaryShape2D_rlyue")
 
 [node name="InventoryItem" parent="StaticBody2D" instance=ExtResource("2_s8kui")]
-position = Vector2(66, -16)
+position = Vector2(52, -15)
 scale = Vector2(0.495, 0.495)
 item_name = "Test Item 1"
 item_type = "consumable"

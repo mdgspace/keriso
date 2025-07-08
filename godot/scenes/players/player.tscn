@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://c0813f30mum2g"]
+[gd_scene load_steps=37 format=3 uid="uid://c0813f30mum2g"]
 
 [ext_resource type="Texture2D" uid="uid://chqm13knk48b4" path="res://assets/characters/knight.png" id="1_6nu0v"]
 [ext_resource type="Script" uid="uid://dvdxtbxvi6oqs" path="res://scripts/player/player_controller.gd" id="1_mk0ap"]
 [ext_resource type="Script" uid="uid://dtefr2kguqvvl" path="res://scripts/core/state/state_machine.gd" id="3_3cnjg"]
 [ext_resource type="PackedScene" uid="uid://b7kvb8t8mdb0i" path="res://scenes/InventoryUI.tscn" id="4_edvpf"]
 [ext_resource type="Script" uid="uid://bpub60p0wky4y" path="res://scripts/core/ui_scripts/player_inventory.gd" id="5_olb2f"]
+[ext_resource type="Script" uid="uid://bstv4op17ha7s" path="res://scripts/core/ui_scripts/sampleSaveLoad.gd" id="6_sguum"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxqcu"]
 atlas = ExtResource("1_6nu0v")
@@ -306,3 +307,21 @@ anchor_bottom = 0.5
 offset_top = -73.0
 offset_bottom = -73.0
 grow_horizontal = 1
+
+[node name="save" type="Button" parent="."]
+offset_left = 55.0
+offset_top = -104.0
+offset_right = 104.0
+offset_bottom = -79.0
+text = "save"
+script = ExtResource("6_sguum")
+
+[node name="load" type="Button" parent="."]
+offset_left = 112.0
+offset_top = -104.0
+offset_right = 161.0
+offset_bottom = -79.0
+text = "load"
+
+[connection signal="pressed" from="save" to="save" method="_on_pressed"]
+[connection signal="pressed" from="load" to="save" method="_on_load_pressed"]

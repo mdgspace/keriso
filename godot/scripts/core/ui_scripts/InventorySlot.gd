@@ -50,8 +50,13 @@ func set_item(new_item):
 	#print("setting item")
 	item = new_item;
 	#print(item)
-	icon.texture = new_item["item_texture"];
-	quantity_label.text = str(new_item["quantity"]);
+	if new_item.has("texture_path") and new_item["texture_path"] != "":
+		icon.texture = load(new_item["texture_path"])
+	else:
+		icon.texture = null
+		
+	var quantity_int = int(new_item["quantity"]);
+	quantity_label.text = str(quantity_int);
 	item_name.text = str(new_item["item_name"]);
 	item_type.text = str(new_item["item_type"]);
 	if(item["item_effect"] != ""):

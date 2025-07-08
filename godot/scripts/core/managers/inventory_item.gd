@@ -5,6 +5,7 @@ extends Node2D
 @export var item_name = ""
 @export var item_type = ""
 @export var item_texture: Texture
+var texture_path = ""
 @export var item_effect = ""
 var quantity = 1;
 var scene_path: String = "res://scenes/Inventory_Item.tscn"
@@ -18,6 +19,9 @@ var player_in_range = false
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		icon_sprite.texture = item_texture
+	
+	if texture_path == "" and item_texture:
+		texture_path = item_texture.resource_path
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,7 +39,7 @@ func pickup_item():
 		"item_name": item_name,
 		"item_effect": item_effect,
 	 	"scene_path": scene_path,
-		"item_texture": item_texture,
+		"texture_path": texture_path,
 	}
 	if InventoryManager.PlayerNode:
 		InventoryManager.add_item(item)
@@ -59,7 +63,13 @@ func set_item_data(data):
 	#print("Setting item data")
 	item_name = data["item_name"];
 	item_effect = data["item_effect"];
-	item_texture = data["item_texture"];
+	texture_path = data["texture_path"];
 	item_type = data["item_type"];
 	quantity = data["quantity"];
+	
+	quantity = int(quantity);
+	
+	if texture_path != "":
+		item_texture = load(texture_path)
+		icon_sprite.texture = item_texture
 	#print(item_type)
