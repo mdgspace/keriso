@@ -787,7 +787,7 @@ position = Vector2(2.78825, -12.724)
 scale = Vector2(0.332612, 0.309)
 sprite_frames = SubResource("SpriteFrames_pfg8d")
 animation = &"Attack1"
-frame_progress = 0.706854
+frame_progress = 0.319337
 
 [node name="RightRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(2.28825, 3.276)
@@ -819,13 +819,13 @@ collide_with_areas = true
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(4, -5.5)
 scale = Vector2(1, 4.32)
-target_position = Vector2(89.5, -3.58796)
+target_position = Vector2(93.5, -3.58796)
 collision_mask = 4
 
 [node name="PlayerRayCast2D3" type="RayCast2D" parent="."]
 position = Vector2(4, -5.5)
 scale = Vector2(1, 4.32)
-target_position = Vector2(89.5, 0.694444)
+target_position = Vector2(93.5, 0.694444)
 collision_mask = 4
 
 [node name="MovementStateMachine" type="Node" parent="."]

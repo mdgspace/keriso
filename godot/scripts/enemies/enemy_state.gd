@@ -6,7 +6,6 @@ var animatedsprite2d: AnimatedSprite2D
 var movement_state_machine: StateMachine
 var action_state_machine: StateMachine
 
-
 func _init(enemy_controller: Enemy) -> void:
 	enemy = enemy_controller
 	animatedsprite2d = enemy.animatedsprite2d
