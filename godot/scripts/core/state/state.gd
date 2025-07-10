@@ -1,4 +1,4 @@
-class_name State
+class_name State extends Node
 
 
 # Called when the machine transitions to this state

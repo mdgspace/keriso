@@ -19,7 +19,8 @@ var _facing: Facing = Facing.RIGHT
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 signal anim_finished
-@onready var animatedsprite2d = $AnimatedSprite2D
+@onready var animatedplayer = $AnimationPlayer
+@onready var sprite = $Sprite2D
 @onready var movement_state_machine = $MovementStateMachine
 @onready var action_state_machine = $ActionStateMachine
 @onready var low_ray1 = $LeftRayCast2D
