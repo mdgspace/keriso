@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://ngcthb8yjthx"]
+[gd_scene load_steps=109 format=3 uid="uid://ngcthb8yjthx"]
 
 [ext_resource type="Texture2D" uid="uid://cuc2spu43l0ut" path="res://assets/characters/kunoichi/Attack_1.png" id="1_ah5tw"]
 [ext_resource type="Texture2D" uid="uid://d0iv7ylev7e0u" path="res://assets/characters/kunoichi/Attack_2.png" id="2_p760b"]
@@ -25,7 +25,13 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctbht"]
-size = Vector2(20.9691, 59.1456)
+size = Vector2(23.9811, 80.1812)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyrxe"]
+size = Vector2(48.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwk84"]
+size = Vector2(74, 53)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxnv5"]
 atlas = ExtResource("1_ah5tw")
@@ -511,12 +517,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyrxe"]
-size = Vector2(48.5, 32.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwk84"]
-size = Vector2(74, 53)
-
 [sub_resource type="Animation" id="Animation_fe3xe"]
 resource_name = "Attack1"
 length = 0.6
@@ -560,7 +560,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MovementStateMachine/Attack1/Area2D/CollisionShape2D:disabled")
+tracks/3/path = NodePath("Attack1Hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -589,7 +589,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MovementStateMachine/Attack2/Attack2Hitbox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Attack2Hitbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -666,66 +666,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_2gw1r"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MovementStateMachine/Attack2/Attack2Hitbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_p760b")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:hframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MovementStateMachine/Attack1/Area2D/CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_lsmjf"]
 resource_name = "Run"
@@ -870,8 +810,14 @@ animation = &"Attack1"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o8bni"]
 animation = &"Attack2"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_633ay"]
+animation = &"Die"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3hqyt"]
 animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tkyvi"]
+animation = &"Walk"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yean8"]
 animation = &"idle"
@@ -886,6 +832,7 @@ advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qc0rj"]
 advance_mode = 2
+advance_condition = &"attack1"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k21ck"]
 advance_mode = 2
@@ -893,24 +840,54 @@ advance_condition = &"run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1wt8s"]
 advance_mode = 2
+advance_condition = &"attack2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mhy8i"]
 advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_piltu"]
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0oo4x"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a2i4l"]
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ngcs4"]
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v3v42"]
+advance_mode = 2
+advance_condition = &"attack1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_22taa"]
+advance_mode = 2
+advance_condition = &"attack2"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_soewf"]
 states/Attack1/node = SubResource("AnimationNodeAnimation_73tim")
 states/Attack1/position = Vector2(634, 254)
 states/Attack2/node = SubResource("AnimationNodeAnimation_o8bni")
-states/Attack2/position = Vector2(634, 147)
+states/Attack2/position = Vector2(644, 50)
+states/Die/node = SubResource("AnimationNodeAnimation_633ay")
+states/Die/position = Vector2(856, 176)
 states/Run/node = SubResource("AnimationNodeAnimation_3hqyt")
-states/Run/position = Vector2(406, 167)
-states/Start/position = Vector2(192, 147)
+states/Run/position = Vector2(433, 147)
+states/Start/position = Vector2(68, 140)
+states/Walk/node = SubResource("AnimationNodeAnimation_tkyvi")
+states/Walk/position = Vector2(341, 40)
 states/idle/node = SubResource("AnimationNodeAnimation_yean8")
-states/idle/position = Vector2(406, 56)
-transitions = ["idle", "Run", SubResource("AnimationNodeStateMachineTransition_3sxlw"), "Run", "idle", SubResource("AnimationNodeStateMachineTransition_0ruk8"), "Run", "Attack1", SubResource("AnimationNodeStateMachineTransition_qc0rj"), "Attack1", "Run", SubResource("AnimationNodeStateMachineTransition_k21ck"), "Run", "Attack2", SubResource("AnimationNodeStateMachineTransition_1wt8s"), "Attack2", "Run", SubResource("AnimationNodeStateMachineTransition_mhy8i")]
-graph_offset = Vector2(-132, 27)
+states/idle/position = Vector2(217, 140)
+transitions = ["idle", "Run", SubResource("AnimationNodeStateMachineTransition_3sxlw"), "Run", "idle", SubResource("AnimationNodeStateMachineTransition_0ruk8"), "Run", "Attack1", SubResource("AnimationNodeStateMachineTransition_qc0rj"), "Attack1", "Run", SubResource("AnimationNodeStateMachineTransition_k21ck"), "Run", "Attack2", SubResource("AnimationNodeStateMachineTransition_1wt8s"), "Attack2", "Run", SubResource("AnimationNodeStateMachineTransition_mhy8i"), "idle", "Walk", SubResource("AnimationNodeStateMachineTransition_piltu"), "Walk", "idle", SubResource("AnimationNodeStateMachineTransition_0oo4x"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_a2i4l"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_ngcs4"), "Attack2", "Attack1", SubResource("AnimationNodeStateMachineTransition_v3v42"), "Attack1", "Attack2", SubResource("AnimationNodeStateMachineTransition_22taa")]
+graph_offset = Vector2(-65, 4)
 
-[node name="kunoichi_enemy" type="CharacterBody2D"]
+[node name="kunoichi_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox")]
 position = Vector2(80, -15)
 scale = Vector2(2, 2)
 collision_mask = 4
@@ -919,44 +896,25 @@ walk_speed = 60
 jump_force = 500
 near_detection_range = 150
 attack_range = 80
+Attack1Hitbox = NodePath("Attack1Hitbox")
+Attack2Hitbox = NodePath("Attack2Hitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.51913, -1.862)
+position = Vector2(3.01913, -5.112)
 scale = Vector2(0.332, 0.309)
 shape = SubResource("RectangleShape2D_ctbht")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.78825, -12.724)
-scale = Vector2(0.332612, 0.309)
-sprite_frames = SubResource("SpriteFrames_pfg8d")
-animation = &"Attack1"
-frame_progress = 0.706854
-
 [node name="RightRayCast2D" type="RayCast2D" parent="."]
-position = Vector2(2.28825, 3.276)
+position = Vector2(3.5, 3)
 scale = Vector2(1, 0.48)
 target_position = Vector2(7.71175, 0.466666)
 collide_with_areas = true
 
-[node name="LeftRayCast2D" type="RayCast2D" parent="."]
-position = Vector2(2.28825, 3.276)
-scale = Vector2(1, 0.48)
-enabled = false
-target_position = Vector2(-7.28825, -0.575001)
-collide_with_areas = true
-
-[node name="DownLeftRayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-0.211744, 6.276)
-rotation = -0.572089
-scale = Vector2(0.299253, 0.0883838)
-target_position = Vector2(-16.2613, -8.53902)
-collide_with_areas = true
-
 [node name="DownRightRayCast2D" type="RayCast2D" parent="."]
-position = Vector2(4.28826, 6.276)
+position = Vector2(3, 6)
 rotation = -2.46307
 scale = Vector2(0.299253, 0.0883838)
-target_position = Vector2(-13.2999, 7.23828)
+target_position = Vector2(-22.153, 24.1382)
 collide_with_areas = true
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
@@ -971,6 +929,30 @@ scale = Vector2(1, 4.32)
 target_position = Vector2(89.5, 0.694444)
 collision_mask = 4
 
+[node name="Attack2Hitbox" type="Area2D" parent="."]
+position = Vector2(4, -5.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2Hitbox"]
+position = Vector2(5.25, -6.25)
+shape = SubResource("RectangleShape2D_eyrxe")
+
+[node name="Attack1Hitbox" type="Area2D" parent="."]
+position = Vector2(4, -5.5)
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1Hitbox"]
+position = Vector2(19, -19)
+shape = SubResource("RectangleShape2D_dwk84")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(2.78825, -12.724)
+scale = Vector2(0.332612, 0.309)
+sprite_frames = SubResource("SpriteFrames_pfg8d")
+animation = &"Attack1"
+frame = 4
+frame_progress = 0.979534
+
 [node name="MovementStateMachine" type="Node" parent="."]
 script = ExtResource("9_22hbh")
 
@@ -983,24 +965,8 @@ script = ExtResource("12_75avw")
 [node name="Attack2" type="Node" parent="MovementStateMachine"]
 script = ExtResource("12_qpigw")
 
-[node name="Attack2Hitbox" type="Area2D" parent="MovementStateMachine/Attack2"]
-position = Vector2(88, -26)
-scale = Vector2(2, 2)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MovementStateMachine/Attack2/Attack2Hitbox"]
-position = Vector2(5.25, -6.25)
-shape = SubResource("RectangleShape2D_eyrxe")
-disabled = true
-
 [node name="Attack1" type="Node" parent="MovementStateMachine"]
 script = ExtResource("12_vqx3y")
-
-[node name="Area2D" type="Area2D" parent="MovementStateMachine/Attack1"]
-position = Vector2(88, -26)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MovementStateMachine/Attack1/Area2D"]
-position = Vector2(19, -19)
-shape = SubResource("RectangleShape2D_dwk84")
 
 [node name="Jump" type="Node" parent="MovementStateMachine"]
 script = ExtResource("14_880qa")
@@ -1021,14 +987,16 @@ autoplay = "idle"
 tree_root = SubResource("AnimationNodeStateMachine_soewf")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/attack1 = false
+parameters/conditions/attack2 = false
 parameters/conditions/idle = false
 parameters/conditions/run = false
+parameters/conditions/walk = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(4.5, -18)
+position = Vector2(3, -18)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_p760b")
-hframes = 6
-frame = 2
+texture = ExtResource("5_qfsck")
+hframes = 9
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

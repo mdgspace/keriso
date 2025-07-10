@@ -8,6 +8,7 @@ var small_timer:float = 0.0
 func enter() -> void:
 	# Choose random direction
 	roam_direction = [-1, 1][randi() % 2]
+	print("Start Roaming Direction",roam_direction)
 	roam_timer = roam_duration
 	# Set initial facing direction
 	enemy.set_facing_direction(roam_direction)
@@ -25,9 +26,9 @@ func physics_process(delta: float) -> void:
 		# Hit wall - turn around
 		roam_direction *= -1
 		small_timer = 0.0
-		print("flipping ",roam_direction )
+		print("flipping ",roam_direction)
 		#enemy.flip()
-		enemy.set_facing_direction(-roam_direction)
+		enemy.set_facing_direction(roam_direction)
 		roam_timer = roam_duration  # Reset timer
 		return
 	

@@ -18,18 +18,22 @@ var was_on_floor
 var _facing: Facing = Facing.RIGHT
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-signal anim_finished
 @onready var animatedplayer = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var movement_state_machine = $MovementStateMachine
 @onready var action_state_machine = $ActionStateMachine
-@onready var low_ray1 = $LeftRayCast2D
-@onready var low_ray2 = $RightRayCast2D
-@onready var down_ray1 = $DownLeftRayCast2D
-@onready var down_ray2 = $DownRightRayCast2D
+###Flip Objects
+@onready var low_ray1 = $RightRayCast2D
+@onready var down_ray1 = $DownRightRayCast2D
+##fov
 @onready var player_ray1 = $PlayerRayCast2D
 @onready var player_ray2 = $PlayerRayCast2D3
+@export var Attack1Hitbox: Area2D
+@export var Attack2Hitbox: Area2D
+
 @export var player_path: NodePath
+
+
 var low_collision:bool
 var down_collision:bool
 var player_position: Vector2
@@ -46,18 +50,19 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += _gravity * delta
-	print(scale.x)
-	flip_area()
+	
 	##Jump Up And flip
-	if (low_ray1.is_colliding()||low_ray2.is_colliding()):
+	if (low_ray1.is_colliding()):
+		print(true)
 		low_collision = true
 	else :
 		low_collision = false
 	##Jump Down
-	if(down_ray1.is_colliding()&&down_ray2.is_colliding()):
+	if(down_ray1.is_colliding()):
 		down_collision = true
 	else:
 		down_collision = false
+	flip_children()
 	was_on_floor = is_on_floor()
 	player_position = player.global_position
 	to_player = player.global_position - global_position
@@ -66,9 +71,6 @@ func _physics_process(delta: float) -> void:
 func jump():
 	velocity.y = -jump_force
 
-func flip_area()-> void:
-	if _facing == Facing.RIGHT:
-		low_ray1.scale.x = abs(low_ray1.scale.x)
 
 func can_see_player() -> bool:
 	if not is_instance_valid(player):
@@ -92,6 +94,22 @@ func can_see_player() -> bool:
 
 	return false
 
+func flip_children():
+	if(_facing==Facing.RIGHT):
+		low_ray1.scale.x = abs(low_ray1.scale.x)
+		down_ray1.scale.x = abs(down_ray1.scale.x)
+		player_ray1.scale.x = abs(player_ray1.scale.x)
+		player_ray2.scale.x = abs(player_ray2.scale.x)
+		Attack1Hitbox.scale.x = abs(Attack1Hitbox.scale.x)
+		Attack2Hitbox.scale.x = abs(Attack2Hitbox.scale.x)
+	else:
+		low_ray1.scale.x = -abs(low_ray1.scale.x)
+		down_ray1.scale.x = -abs(down_ray1.scale.x)
+		player_ray1.scale.x = -abs(player_ray1.scale.x)
+		player_ray2.scale.x = -abs(player_ray2.scale.x)
+		Attack1Hitbox.scale.x = -abs(Attack1Hitbox.scale.x)	
+		Attack2Hitbox.scale.x = -abs(Attack2Hitbox.scale.x)
+
 func flip():
 	scale.x = -scale.x
 
@@ -99,10 +117,10 @@ func set_facing_direction(direction: float) -> void:
 	print(direction)
 	if direction > 0:
 		_facing = Facing.RIGHT
-		scale.x = abs(scale.x)
+		sprite.flip_h = false
 	elif direction < 0:
 		_facing = Facing.LEFT
-		scale.x = -abs(scale.x)
+		sprite.flip_h = true
 
 func handle_facing() -> void:
 	#print("calling handle facing")
@@ -129,6 +147,6 @@ func handle_facing() -> void:
 		
 		# Flip the entire node
 		if _facing == Facing.LEFT:
-			scale.x = -abs(scale.x)
+			sprite.flip_h = true
 		else:
-			scale.x = abs(scale.x)
+			sprite.flip_h = false
