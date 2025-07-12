@@ -115,7 +115,6 @@ func flip():
 	scale.x = -scale.x
 
 func set_facing_direction(direction: float) -> void:
-	print(direction)
 	if direction > 0:
 		_facing = Facing.RIGHT
 		sprite.flip_h = false

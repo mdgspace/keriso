@@ -16,7 +16,7 @@ func enter() -> void:
 	animation_state = enemy.animation_state
 func _physics_process(delta):
 	animation_state = enemy.animation_state
-	print(animation_state)
+	#print(animation_state)
 	update_animation_state()
 	
 func update_animation_state():

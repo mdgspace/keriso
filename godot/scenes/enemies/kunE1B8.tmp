@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cuc2spu43l0ut" path="res://assets/characters/kunoichi/Attack_1.png" id="1_ah5tw"]
 [ext_resource type="Texture2D" uid="uid://d0iv7ylev7e0u" path="res://assets/characters/kunoichi/Attack_2.png" id="2_p760b"]
 [ext_resource type="Texture2D" uid="uid://b84uj5e83j4t3" path="res://assets/characters/kunoichi/Cast.png" id="3_1uthf"]
-[ext_resource type="Script" path="res://scripts/core/Hit/attack_hitbox.gd" id="3_ry6aj"]
+[ext_resource type="Script" path="res://attack_hitbox.gd" id="3_ry6aj"]
 [ext_resource type="Texture2D" uid="uid://d04ml530eav01" path="res://assets/characters/kunoichi/Dead.png" id="4_mw412"]
 [ext_resource type="Texture2D" uid="uid://b73xwoff3gr1t" path="res://assets/characters/kunoichi/Idle.png" id="5_qfsck"]
 [ext_resource type="Texture2D" uid="uid://hx45ke7lt638" path="res://assets/characters/kunoichi/Jump.png" id="6_pc7m8"]
@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_jump_state.gd" id="14_880qa"]
 [ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_jumpDown_state.gd" id="15_jh6hp"]
 [ext_resource type="Texture2D" uid="uid://bt757g20brp1u" path="res://assets/characters/kunoichi/Hurt.png" id="16_pwxop"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_animation.gd" id="17_ihcg2"]
+[ext_resource type="Script" path="res://enemy_animation.gd" id="17_ihcg2"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cr7tsyty2pnde" path="res://assets/characters/kunoichi/kunoichi_enemy.tres" id="18_6obtf"]
 
 [sub_resource type="GDScript" id="GDScript_pghlm"]
@@ -31,11 +31,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctbht"]
 size = Vector2(23.9811, 80.1812)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwk84"]
-size = Vector2(74, 53)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyrxe"]
 size = Vector2(48.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwk84"]
+size = Vector2(74, 53)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxnv5"]
 atlas = ExtResource("1_ah5tw")
@@ -587,20 +587,6 @@ tracks/4/keys = {
 "method": &"transition_to_state"
 }]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Attack1Hitbox")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"clear_hit_targets"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_fluks"]
 resource_name = "Attack2"
@@ -666,20 +652,6 @@ tracks/4/keys = {
 "values": [{
 "args": ["EnemyAttack1State"],
 "method": &"transition_to_state"
-}]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Attack2Hitbox")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"clear_hit_targets"
 }]
 }
 
@@ -1182,6 +1154,18 @@ scale = Vector2(1, 4.32)
 target_position = Vector2(90.5, 1.50463)
 collision_mask = 4
 
+[node name="Attack2Hitbox" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2(4, -5.5)
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_ry6aj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2Hitbox"]
+position = Vector2(5.25, -6.25)
+shape = SubResource("RectangleShape2D_eyrxe")
+disabled = true
+
 [node name="Attack1Hitbox" type="Area2D" parent="."]
 show_behind_parent = true
 position = Vector2(4, -5.5)
@@ -1193,18 +1177,6 @@ script = ExtResource("3_ry6aj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack1Hitbox"]
 position = Vector2(19, -19)
 shape = SubResource("RectangleShape2D_dwk84")
-disabled = true
-
-[node name="Attack2Hitbox" type="Area2D" parent="."]
-show_behind_parent = true
-position = Vector2(4, -5.5)
-collision_layer = 8
-collision_mask = 4
-script = ExtResource("3_ry6aj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2Hitbox"]
-position = Vector2(5.25, -6.25)
-shape = SubResource("RectangleShape2D_eyrxe")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -1258,7 +1230,4 @@ parameters/conditions/jump = false
 parameters/conditions/run = false
 parameters/conditions/walk = false
 
-[connection signal="area_entered" from="Attack1Hitbox" to="Attack1Hitbox" method="_on_area_entered"]
-[connection signal="area_entered" from="Attack2Hitbox" to="Attack2Hitbox" method="_on_area_entered"]
-[connection signal="property_list_changed" from="Attack2Hitbox/CollisionShape2D" to="Attack2Hitbox" method="_on_collision_shape_2d_property_list_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

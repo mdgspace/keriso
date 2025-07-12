@@ -36,6 +36,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	
+#func apply_knockback(knockback:Vector2):
+	#velocity = knockback
+	
+func taken_damage()->void:
+	movement_state_machine.transition("PlayerHurtState")
 func handle_facing() -> void:
 	var flip: int = 0
 	

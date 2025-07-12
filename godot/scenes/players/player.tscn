@@ -1,8 +1,29 @@
-[gd_scene load_steps=34 format=3 uid="uid://c0813f30mum2g"]
+[gd_scene load_steps=39 format=3 uid="uid://c0813f30mum2g"]
 
 [ext_resource type="Texture2D" uid="uid://chqm13knk48b4" path="res://assets/characters/knight.png" id="1_6nu0v"]
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_mk0ap"]
+[ext_resource type="Script" path="res://scripts/core/Hit_Hurt_Boxes/hurtbox.gd" id="2_chv0y"]
 [ext_resource type="Script" path="res://scripts/core/state/state_machine.gd" id="3_3cnjg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uomq2"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bej0y"]
+atlas = ExtResource("1_6nu0v")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yomi6"]
+atlas = ExtResource("1_6nu0v")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5bxy"]
+atlas = ExtResource("1_6nu0v")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnupr"]
+atlas = ExtResource("1_6nu0v")
+region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxqcu"]
 atlas = ExtResource("1_6nu0v")
@@ -120,6 +141,23 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bej0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yomi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5bxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnupr")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_yxqcu")
 }, {
 "duration": 1.0,
@@ -218,26 +256,33 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uomq2"]
-radius = 4.0
-height = 18.0
-
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 position = Vector2(106, 0)
 scale = Vector2(1.7, 1.7)
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_mk0ap")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+light_mask = 4
+position = Vector2(1, -9)
+shape = SubResource("CapsuleShape2D_uomq2")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 4
+script = ExtResource("2_chv0y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+light_mask = 4
+position = Vector2(0.999996, -9)
+shape = SubResource("CapsuleShape2D_uomq2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -12)
 sprite_frames = SubResource("SpriteFrames_oikb1")
-animation = &"run"
+animation = &"hurt"
 autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 4
-position = Vector2(1, -9)
-shape = SubResource("CapsuleShape2D_uomq2")
 
 [node name="MovementStateMachine" type="Node" parent="."]
 script = ExtResource("3_3cnjg")

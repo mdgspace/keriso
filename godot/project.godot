@@ -58,6 +58,8 @@ pause={
 2d_physics/layer_1="ground"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="player"
+2d_physics/layer_4="Enemy_Hitbox"
+2d_physics/layer_5="Player_Hitbox"
 
 [rendering]
 

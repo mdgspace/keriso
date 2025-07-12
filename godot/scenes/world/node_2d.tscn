@@ -13,7 +13,6 @@ position = Vector2(143, 5)
 
 [node name="Player" parent="." instance=ExtResource("1_2cehg")]
 position = Vector2(423, -71)
-collision_layer = 4
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(21.7648, -11.7647)
