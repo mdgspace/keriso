@@ -9,8 +9,6 @@ func enter() -> void:
 	follow_end_timer = 0.0
 
 func physics_process(delta: float) -> void:
-	#attack_timer = max(0.0, attack_timer - delta)
-	
 	# Update distance
 	distance_to_player = enemy.to_player.length()
 	
@@ -49,7 +47,7 @@ func check_transitions() -> void:
 	# Attack if in range and ready
 	# Change this to handling in idle
 	if distance_to_player <= enemy.attack_range:
-		if randf() < 1:
+		if randf() < 0.5:
 			movement_state_machine.transition("EnemyAttack1State")
 		else:
 			movement_state_machine.transition("EnemyAttack2State")

@@ -639,17 +639,19 @@ tracks/3/keys = {
 "update": 1,
 "values": [6]
 }
-tracks/4/type = "value"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MovementStateMachine/Attack2:attack2finished")
+tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.7),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [{
+"args": ["EnemyAttack1State"],
+"method": &"transition_to_state"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_t2mn8"]
@@ -952,18 +954,6 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("MovementStateMachine/Attack2:attack2finished")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_lsmjf"]
 resource_name = "Run"
@@ -1118,6 +1108,7 @@ Attack1Hitbox = NodePath("Attack1Hitbox")
 Attack2Hitbox = NodePath("Attack2Hitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+show_behind_parent = true
 position = Vector2(3.01913, -5.112)
 scale = Vector2(0.332, 0.309)
 shape = SubResource("RectangleShape2D_ctbht")
@@ -1135,6 +1126,7 @@ enemy = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 
 [node name="RightRayCast2D" type="RayCast2D" parent="."]
+show_behind_parent = true
 position = Vector2(3.5, 3)
 scale = Vector2(1, 0.48)
 target_position = Vector2(7.71175, 0.466666)
@@ -1148,18 +1140,21 @@ target_position = Vector2(-22.153, 24.1382)
 collide_with_areas = true
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
+show_behind_parent = true
 position = Vector2(6.5, -13)
 scale = Vector2(1, 4.32)
 target_position = Vector2(89.5, -3.58796)
 collision_mask = 4
 
 [node name="PlayerRayCast2D3" type="RayCast2D" parent="."]
+show_behind_parent = true
 position = Vector2(7, -8.5)
 scale = Vector2(1, 4.32)
 target_position = Vector2(90.5, 1.50463)
 collision_mask = 4
 
 [node name="Attack2Hitbox" type="Area2D" parent="."]
+show_behind_parent = true
 position = Vector2(4, -5.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2Hitbox"]
@@ -1168,6 +1163,7 @@ shape = SubResource("RectangleShape2D_eyrxe")
 disabled = true
 
 [node name="Attack1Hitbox" type="Area2D" parent="."]
+show_behind_parent = true
 position = Vector2(4, -5.5)
 scale = Vector2(0.5, 0.5)
 
