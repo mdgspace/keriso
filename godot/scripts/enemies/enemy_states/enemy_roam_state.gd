@@ -12,7 +12,7 @@ func enter() -> void:
 	roam_timer = roam_duration
 	# Set initial facing direction
 	enemy.set_facing_direction(roam_direction)
-	animatedsprite2d.play("Walk")
+	enemy.animation_state = "walk"
 
 func physics_process(delta: float) -> void:
 	roam_timer -= delta

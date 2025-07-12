@@ -4,7 +4,7 @@ var distance_to_player: float
 var attack_timer: float = 0.0
 var follow_end_timer: float =0.0
 func enter() -> void:
-	animatedsprite2d.play("Run")
+	enemy.animation_state = "run"
 	attack_timer = 0.0
 	follow_end_timer = 0.0
 
@@ -28,10 +28,7 @@ func handle_movement_and_facing() -> void:
 	var player_direction = sign(enemy.to_player.x)
 	
 	# Set facing direction FIRST (based on player position, not velocity)
-	if (player_direction) <  0:
-		enemy.set_facing_direction(-player_direction)
-	else:
-		enemy.set_facing_direction(player_direction)
+	enemy.set_facing_direction(player_direction)
 	
 	# Then set movement
 	if distance_to_player > enemy.attack_range:  # Get closer to player
@@ -45,14 +42,14 @@ func check_transitions() -> void:
 		movement_state_machine.transition("EnemyJumpState")
 		return
 	
-	if not enemy.down_collision:
-		movement_state_machine.transition("EnemyJumpDownState")
-		return
+	#if not enemy.down_collision:
+		#movement_state_machine.transition("EnemyJumpDownState")
+		#return
 	
 	# Attack if in range and ready
 	if distance_to_player <= enemy.attack_range and attack_timer <= 0.0:
 		attack_timer = 0.5  # Cooldown
-		if randf() < 0.5:
+		if randf() < 1:
 			movement_state_machine.transition("EnemyAttack1State")
 		else:
 			movement_state_machine.transition("EnemyAttack2State")

@@ -1,25 +1,23 @@
 class_name EnemyJumpDownState extends EnemyState
 ##Have to set the animation frame values enemy wise
+@export var endjumpdown:bool
 func enter() -> void:
 	enemy.velocity.x =0
-	animatedsprite2d.play("JumpDown")
-	
+	endjumpdown=false
+	enemy.animation_state = "jumpdown"
 	var player_direction = sign(enemy.to_player.x)
-	if (player_direction) <  0:
-		enemy.set_facing_direction(-player_direction)
-	else:
-		enemy.set_facing_direction(player_direction)
+	enemy.set_facing_direction(player_direction)
+	enemy.jump()
+	
 
 func physics_process(delta: float) -> void:
-	if animatedsprite2d.frame==0 :
-		enemy.jump()
-	
+		
 	if enemy.to_player.x>0:
 		enemy.velocity.x = enemy.run_speed
 	else :
 		enemy.velocity.x = -enemy.run_speed
 		
-	if enemy.is_on_floor() && animatedsprite2d.frame==7:
+	if enemy.is_on_floor() && endjumpdown:
 		movement_state_machine.transition("EnemyIdleState")
 
 func get_state_name() -> String:

@@ -1,23 +1,15 @@
 class_name EnemyAttack1State extends EnemyState
 
 var distance: float
-var attack_completed: bool = false
 
 func enter() -> void:
 	enemy.velocity.x = 0
-	animatedsprite2d.play("Attack1")
-	attack_completed = false
+	enemy.animation_state = "attack1"
 	
 	# Set facing toward player when starting attack
 	var player_direction = sign(enemy.to_player.x)
-	if (player_direction) <  0:
-		enemy.set_facing_direction(-player_direction)
-	else:
-		enemy.set_facing_direction(player_direction)
+	enemy.set_facing_direction(player_direction)
 	
-	# Connect to animation finished signal if not already connected
-	if not animatedsprite2d.animation_finished.is_connected(_on_animation_finished):
-		animatedsprite2d.animation_finished.connect(_on_animation_finished)
 
 func physics_process(delta: float) -> void:
 	distance = enemy.to_player.length()
@@ -26,17 +18,19 @@ func physics_process(delta: float) -> void:
 	# enemy.handle_facing()  # REMOVED
 	
 	# Check if player moved too far away during attack
-	if distance > enemy.attack_range * 1.5 and attack_completed:
+	if distance > enemy.attack_range * 1.5 and enemy.attack1finished:
 		movement_state_machine.transition("EnemyIdleState")
 		return
 	
 	# Check if attack animation is nearly finished and player is out of range
-	if distance > enemy.attack_range and animatedsprite2d.frame >= 5:
+	if distance > enemy.attack_range and enemy.attack1finished:
 		movement_state_machine.transition("EnemyIdleState")
 		return
+	#If in range
+	if enemy.attack1finished:
+		_on_animation_finished()
 
 func _on_animation_finished() -> void:
-	attack_completed = true
 	
 	# After attack, decide next state based on player position
 	if distance <= enemy.attack_range and enemy.can_see_player():
@@ -48,11 +42,7 @@ func _on_animation_finished() -> void:
 
 func exit() -> void:
 	# Clean up
-	attack_completed = false
-	
-	# Disconnect signal to prevent memory leaks
-	if animatedsprite2d.animation_finished.is_connected(_on_animation_finished):
-		animatedsprite2d.animation_finished.disconnect(_on_animation_finished)
+	pass
 
 func get_state_name() -> String:
 	return "EnemyAttack1State"

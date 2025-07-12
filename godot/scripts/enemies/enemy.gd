@@ -12,7 +12,10 @@ enum Facing {
 	LEFT,
 	RIGHT
 }
-
+enum Animation_State{
+	idle,walk,run,attak1,attack2,jump,jumpdown,hurt,die
+}
+var animation_state = "idle"
 var horizontal_input: float = 0
 var was_on_floor 
 var _facing: Facing = Facing.RIGHT
@@ -33,6 +36,10 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var player_path: NodePath
 
+
+@export var attack1finished:bool
+@export var startjump:bool
+@export var endjump:bool
 
 var low_collision:bool
 var down_collision:bool
@@ -121,6 +128,9 @@ func set_facing_direction(direction: float) -> void:
 	elif direction < 0:
 		_facing = Facing.LEFT
 		sprite.flip_h = true
+			
+func transition_to_state(state:String)-> void:
+	movement_state_machine.transition(state)
 
 func handle_facing() -> void:
 	#print("calling handle facing")

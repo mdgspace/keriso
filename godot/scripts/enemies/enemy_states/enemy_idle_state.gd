@@ -5,7 +5,7 @@ var face_update_interval: float = 0.5  # Check every 0.5 seconds
 
 func enter() -> void:
 	enemy.velocity.x = 0
-	animatedsprite2d.play("Idle")
+	enemy.animation_state = "idle"
 	face_player_timer = 0.0
 
 func physics_process(delta: float) -> void:
