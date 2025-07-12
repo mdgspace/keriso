@@ -14,10 +14,6 @@ position = Vector2(143, 5)
 [node name="Player" parent="." instance=ExtResource("1_2cehg")]
 position = Vector2(423, -71)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(21.7648, -11.7647)
-zoom = Vector2(3, 3)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 disable_mode = 1
 
@@ -54,3 +50,9 @@ near_detection_range = 35
 far_detection_range = 350
 attack_range = 60
 player_path = NodePath("../Player")
+
+[node name="Camera2D" type="Camera2D" parent="kunoichi_enemy"]
+position = Vector2(-3.5, -12.5)
+scale = Vector2(-48.0948, 3.56473)
+zoom = Vector2(3, 3)
+position_smoothing_speed = 200.0

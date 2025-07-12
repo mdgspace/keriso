@@ -152,7 +152,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dnupr")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 10.0
 }, {
@@ -283,6 +283,8 @@ position = Vector2(1, -12)
 sprite_frames = SubResource("SpriteFrames_oikb1")
 animation = &"hurt"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="MovementStateMachine" type="Node" parent="."]
 script = ExtResource("3_3cnjg")
