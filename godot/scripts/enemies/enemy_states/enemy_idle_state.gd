@@ -2,23 +2,27 @@ class_name EnemyIdleState extends EnemyState
 
 var face_player_timer: float = 0.0
 var face_update_interval: float = 0.5  # Check every 0.5 seconds
-
+var distance_to_player: float
+var attack_timer: float = 0.0
+	
 func enter() -> void:
 	enemy.velocity.x = 0
 	enemy.animation_state = "idle"
 	face_player_timer = 0.0
-
+	attack_timer = enemy.attack_cooldown
+	
 func physics_process(delta: float) -> void:
+	attack_timer = max(0.0, attack_timer - delta)
 	face_player_timer += delta
+	distance_to_player = enemy.to_player.length()
 	
 	# Periodically face toward player if visible
 	if face_player_timer >= face_update_interval:
 		face_player_timer = 0.0
 		
-		#if enemy.can_see_player() and abs(enemy.to_player.x) > 20.0:
-			#var player_direction = sign(enemy.to_player.x)
-			#enemy.set_facing_direction(-player_direction)
-	
+	if distance_to_player <= enemy.attack_range and attack_timer > 0:
+		return
+		
 	if enemy.can_see_player():
 		movement_state_machine.transition("EnemyFollowState")
 	

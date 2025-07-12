@@ -7,7 +7,7 @@ class_name Enemy extends CharacterBody2D
 @export var near_detection_range= 250;
 @export var far_detection_range = 500;
 @export var attack_range = 100;
-@export var attack_cooldown = 1
+@export var attack_cooldown = 0.5
 enum Facing {
 	LEFT,
 	RIGHT
@@ -35,11 +35,6 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var Attack2Hitbox: Area2D
 
 @export var player_path: NodePath
-
-
-@export var attack1finished:bool
-@export var startjump:bool
-@export var endjump:bool
 
 var low_collision:bool
 var down_collision:bool
@@ -85,12 +80,11 @@ func can_see_player() -> bool:
 	
 	var distance = to_player.length()
 
-	#if distance > far_detection_range:
-		#return false
+	if distance < near_detection_range:
+		return true
 	if player_ray1.is_colliding() || player_ray2.is_colliding():
 		return true
-	#if distance < near_detection_range:
-		#return true
+	
 	#
 	#if _facing==Facing.RIGHT && to_player.x<0:
 		#return false

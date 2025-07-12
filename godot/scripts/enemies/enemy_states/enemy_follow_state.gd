@@ -1,15 +1,15 @@
 class_name EnemyFollowState extends EnemyState
 
 var distance_to_player: float
-var attack_timer: float = 0.0
+#var attack_timer: float = 0.0
 var follow_end_timer: float =0.0
 func enter() -> void:
 	enemy.animation_state = "run"
-	attack_timer = 0.0
+	#attack_timer = enemy.attack_cooldown
 	follow_end_timer = 0.0
 
 func physics_process(delta: float) -> void:
-	attack_timer = max(0.0, attack_timer - delta)
+	#attack_timer = max(0.0, attack_timer - delta)
 	
 	# Update distance
 	distance_to_player = enemy.to_player.length()
@@ -47,8 +47,8 @@ func check_transitions() -> void:
 		#return
 	
 	# Attack if in range and ready
-	if distance_to_player <= enemy.attack_range and attack_timer <= 0.0:
-		attack_timer = 0.5  # Cooldown
+	# Change this to handling in idle
+	if distance_to_player <= enemy.attack_range:
 		if randf() < 1:
 			movement_state_machine.transition("EnemyAttack1State")
 		else:

@@ -572,17 +572,19 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
-tracks/4/type = "value"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".:attack1finished")
+tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [{
+"args": ["EnemyIdleState"],
+"method": &"transition_to_state"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_fluks"]
@@ -888,7 +890,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [10]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -957,18 +959,6 @@ tracks/7/path = NodePath("MovementStateMachine/Attack2:attack2finished")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".:attack1finished")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1126,13 +1116,18 @@ near_detection_range = 150
 attack_range = 80
 Attack1Hitbox = NodePath("Attack1Hitbox")
 Attack2Hitbox = NodePath("Attack2Hitbox")
-startjump = true
-endjump = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3.01913, -5.112)
 scale = Vector2(0.332, 0.309)
 shape = SubResource("RectangleShape2D_ctbht")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -18)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("16_pwxop")
+hframes = 10
+frame = 1
 
 [node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("enemy", "animation_tree")]
 script = ExtResource("17_ihcg2")
@@ -1153,15 +1148,15 @@ target_position = Vector2(-22.153, 24.1382)
 collide_with_areas = true
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
-position = Vector2(4, -5.5)
+position = Vector2(6.5, -13)
 scale = Vector2(1, 4.32)
 target_position = Vector2(89.5, -3.58796)
 collision_mask = 4
 
 [node name="PlayerRayCast2D3" type="RayCast2D" parent="."]
-position = Vector2(4, -5.5)
+position = Vector2(7, -8.5)
 scale = Vector2(1, 4.32)
-target_position = Vector2(89.5, 0.694444)
+target_position = Vector2(90.5, 1.50463)
 collision_mask = 4
 
 [node name="Attack2Hitbox" type="Area2D" parent="."]
@@ -1231,12 +1226,5 @@ parameters/conditions/idle = false
 parameters/conditions/jump = false
 parameters/conditions/run = false
 parameters/conditions/walk = false
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, -18)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("16_pwxop")
-hframes = 2
-frame = 1
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

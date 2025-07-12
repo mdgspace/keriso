@@ -10,36 +10,18 @@ func enter() -> void:
 	var player_direction = sign(enemy.to_player.x)
 	enemy.set_facing_direction(player_direction)
 	
-
-func physics_process(delta: float) -> void:
-	distance = enemy.to_player.length()
-	
-	# Don't call handle_facing() during attack - keep facing locked
-	# enemy.handle_facing()  # REMOVED
-	
-	# Check if player moved too far away during attack
-	if distance > enemy.attack_range * 1.5 and enemy.attack1finished:
-		movement_state_machine.transition("EnemyIdleState")
-		return
-	
-	# Check if attack animation is nearly finished and player is out of range
-	if distance > enemy.attack_range and enemy.attack1finished:
-		movement_state_machine.transition("EnemyIdleState")
-		return
-	#If in range
-	if enemy.attack1finished:
-		_on_animation_finished()
-
-func _on_animation_finished() -> void:
-	
-	# After attack, decide next state based on player position
+func attack1finished()->void:
+	print("Attack1finishcall")
 	if distance <= enemy.attack_range and enemy.can_see_player():
 		# Player still in range - continue following
 		movement_state_machine.transition("EnemyFollowState")
 	else:
 		# Player out of range - go idle
 		movement_state_machine.transition("EnemyIdleState")
-
+		
+func physics_process(delta: float) -> void:
+	distance = enemy.to_player.length()
+	
 func exit() -> void:
 	# Clean up
 	pass

@@ -7,10 +7,7 @@ func enter() -> void:
 	var player_direction = sign(enemy.to_player.x)
 	enemy.set_facing_direction(player_direction)
 
-func endjump() ->void:
-	movement_state_machine.transition("EnemyIdleState")
-	enemy.animation_state = "idle"
-	print(enemy.animation_state)
+
 func physics_process(delta: float) -> void:
 
 	if enemy.to_player.x>0:
