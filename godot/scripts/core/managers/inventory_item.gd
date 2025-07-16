@@ -11,12 +11,19 @@ var quantity = 1;
 var scene_path: String = "res://scenes/Inventory_Item.tscn"
  
 @onready var icon_sprite = $Sprite2D
+var InventoryManager
 
 
 var player_in_range = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("icon_sprite:", icon_sprite)
+	await get_tree().process_frame
+	#print(PlayerGlobal)
+	#print(PlayerGlobal.player_instance)
+	InventoryManager = PlayerGlobal.player_instance.get_node("InventoryManager")
+	
 	if not Engine.is_editor_hint():
 		icon_sprite.texture = item_texture
 	
@@ -41,22 +48,24 @@ func pickup_item():
 	 	"scene_path": scene_path,
 		"texture_path": texture_path,
 	}
-	if InventoryManager.PlayerNode:
-		InventoryManager.add_item(item)
-		self.queue_free()
+
+	InventoryManager.add_item(item)
+	self.queue_free()
 
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body: Node) -> void:
+	print("entered ", body)
 	if body.is_in_group("Player"):
+		print(body)
 		player_in_range = true;
-		body.InteractUI.visible = true;
+		body.main_player.InteractUI.visible = true;
 
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_area_2d_body_exited(body: Node) -> void:
 	if body.is_in_group("Player"):
 		player_in_range = false;
-		body.InteractUI.visible = false;
+		body.main_player.InteractUI.visible = false;
 		
 	
 func set_item_data(data):
@@ -70,6 +79,9 @@ func set_item_data(data):
 	quantity = int(quantity);
 	
 	if texture_path != "":
+		print(texture_path)
 		item_texture = load(texture_path)
+		print(item_texture)
+		print(icon_sprite)
 		icon_sprite.texture = item_texture
 	#print(item_type)

@@ -1,9 +1,15 @@
 extends Control
 
 @onready var gridContainer = $GridContainer
+var InventoryManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().process_frame
+	
+	InventoryManager = PlayerGlobal.player_instance.get_node("InventoryManager")
+	print(PlayerGlobal.player_instance)
+	print("This is inventory manager",InventoryManager)
 	InventoryManager.inventory_updated.connect(_on_inventory_updated)
 	_on_inventory_updated()
 

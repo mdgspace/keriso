@@ -1,5 +1,7 @@
 extends Saveable
 
+@onready var InteractUI = $"../CharacterBody2D/InteractUI"
+@onready var InventoryUI = $"../CharacterBody2D/Inventory"
 
 # Invenntory array
 var inventory = []
@@ -11,7 +13,7 @@ signal inventory_updated
 
 @onready var inventory_slot_scene = preload("res://scenes/InventorySlot.tscn")
 
-var PlayerNode: Node = null
+#var PlayerNode: Node = null
 
 func _ready() -> void:
 	if save_id == "":
@@ -52,19 +54,20 @@ func increase_inventory_size():
 	inventory_updated.emit()
 	pass
 	
-func set_player_ref(Player):
-	PlayerNode = Player
+
 	
 func drop_item(item):
 	var item_scene = load(item["scene_path"]);
 	#print(item_scene)
-	#print(item)
+	print(item)
 	var item_instance = item_scene.instantiate();
+	print(item_instance)
+	await get_tree().get_frame();
+	get_tree().current_scene.add_child(item_instance);
+	item_instance.global_position = PlayerGlobal.player_instance.CharacterBody.global_position + Vector2(randf_range(2, 6), 0);
 	item_instance.set_item_data(item);
 	#print(item_instance)
-	item_instance.global_position = InventoryManager.PlayerNode.global_position + Vector2(randf_range(2, 6), 0);
 	
-	get_tree().current_scene.add_child(item_instance);
 	remove_item(item, item["quantity"])
 	
 	
@@ -92,3 +95,22 @@ func load_save_data(data: Dictionary) -> void:
 	for i in range(loaded_inventory.size()):
 		inventory[i] = loaded_inventory[i] # Might be null or a dictionary
 	inventory_updated.emit()
+	
+func apply_item_effect(item):
+	match item["item_type"]:
+		"consumable":
+			match item["item_effect"]:
+				"heal":
+					print("increasing stamina")
+					return 1;
+			return 0; # Returning the number of items to be consumed
+		"permanent_item":
+			pass
+			return 0;  # If it's a permanent item like homeward idol, we can return 0
+		"quest_item":
+			pass
+			# use function to call quest status update using data in item.
+			# change item's definition to support this (to have metadata about quest)
+			return item["quantity"];  # In quests like deliver items, all the quest item
+			# gets consumed. Instead of this, make the quest status update itself return 
+			# the variable of items being consumed and return that here.

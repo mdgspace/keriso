@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cl3pbws7ws077"]
 
-[ext_resource type="PackedScene" uid="uid://c0813f30mum2g" path="res://scenes/players/player.tscn" id="1_2cehg"]
+[ext_resource type="Script" uid="uid://o3ahdhwyf63w" path="res://scripts/core/gameStarter.gd" id="1_1tmpi"]
 [ext_resource type="PackedScene" uid="uid://dums8f4mgq43u" path="res://scenes/Inventory_Item.tscn" id="2_s8kui"]
 [ext_resource type="Texture2D" uid="uid://bu3ggemouy8ac" path="res://assets/test-downloaded-assets/apples_pack_30x30px/apple_regular_30_30px.png" id="3_1eg2o"]
 [ext_resource type="Texture2D" uid="uid://bbntj8ggdi2ie" path="res://assets/test-downloaded-assets/apples_pack_30x30px/apple_golden_30_30px.png" id="4_1tmpi"]
@@ -8,9 +8,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rlyue"]
 
 [node name="Game" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_2cehg")]
-position = Vector2(-55, -8)
+script = ExtResource("1_1tmpi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)

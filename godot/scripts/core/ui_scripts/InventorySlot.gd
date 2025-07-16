@@ -9,11 +9,15 @@ extends Control
 @onready var item_effect = $DetailsPanel/effect
 
 var item = null
-
+var InventoryManager
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().get_frame()
+	
+	InventoryManager = PlayerGlobal.player_instance.get_node("InventoryManager")
+	
 	#print(usage_panel)
 	pass # Replace with function body.
 
@@ -70,9 +74,9 @@ func set_item(new_item):
 
 func _on_use_pressed() -> void:
 	usage_panel.visible = false;
-	if item != null and item["item_effect"] != "" and InventoryManager.PlayerNode:
+	if item != null and item["item_effect"] != "" and InventoryManager:
 		print("applying item effect")
-		var quantity = InventoryManager.PlayerNode.apply_item_effect(item)
+		var quantity = InventoryManager.apply_item_effect(item)
 		print("quantity is ", quantity)
 		InventoryManager.remove_item(item, quantity);
 

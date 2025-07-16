@@ -14,14 +14,12 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animatedsprite2d = $AnimatedSprite2D
 @onready var movement_state_machine = $MovementStateMachine
 @onready var action_state_machine = $ActionStateMachine
+@onready var main_player = $".."
 
-@onready var InteractUI = $InteractUI
-@onready var InventoryUI = $Inventory
 
 #@onready var movement_state_machine = $MovementStateMachine
 
 func _ready() -> void:
-	InventoryManager.set_player_ref(self)
 	var movement_states: Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self)]
 	var action_states: Array[State] = [PlayerAttackState.new(self),PlayerParryState.new(self),PlayerDefenseState.new(self)]
 	movement_state_machine.start_machine(movement_states)
@@ -60,21 +58,3 @@ func handle_facing() -> void:
 		_facing = Facing.LEFT	
 		
 		
-func apply_item_effect(item):
-	match item["item_type"]:
-		"consumable":
-			match item["item_effect"]:
-				"heal":
-					print("increasing stamina")
-					return 1;
-			return 0; # Returning the number of items to be consumed
-		"permanent_item":
-			pass
-			return 0;  # If it's a permanent item like homeward idol, we can return 0
-		"quest_item":
-			pass
-			# use function to call quest status update using data in item.
-			# change item's definition to support this (to have metadata about quest)
-			return item["quantity"];  # In quests like deliver items, all the quest item
-			# gets consumed. Instead of this, make the quest status update itself return 
-			# the variable of items being consumed and return that here.

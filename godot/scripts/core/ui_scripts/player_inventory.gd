@@ -1,6 +1,6 @@
 extends Node
 
-@onready var inventoryCanvas = $"../Inventory"
+@onready var inventoryCanvas = $"../CharacterBody2D/Inventory"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,7 +10,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (InputNode.is_just_pressed("inventory")):
+		print("alternating inventory")
 		inventoryCanvas.visible = !inventoryCanvas.visible
-		print(inventoryCanvas.visible)
+		#print(inventoryCanvas.visible)
 		get_tree().paused = !get_tree().paused
 		

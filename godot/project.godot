@@ -17,13 +17,13 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 InputNode="*res://scripts/core/managers/InputManager.gd"
+PlayerGlobal="*res://scripts/player/Player.gd"
 SaveManagerGlobal="*res://scripts/core/SaveManager/SaveManager.gd"
 GameManagerNode="*res://scripts/core/managers/GameManager.gd"
 Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 CheckpointSystemNode="*res://scripts/core/systems/CheckpointSystem.gd"
 RespawnSystem="*res://scripts/core/systems/RespawnSystem.gd"
 ProgressSystem="*res://scripts/core/systems/ProgressSystem.gd"
-InventoryManager="*res://scripts/core/managers/InventoryManager.gd"
 
 [editor_plugins]
 
