@@ -4,7 +4,7 @@ class_name PlayerMovementState extends PlayerState
 static var state_name = "PlayerMovementState"
 
 const ACCELERATION: float = 20
-const MAX_SPEED: float = 120
+const MAX_SPEED: float = 150
 
 
 func get_state_name() -> String:
