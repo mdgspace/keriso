@@ -9,10 +9,11 @@ var _last_input_time: Dictionary = {}
 ## Define your game actions here and add in InputMap
 const ACTIONS := [
 	"move_left", "move_right",
-	"jump", "attack", "interact", "pause"
+	"jump", "attack", "interact", "pause", "inventory"
 ]
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Ensure all actions exist in InputMap
 	for action in ACTIONS:
 		if not InputMap.has_action(action):

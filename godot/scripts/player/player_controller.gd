@@ -14,6 +14,9 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animatedsprite2d = $AnimatedSprite2D
 @onready var movement_state_machine = $MovementStateMachine
 @onready var action_state_machine = $ActionStateMachine
+@onready var main_player = $".."
+
+
 #@onready var movement_state_machine = $MovementStateMachine
 
 func _ready() -> void:
@@ -60,3 +63,5 @@ func handle_facing() -> void:
 	elif flip == 1:
 		animatedsprite2d.flip_h = true
 		_facing = Facing.LEFT	
+		
+		

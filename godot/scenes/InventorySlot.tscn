@@ -1,0 +1,134 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj0hr18kulc74"]
+
+[ext_resource type="Script" uid="uid://berj7sxwjbf34" path="res://scripts/core/ui_scripts/InventorySlot.gd" id="1_14any"]
+[ext_resource type="Texture2D" uid="uid://bu3ggemouy8ac" path="res://assets/test-downloaded-assets/apples_pack_30x30px/apple_regular_30_30px.png" id="2_b3cg4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b3cg4"]
+
+[node name="InventorySlot" type="Control"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 160.0
+offset_bottom = 160.0
+script = ExtResource("1_14any")
+
+[node name="outerBorder" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.596078, 0.933333, 0.8, 1)
+
+[node name="innerBorder" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.611765, 0.603922, 0.584314, 1)
+
+[node name="itemIcon" type="Sprite2D" parent="innerBorder"]
+position = Vector2(70, 70)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_b3cg4")
+
+[node name="itemQuantity" type="Label" parent="innerBorder"]
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 25
+text = "1"
+horizontal_alignment = 1
+
+[node name="itemButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b3cg4")
+
+[node name="DetailsPanel" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = -15.0
+color = Color(0.596078, 0.933333, 0.8, 1)
+
+[node name="name" type="Label" parent="DetailsPanel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 141.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Name"
+
+[node name="type" type="Label" parent="DetailsPanel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 47.0
+offset_right = 185.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.298039, 0.298039, 0.298039, 1)
+text = "Type"
+
+[node name="effect" type="Label" parent="DetailsPanel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 93.0
+offset_right = 143.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.298039, 0.298039, 0.298039, 1)
+text = "Effect"
+
+[node name="UsagePanel" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = -15.0
+color = Color(0.596078, 0.933333, 0.8, 1)
+
+[node name="Use" type="Button" parent="UsagePanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = -8.0
+offset_bottom = 54.0
+grow_horizontal = 2
+text = "USE ITEM"
+
+[node name="Drop" type="Button" parent="UsagePanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 63.0
+offset_right = -8.0
+offset_bottom = 108.0
+grow_horizontal = 2
+text = "DROP ITEM"
+
+[connection signal="mouse_entered" from="itemButton" to="." method="_on_item_button_mouse_entered"]
+[connection signal="mouse_exited" from="itemButton" to="." method="_on_item_button_mouse_exited"]
+[connection signal="pressed" from="itemButton" to="." method="_on_item_button_pressed"]
+[connection signal="pressed" from="UsagePanel/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="UsagePanel/Drop" to="." method="_on_drop_pressed"]

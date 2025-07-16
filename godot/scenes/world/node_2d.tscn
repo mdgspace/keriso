@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl3pbws7ws077"]
+[gd_scene load_steps=6 format=3 uid="uid://cl3pbws7ws077"]
 
 [ext_resource type="PackedScene" uid="uid://c0813f30mum2g" path="res://scenes/players/player.tscn" id="1_2cehg"]
 [ext_resource type="PackedScene" uid="uid://ngcthb8yjthx" path="res://scenes/enemies/kunoichi_enemy.tscn" id="2_i2opj"]
+[ext_resource type="Script" uid="uid:/o3ahdhwyf63w" path="res://scripts/core/gameStarter.gd" id="1_1tmpi"]
+[ext_resource type="PackedScene" uid="uid://dums8f4mgq43u" path="res://scenes/Inventory_Item.tscn" id="2_s8kui"]
+[ext_resource type="Texture2D" uid="uid://bu3ggemouy8ac" path="res://assets/test-downloaded-assets/apples_pack_30x30px/apple_regular_30_30px.png" id="3_1eg2o"]
+[ext_resource type="Texture2D" uid="uid://bbntj8ggdi2ie" path="res://assets/test-downloaded-assets/apples_pack_30x30px/apple_golden_30_30px.png" id="4_1tmpi"]
+
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rlyue"]
 
@@ -14,11 +19,13 @@ position = Vector2(143, 5)
 [node name="Player" parent="." instance=ExtResource("1_2cehg")]
 position = Vector2(423, -71)
 
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_rlyue")
+
 debug_color = Color(0.491201, 0.451517, 0.95249, 0.42)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -56,3 +63,27 @@ position = Vector2(-3.5, -12.5)
 scale = Vector2(-48.0948, 3.56473)
 zoom = Vector2(3, 3)
 position_smoothing_speed = 200.0
+
+[node name="InventoryItem" parent="StaticBody2D" instance=ExtResource("2_s8kui")]
+position = Vector2(52, -15)
+scale = Vector2(0.495, 0.495)
+item_name = "Test Item 1"
+item_type = "consumable"
+item_texture = ExtResource("3_1eg2o")
+item_effect = "heal"
+
+[node name="InventoryItem2" parent="StaticBody2D" instance=ExtResource("2_s8kui")]
+position = Vector2(86, -14)
+scale = Vector2(0.495, 0.495)
+item_name = "Test Item 1"
+item_type = "consumable"
+item_texture = ExtResource("3_1eg2o")
+item_effect = "heal"
+
+[node name="InventoryItem3" parent="StaticBody2D" instance=ExtResource("2_s8kui")]
+position = Vector2(120, -14)
+scale = Vector2(0.495, 0.495)
+item_name = "Test Item 2"
+item_type = "consumable"
+item_texture = ExtResource("4_1tmpi")
+item_effect = "stamina"
