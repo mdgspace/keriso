@@ -17,12 +17,15 @@ func process(_delta: float) -> void:
 
 func physics_process(_delta: float) -> void:
 	if InputNode.is_just_pressed("attack"):
+		print("going to attack state")
 		action_state_machine.transition(PlayerAttackState.state_name)
 	if player.horizontal_input != 0.0:
+		print("going to move state")
 		movement_state_machine.transition(PlayerMovementState.state_name)
-		pass
+
+	print(player.horizontal_input)
 	
-	# Apply stop force if it's moving
+	# Apply stop force if it's movingdada
 	if player.velocity.x != 0.0:
 		player.velocity.x = move_toward(player.velocity.x, 0, STOP_FORCE)
 		

@@ -20,6 +20,8 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 #@onready var movement_state_machine = $MovementStateMachine
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	var movement_states: Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self),PlayerHurtState.new(self)]
 	var action_states: Array[State] = [PlayerAttackState.new(self),PlayerParryState.new(self),PlayerDefenseState.new(self)]
 	movement_state_machine.start_machine(movement_states)

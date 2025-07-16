@@ -27,15 +27,18 @@ func start_machine(init_states: Array[State]) -> void:
 	
 	
 func _input(event: InputEvent) -> void:
-	current_state.input(event)
+	if(current_state):
+		current_state.input(event)
 	
 	
 func _process(delta: float) -> void:
-	current_state.process(delta)
+	if(current_state):
+		current_state.process(delta)
 	
 	
 func _physics_process(delta: float) -> void:
-	current_state.physics_process(delta)
+	if(current_state):
+		current_state.physics_process(delta)
 	
 
 # Attempt a transition to the new state.

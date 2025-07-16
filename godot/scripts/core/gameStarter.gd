@@ -4,6 +4,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if PlayerGlobal.player_instance == null:
+		print("Starting instantiation of player")
 		var player = PlayerGlobal.player_scene.instantiate()
 		add_child(player)
 		PlayerGlobal.player_instance = player

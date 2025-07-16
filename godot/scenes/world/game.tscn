@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://216ie00sal1k"]
+
+[ext_resource type="Script" uid="uid://o3ahdhwyf63w" path="res://scripts/core/gameStarter.gd" id="1_w44h4"]
+[ext_resource type="PackedScene" uid="uid://ngcthb8yjthx" path="res://scenes/enemies/kunoichi_enemy.tscn" id="2_hqfqh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3iwug"]
+size = Vector2(121, 14)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hqfqh"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_w44h4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(159.5, -7)
+shape = SubResource("RectangleShape2D_3iwug")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(233, -21)
+shape = SubResource("RectangleShape2D_3iwug")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -10)
+shape = SubResource("WorldBoundaryShape2D_hqfqh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(345, -7)
+shape = SubResource("RectangleShape2D_3iwug")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(491, -21)
+shape = SubResource("RectangleShape2D_3iwug")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(420, -7)
+shape = SubResource("RectangleShape2D_3iwug")
+
+[node name="kunoichi_enemy" parent="." instance=ExtResource("2_hqfqh")]
+position = Vector2(303, -145)
+
+[node name="Camera2D" type="Camera2D" parent="."]

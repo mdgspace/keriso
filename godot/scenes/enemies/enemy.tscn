@@ -1,6 +1,6 @@
 [gd_scene load_steps=67 format=3 uid="uid://byeuaty26xwcd"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_dh20w"]
+[ext_resource type="Script" uid="uid://os8ld77iqf81" path="res://scripts/enemies/enemy.gd" id="1_dh20w"]
 [ext_resource type="Texture2D" uid="uid://cuc2spu43l0ut" path="res://assets/characters/kunoichi/Attack_1.png" id="1_lkah7"]
 [ext_resource type="Texture2D" uid="uid://d0iv7ylev7e0u" path="res://assets/characters/kunoichi/Attack_2.png" id="2_mevxh"]
 [ext_resource type="Texture2D" uid="uid://b84uj5e83j4t3" path="res://assets/characters/kunoichi/Cast.png" id="3_5x4gp"]

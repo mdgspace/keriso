@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="keriso"
-run/main_scene="res://scenes/world/node_2d.tscn"
+run/main_scene="uid://216ie00sal1k"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]

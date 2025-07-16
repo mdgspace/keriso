@@ -34,20 +34,25 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var Attack1Hitbox: Area2D
 @export var Attack2Hitbox: Area2D
 
-@export var player_path: NodePath
+
 
 var low_collision:bool
 var down_collision:bool
 var player_position: Vector2
-var player: Node2D
+var player
 var to_player: Vector2 = Vector2.ZERO;
 func _ready() -> void:
-	player = get_node(player_path)
+	while PlayerGlobal.player_instance == null:
+		await get_tree().process_frame
+	while PlayerGlobal.player_instance.CharacterBody == null:
+		await get_tree().process_frame
+	player = PlayerGlobal.player_instance.CharacterBody;
 	var movement_states: Array[State] = [EnemyIdleState.new(self), EnemyRoamState.new(self), EnemyJumpState.new(self),
 	 EnemyFollowState.new(self),EnemyJumpDownState.new(self),EnemyAttack1State.new(self),EnemyAttack2State.new(self)]
 	var action_states: Array[State] = [EnemyNoneState.new(self),EnemyAttack1State.new(self),EnemyAttack2State.new(self)]
 	movement_state_machine.start_machine(movement_states)
 	action_state_machine.start_machine(action_states)
+	print(player)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -66,8 +71,9 @@ func _physics_process(delta: float) -> void:
 		down_collision = false
 	flip_children()
 	was_on_floor = is_on_floor()
-	player_position = player.global_position
-	to_player = player.global_position - global_position
+	if(player):
+		player_position = player.global_position
+		to_player = player.global_position - global_position
 	move_and_slide()
 
 func jump():
