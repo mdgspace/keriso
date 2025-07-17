@@ -9,7 +9,7 @@ func enter() -> void:
 	# Set facing toward player when starting attack
 	var player_direction = sign(enemy.to_player.x)
 	enemy.set_facing_direction(player_direction)
-	
+	enemy.perform_attack()
 		
 func physics_process(delta: float) -> void:
 	distance = enemy.to_player.length()

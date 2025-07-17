@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="keriso"
-run/main_scene="uid://216ie00sal1k"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="res://scenes/world/game.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
@@ -77,8 +77,8 @@ inventory={
 [layer_names]
 
 2d_physics/layer_1="ground"
-2d_physics/layer_2="enemy"
-2d_physics/layer_3="player"
+2d_physics/layer_2="enemy_HurtBox"
+2d_physics/layer_3="player_HurtBox"
 2d_physics/layer_4="Enemy_Hitbox"
 2d_physics/layer_5="Player_Hitbox"
 

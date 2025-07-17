@@ -53,8 +53,8 @@ func check_transitions() -> void:
 			movement_state_machine.transition("EnemyAttack2State")
 		return
 	
-	# Lost player after 1 sec of not seeing
-	if not enemy.can_see_player() && follow_end_timer>1:
+	# Lost player after 10 sec of not seeing
+	if not enemy.can_see_player() && follow_end_timer>10:
 		movement_state_machine.transition("EnemyIdleState")
 		return
 

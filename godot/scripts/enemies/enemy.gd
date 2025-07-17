@@ -1,12 +1,12 @@
 class_name Enemy extends CharacterBody2D
 
 @export var max_health =100;
-@export var walk_speed =45;
+@export var walk_speed =60;
 @export var run_speed = 100;
 @export var jump_force =350;
-@export var near_detection_range= 250;
-@export var far_detection_range = 500;
-@export var attack_range = 100;
+@export var near_detection_range= 60;
+@export var far_detection_range = 200;
+@export var attack_range = 60;
 @export var attack_cooldown = 0.5
 enum Facing {
 	LEFT,
@@ -79,7 +79,14 @@ func _physics_process(delta: float) -> void:
 func jump():
 	velocity.y = -jump_force
 
-
+func dash()-> void:
+	if _facing == Facing.RIGHT:
+		velocity.x+=50;
+	else:
+		velocity.x-=50;
+		
+func perform_attack() -> void:
+	pass
 func can_see_player() -> bool:
 	if not is_instance_valid(player):
 		return false

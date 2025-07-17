@@ -5,7 +5,7 @@ var timer:float
 
 func enter()->void:
 	animatedsprite2d.play("hurt")
-	timer = 0.3
+	timer = 0.4
 
 func physics_process(delta: float) -> void:
 	timer-=delta
