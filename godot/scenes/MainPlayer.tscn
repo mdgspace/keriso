@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=44 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" path="res://scripts/player/main_player.gd" id="1_5m47q"]
 [ext_resource type="Texture2D" uid="uid://chqm13knk48b4" path="res://assets/characters/knight.png" id="2_bqunt"]
@@ -14,10 +14,6 @@
 atlas = ExtResource("2_bqunt")
 region = Rect2(0, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lsbl7"]
-atlas = ExtResource("2_bqunt")
-region = Rect2(32, 192, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_otkxk"]
 atlas = ExtResource("2_bqunt")
 region = Rect2(64, 192, 32, 32)
@@ -25,10 +21,6 @@ region = Rect2(64, 192, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sypni"]
 atlas = ExtResource("2_bqunt")
 region = Rect2(64, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iypug"]
-atlas = ExtResource("2_bqunt")
-region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxqcu"]
 atlas = ExtResource("2_bqunt")
@@ -149,20 +141,14 @@ animations = [{
 "texture": SubResource("AtlasTexture_qsui4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lsbl7")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_otkxk")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sypni")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iypug")
 }],
 "loop": true,
 "name": &"hurt",
-"speed": 12.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

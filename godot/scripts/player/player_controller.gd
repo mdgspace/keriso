@@ -15,7 +15,9 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var movement_state_machine = $MovementStateMachine
 @onready var action_state_machine = $ActionStateMachine
 @onready var main_player = $".."
-
+@export var jump_force:float = 400.0
+@export var hurt_time :float =.5
+@export var stun_time : float = .3 #Shopuld be less than hur5t time as I'm stunning in hurt state only
 
 #@onready var movement_state_machine = $MovementStateMachine
 

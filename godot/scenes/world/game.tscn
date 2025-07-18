@@ -38,17 +38,17 @@ shape = SubResource("RectangleShape2D_3iwug")
 position = Vector2(466, -7)
 shape = SubResource("RectangleShape2D_3iwug")
 
-[node name="samurai_dash_enemy" parent="StaticBody2D" instance=ExtResource("3_r177j")]
-position = Vector2(398, -51)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(364, -77)
-scale = Vector2(2, 2)
-zoom = Vector2(2, 2)
-limit_left = -10000001
+[node name="samurai_dash_enemy" parent="." instance=ExtResource("3_r177j")]
+position = Vector2(-110, -37)
 
 [node name="kunoichi_enemy" parent="." instance=ExtResource("2_hqfqh")]
 position = Vector2(726, -31)
 jump_force = 350
 near_detection_range = 50
 attack_range = 60
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(123, -93)
+scale = Vector2(2, 2)
+zoom = Vector2(2, 2)
+limit_left = -10000001

@@ -4,7 +4,7 @@ extends Area2D
 @export var damage: float = 10.0
 @export var knockback_force: float = 200.0
 @export var knockback_direction: Vector2 = Vector2.ZERO
-
+@export var apply_knockback:bool 
 var has_hit: bool = false
 var hit_targets: Array = []
 
@@ -29,8 +29,6 @@ func _on_area_entered(hurtbox: Area2D) -> void:
 			kb_dir = (hurtbox.global_position - global_position).normalized()
 		
 		# Deal damage
-		hurtbox.take_damage(damage, kb_dir * knockback_force)
+		hurtbox.take_damage(damage,apply_knockback,kb_dir * knockback_force)
 		
-		# Emit signal for additional effects
-		emit_signal("hit_target", hurtbox)
 	

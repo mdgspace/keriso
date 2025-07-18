@@ -3,7 +3,7 @@ class_name PlayerJumpState extends PlayerState
 
 static var state_name = "PlayerJumpState"
 
-const JUMP_FORCE: float = 300.0;
+
 const JUMP_MAX_FORCE: float = 1500.0;
 #const JUMP_TOP_ANIM_THRESHOLD: float = 60.0
 
@@ -17,10 +17,10 @@ var _is_jumping: float = false
 func get_state_name() -> String:
 	return state_name
 	
-	
+
 func enter() -> void:
 	if player.is_on_floor():
-		player.velocity.y = -JUMP_FORCE
+		player.velocity.y = -player.jump_force
 		
 	_is_jumping = true
 	

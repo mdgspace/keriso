@@ -8,6 +8,7 @@ class_name Enemy extends CharacterBody2D
 @export var far_detection_range = 200;
 @export var attack_range = 60;
 @export var attack_cooldown = 0.5
+@export var seen_player_timer:float =10
 enum Facing {
 	LEFT,
 	RIGHT
@@ -34,13 +35,22 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var Attack1Hitbox: Area2D
 @export var Attack2Hitbox: Area2D
 
+var dash_speed := 1000.0
+var dash_duration := 0.15
 
+var dash_vector: int =1
+var dash_timer: float = 0.0
+var is_dashing: bool = false
 
 var low_collision:bool
 var down_collision:bool
 var player_position: Vector2
 var player
 var to_player: Vector2 = Vector2.ZERO;
+
+
+var follow_end_timer: float =0.0
+
 func _ready() -> void:
 	while PlayerGlobal.player_instance == null:
 		await get_tree().process_frame
@@ -58,6 +68,16 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += _gravity * delta
 	
+	if is_dashing:
+		velocity.x = dash_vector * dash_speed
+		dash_timer -= delta
+		if dash_timer <= 0.0:
+			is_dashing = false
+			velocity.x = 0# Stop the dash
+			
+			
+	if not can_see_player():
+		follow_end_timer+=delta
 	##Jump Up And flip
 	if (low_ray1.is_colliding()):
 		print(true)
@@ -79,15 +99,11 @@ func _physics_process(delta: float) -> void:
 func jump():
 	velocity.y = -jump_force
 
-func dash()-> void:
-	if _facing == Facing.RIGHT:
-		velocity.x+=50;
-	else:
-		velocity.x-=50;
 		
 func perform_attack() -> void:
 	pass
 func can_see_player() -> bool:
+	follow_end_timer = 0.0
 	if not is_instance_valid(player):
 		return false
 	
@@ -105,8 +121,10 @@ func can_see_player() -> bool:
 		#return false
 	#
 ##TODO:Have to do a check for player
-
-	return false
+	if follow_end_timer>seen_player_timer:
+		return false
+	else:
+		return true
 
 func flip_children():
 	if(_facing==Facing.RIGHT):
@@ -166,3 +184,12 @@ func handle_facing() -> void:
 			sprite.flip_h = true
 		else:
 			sprite.flip_h = false
+
+
+func dash():
+	is_dashing = true
+	dash_timer = dash_duration
+	if _facing == Facing.RIGHT:
+		dash_vector = 1 
+	else:
+		dash_vector = -1
