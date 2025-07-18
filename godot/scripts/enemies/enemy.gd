@@ -37,6 +37,9 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var dash_speed := 1000.0
 var dash_duration := 0.15
+#to tackle distace =9 for 1 sec bug 
+var timer := 0.00
+var condition  = false
 
 var dash_vector: int =1
 var dash_timer: float = 0.0
@@ -49,7 +52,7 @@ var player
 var to_player: Vector2 = Vector2.ZERO;
 
 
-var follow_end_timer: float =0.0
+var follow_end_timer: float = 50.0
 
 func _ready() -> void:
 	while PlayerGlobal.player_instance == null:
@@ -62,7 +65,8 @@ func _ready() -> void:
 	var action_states: Array[State] = [EnemyNoneState.new(self),EnemyAttack1State.new(self),EnemyAttack2State.new(self)]
 	movement_state_machine.start_machine(movement_states)
 	action_state_machine.start_machine(action_states)
-	print(player)
+	follow_end_timer = 100
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -94,6 +98,10 @@ func _physics_process(delta: float) -> void:
 	if(player):
 		player_position = player.global_position
 		to_player = player.global_position - global_position
+	timer += delta
+	if(timer > dash_duration and condition == false):
+		follow_end_timer = 100
+		condition = true
 	move_and_slide()
 
 func jump():
@@ -103,26 +111,31 @@ func jump():
 func perform_attack() -> void:
 	pass
 func can_see_player() -> bool:
-	follow_end_timer = 0.0
+	print("this is follow end tim4r",follow_end_timer)
 	if not is_instance_valid(player):
 		return false
 	
 	var distance = to_player.length()
+	print(distance," jk ", near_detection_range)
 
 	if distance < near_detection_range:
+		follow_end_timer = 0.0
+		print("is returning true")
 		return true
 	if player_ray1.is_colliding() || player_ray2.is_colliding():
+		follow_end_timer = 0.0
+		print("is retyrbub true due to caste")
 		return true
-	
 	#
 	#if _facing==Facing.RIGHT && to_player.x<0:
 		#return false
 	#if _facing==Facing.LEFT && to_player.x>0:
 		#return false
-	#
+	print(follow_end_timer,seen_player_timer)
 ##TODO:Have to do a check for player
 	if follow_end_timer>seen_player_timer:
 		return false
+		print("Retuenung false")
 	else:
 		return true
 

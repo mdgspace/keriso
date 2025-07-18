@@ -1122,9 +1122,10 @@ _data = {
 
 [node name="kunoichi_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox")]
 scale = Vector2(2, 2)
+collision_layer = 2
 script = SubResource("GDScript_pghlm")
 jump_force = 500
-near_detection_range = 150
+near_detection_range = 50
 attack_range = 80
 Attack1Hitbox = NodePath("Attack1Hitbox")
 Attack2Hitbox = NodePath("Attack2Hitbox")
@@ -1163,9 +1164,9 @@ collide_with_areas = true
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 show_behind_parent = true
-position = Vector2(6.5, -13)
+position = Vector2(7, -8.5)
 scale = Vector2(1, 4.32)
-target_position = Vector2(89.5, -3.58796)
+target_position = Vector2(90.5, -2.31481)
 collision_mask = 4
 
 [node name="PlayerRayCast2D3" type="RayCast2D" parent="."]
