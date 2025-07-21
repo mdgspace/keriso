@@ -23,7 +23,7 @@ func physics_process(_delta: float) -> void:
 		print("going to move state")
 		movement_state_machine.transition(PlayerMovementState.state_name)
 
-	print(player.horizontal_input)
+	#print(player.horizontal_input)
 	
 	# Apply stop force if it's movingdada
 	if player.velocity.x != 0.0:

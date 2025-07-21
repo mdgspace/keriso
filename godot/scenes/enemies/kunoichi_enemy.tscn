@@ -3,21 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://cuc2spu43l0ut" path="res://assets/characters/kunoichi/Attack_1.png" id="1_ah5tw"]
 [ext_resource type="Texture2D" uid="uid://d0iv7ylev7e0u" path="res://assets/characters/kunoichi/Attack_2.png" id="2_p760b"]
 [ext_resource type="Texture2D" uid="uid://b84uj5e83j4t3" path="res://assets/characters/kunoichi/Cast.png" id="3_1uthf"]
-[ext_resource type="Script" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="3_ogx7g"]
+[ext_resource type="Script" uid="uid://dyel5hqilhxh2" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="3_ogx7g"]
 [ext_resource type="Texture2D" uid="uid://d04ml530eav01" path="res://assets/characters/kunoichi/Dead.png" id="4_mw412"]
 [ext_resource type="Texture2D" uid="uid://b73xwoff3gr1t" path="res://assets/characters/kunoichi/Idle.png" id="5_qfsck"]
 [ext_resource type="Texture2D" uid="uid://hx45ke7lt638" path="res://assets/characters/kunoichi/Jump.png" id="6_pc7m8"]
 [ext_resource type="Texture2D" uid="uid://bde4rqnml1bdj" path="res://assets/characters/kunoichi/Run.png" id="7_puss2"]
 [ext_resource type="Texture2D" uid="uid://438pyashypue" path="res://assets/characters/kunoichi/Walk.png" id="8_e00dq"]
-[ext_resource type="Script" path="res://scripts/core/state/state_machine.gd" id="9_22hbh"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_idle_state.gd" id="11_7a45m"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_roam_state.gd" id="12_75avw"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_attack2_state.gd" id="12_qpigw"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_attack1_state.gd" id="12_vqx3y"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_jump_state.gd" id="14_880qa"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_jumpDown_state.gd" id="15_jh6hp"]
+[ext_resource type="Script" uid="uid://dtefr2kguqvvl" path="res://scripts/core/state/state_machine.gd" id="9_22hbh"]
+[ext_resource type="Script" uid="uid://cqia6hj2vdjnr" path="res://scripts/enemies/enemy_states/enemy_idle_state.gd" id="11_7a45m"]
+[ext_resource type="Script" uid="uid://ntliof843w4f" path="res://scripts/enemies/enemy_states/enemy_roam_state.gd" id="12_75avw"]
+[ext_resource type="Script" uid="uid://bej07v725uv11" path="res://scripts/enemies/enemy_states/enemy_attack2_state.gd" id="12_qpigw"]
+[ext_resource type="Script" uid="uid://bmi1qmxo3li1" path="res://scripts/enemies/enemy_states/enemy_attack1_state.gd" id="12_vqx3y"]
+[ext_resource type="Script" uid="uid://iio51yjkh81a" path="res://scripts/enemies/enemy_states/enemy_jump_state.gd" id="14_880qa"]
+[ext_resource type="Script" uid="uid://ffnn4rgpkqpm" path="res://scripts/enemies/enemy_states/enemy_jumpDown_state.gd" id="15_jh6hp"]
 [ext_resource type="Texture2D" uid="uid://bt757g20brp1u" path="res://assets/characters/kunoichi/Hurt.png" id="16_pwxop"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_animation.gd" id="17_ihcg2"]
+[ext_resource type="Script" uid="uid://cj71hlqoxplrk" path="res://scripts/enemies/enemy_animation.gd" id="17_ihcg2"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cr7tsyty2pnde" path="res://assets/enemies/Animation_Trees/samuri_dash.tres" id="18_6obtf"]
 
 [sub_resource type="GDScript" id="GDScript_pghlm"]
@@ -1108,16 +1108,16 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_45h6b"]
 _data = {
-"Attack1": SubResource("Animation_fe3xe"),
-"Attack2": SubResource("Animation_fluks"),
-"Die": SubResource("Animation_t2mn8"),
-"Hurt": SubResource("Animation_bvadx"),
-"Jump": SubResource("Animation_xeayk"),
-"JumpDown": SubResource("Animation_pq4u8"),
-"RESET": SubResource("Animation_2gw1r"),
-"Run": SubResource("Animation_lsmjf"),
-"Walk": SubResource("Animation_ewgx5"),
-"idle": SubResource("Animation_naaq6")
+&"Attack1": SubResource("Animation_fe3xe"),
+&"Attack2": SubResource("Animation_fluks"),
+&"Die": SubResource("Animation_t2mn8"),
+&"Hurt": SubResource("Animation_bvadx"),
+&"Jump": SubResource("Animation_xeayk"),
+&"JumpDown": SubResource("Animation_pq4u8"),
+&"RESET": SubResource("Animation_2gw1r"),
+&"Run": SubResource("Animation_lsmjf"),
+&"Walk": SubResource("Animation_ewgx5"),
+&"idle": SubResource("Animation_naaq6")
 }
 
 [node name="kunoichi_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox")]
@@ -1206,7 +1206,6 @@ shape = SubResource("RectangleShape2D_eyrxe")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(2.78825, -12.724)
 scale = Vector2(0.332612, 0.309)
 sprite_frames = SubResource("SpriteFrames_pfg8d")
@@ -1241,7 +1240,7 @@ script = ExtResource("9_22hbh")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 deterministic = true
 libraries = {
-"": SubResource("AnimationLibrary_45h6b")
+&"": SubResource("AnimationLibrary_45h6b")
 }
 autoplay = "idle"
 

@@ -1,5 +1,4 @@
-class_name EnemyState
-extends State
+class_name EnemyState extends State
 
 var enemy: Enemy
 var animationstate 

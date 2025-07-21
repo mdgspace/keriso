@@ -12,7 +12,7 @@ config_version=5
 
 config/name="keriso"
 run/main_scene="res://scenes/world/game.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
@@ -24,10 +24,17 @@ Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 CheckpointSystemNode="*res://scripts/core/systems/CheckpointSystem.gd"
 RespawnSystem="*res://scripts/core/systems/RespawnSystem.gd"
 ProgressSystem="*res://scripts/core/systems/ProgressSystem.gd"
+AudioManager="*res://scenes/audio_manager/AudioManager.tscn"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Music/": "orange"
+}
 
 [global_group]
 

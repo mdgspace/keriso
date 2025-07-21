@@ -19,7 +19,7 @@ func clear_hit_targets() -> void:
 	hit_targets.clear()
 	
 func _on_area_entered(hurtbox: Area2D) -> void:
-	print("Area entered")
+	#print("Area entered")
 	if hurtbox.has_method("take_damage") and not hurtbox in hit_targets:
 		hit_targets.append(hurtbox)
 		
