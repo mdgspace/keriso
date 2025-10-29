@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl3pbws7ws077"]
+
+[ext_resource type="PackedScene" uid="uid://c0813f30mum2g" path="res://scenes/players/player.tscn" id="1_2cehg"]
+[ext_resource type="PackedScene" uid="uid://ngcthb8yjthx" path="res://scenes/enemies/kunoichi_enemy.tscn" id="2_i2opj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rlyue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl3tn"]
+size = Vector2(214, 24)
+
+[node name="Game" type="Node2D"]
+position = Vector2(143, 5)
+
+[node name="Player" parent="." instance=ExtResource("1_2cehg")]
+position = Vector2(231, -67)
+collision_layer = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_rlyue")
+debug_color = Color(0.491201, 0.451517, 0.95249, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(257, -12)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(399, -36)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(591, -13)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(805, -13)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1005, -35)
+shape = SubResource("RectangleShape2D_sl3tn")
+
+[node name="kunoichi_enemy" parent="." instance=ExtResource("2_i2opj")]
+position = Vector2(703, -50)
+collision_layer = 2
+collision_mask = 1
+jump_force = 250
+near_detection_range = 120
+far_detection_range = 350
+attack_range = 60
+player_path = NodePath("../Player")
+
+[node name="Camera2D" type="Camera2D" parent="kunoichi_enemy"]
+position = Vector2(2.00006, -3.5)
+scale = Vector2(0.85, 0.85)
+zoom = Vector2(3, 3)
