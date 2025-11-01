@@ -6,7 +6,7 @@ var distance_to_player: float
 var attack_timer: float = 0.0
 	
 func enter() -> void:
-	enemy.velocity.x = 0
+	enemy.velocity.x = 0   # since enemy node has been refrenced to this
 	enemy.animation_state = "idle"
 	face_player_timer = 0.0
 	attack_timer = enemy.attack_cooldown

@@ -31,4 +31,4 @@ func physics_process(_delta: float) -> void:
 		
 		
 func get_state_name() -> String:
-	return state_name
+	return state_name		

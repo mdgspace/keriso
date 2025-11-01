@@ -30,7 +30,7 @@ size = Vector2(23.9811, 80.1812)
 size = Vector2(74, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyrxe"]
-size = Vector2(48.5, 32.5)
+size = Vector2(48.5, 31)
 
 [sub_resource type="Animation" id="Animation_fe3xe"]
 resource_name = "Attack1"
@@ -117,6 +117,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_fluks"]
 resource_name = "Attack2"
 length = 0.6
+loop_mode = 2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -684,7 +685,7 @@ collide_with_areas = true
 show_behind_parent = true
 position = Vector2(7, -8.5)
 scale = Vector2(1, 4.32)
-target_position = Vector2(90.5, -2.31481)
+target_position = Vector2(90.5, -2.5)
 collision_mask = 4
 
 [node name="PlayerRayCast2D3" type="RayCast2D" parent="."]
@@ -719,7 +720,7 @@ knockback_force = 100.0
 apply_knockback = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack2Hitbox"]
-position = Vector2(5.25, -6.25)
+position = Vector2(5.25, -7)
 shape = SubResource("RectangleShape2D_eyrxe")
 disabled = true
 
@@ -760,7 +761,7 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack1 = false
 parameters/conditions/attack2 = false
-parameters/conditions/idle = false
+parameters/conditions/idle = true
 parameters/conditions/jump = false
 parameters/conditions/run = false
 parameters/conditions/walk = false

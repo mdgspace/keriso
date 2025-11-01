@@ -267,7 +267,23 @@ script = ExtResource("4_yervt")
 [node name="InventoryController" type="Node" parent="."]
 script = ExtResource("5_su5v1")
 
+[node name="save" type="Button" parent="."]
+offset_left = 55.0
+offset_top = -104.0
+offset_right = 104.0
+offset_bottom = -79.0
+text = "save"
+script = ExtResource("8_2lu3o")
+
+[node name="load" type="Button" parent="."]
+offset_left = 112.0
+offset_top = -104.0
+offset_right = 161.0
+offset_bottom = -79.0
+text = "load"
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player"]]
+process_mode = 4
 scale = Vector2(1.65, 1.65)
 collision_layer = 4
 script = ExtResource("3_11llm")
@@ -353,21 +369,6 @@ script = ExtResource("8_q7r2k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
 position = Vector2(0, -10.303)
 shape = SubResource("CapsuleShape2D_ub0sc")
-
-[node name="save" type="Button" parent="."]
-offset_left = 55.0
-offset_top = -104.0
-offset_right = 104.0
-offset_bottom = -79.0
-text = "save"
-script = ExtResource("8_2lu3o")
-
-[node name="load" type="Button" parent="."]
-offset_left = 112.0
-offset_top = -104.0
-offset_right = 161.0
-offset_bottom = -79.0
-text = "load"
 
 [connection signal="pressed" from="save" to="save" method="_on_pressed"]
 [connection signal="pressed" from="load" to="save" method="_on_load_pressed"]
