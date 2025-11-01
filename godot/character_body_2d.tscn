@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://yqron7w7uiyg"]
+[gd_scene load_steps=53 format=3 uid="uid://yqron7w7uiyg"]
 
 [ext_resource type="Script" uid="uid://qhx2p3gccocb" path="res://DELETE/PlayerCtrl.gd" id="1_76bt2"]
 [ext_resource type="Texture2D" uid="uid://dyd1mn70aysl0" path="res://assets/characters/test/sword_out_breathe-Sheet.png" id="2_4sjlk"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://dysvw0yh8jskf" path="res://DELETE/L_IdleState.gd" id="13_ucfvk"]
 [ext_resource type="Script" uid="uid://bcuwg355o7yxu" path="res://DELETE/L_JumpState.gd" id="14_2dyae"]
 [ext_resource type="Script" uid="uid://d1djc3xveivf6" path="res://DELETE/L_RunState.gd" id="15_2u5n8"]
+[ext_resource type="Script" uid="uid://bgp63e8db6es0" path="res://DELETE/PlayerAnimation.gd" id="17_76bt2"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_76bt2"]
 
@@ -85,7 +86,7 @@ advance_mode = 2
 advance_condition = &"U_Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1rslu"]
-advance_mode = 0
+advance_mode = 2
 advance_condition = &"U_Attack1"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3uyxa"]
@@ -93,7 +94,7 @@ advance_mode = 2
 advance_condition = &"U_Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_61y8d"]
-advance_mode = 0
+advance_mode = 2
 advance_condition = &"U_Attack1"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8icv6"]
@@ -108,10 +109,10 @@ states/U_Idle/position = Vector2(317, 187)
 states/U_Stance/node = SubResource("AnimationNodeAnimation_ltww1")
 states/U_Stance/position = Vector2(511, 100)
 transitions = ["Start", "U_Idle", SubResource("AnimationNodeStateMachineTransition_a7mna"), "U_Idle", "U_Stance", SubResource("AnimationNodeStateMachineTransition_lmwkj"), "U_Stance", "U_Idle", SubResource("AnimationNodeStateMachineTransition_k3r5w"), "U_Idle", "U_Attack1", SubResource("AnimationNodeStateMachineTransition_1rslu"), "U_Attack1", "U_Idle", SubResource("AnimationNodeStateMachineTransition_3uyxa"), "U_Stance", "U_Attack1", SubResource("AnimationNodeStateMachineTransition_61y8d"), "U_Attack1", "U_Stance", SubResource("AnimationNodeStateMachineTransition_8icv6")]
-graph_offset = Vector2(-93, 55)
+graph_offset = Vector2(-52, 77)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ucfvk"]
-graph_offset = Vector2(-506.612, 526)
+graph_offset = Vector2(-590.177, 513.74)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_76bt2")
 nodes/Add2/position = Vector2(146.92, 317.121)
 nodes/LowerBodyFSM/node = SubResource("AnimationNodeStateMachine_jsgy1")
@@ -501,16 +502,16 @@ script = ExtResource("1_76bt2")
 
 [node name="upper" type="Sprite2D" parent="."]
 position = Vector2(241.5, 239.75)
-texture = ExtResource("5_1kp85")
+texture = ExtResource("4_6ct3r")
 flip_h = true
-hframes = 4
+hframes = 3
 
 [node name="lower" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(244, 235)
-texture = ExtResource("2_4sjlk")
+texture = ExtResource("7_wyqjk")
 flip_h = true
-hframes = 3
+hframes = 6
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_ucfvk")
@@ -579,7 +580,10 @@ position = Vector2(202.5, 122)
 shape = SubResource("RectangleShape2D_y1dt5")
 disabled = true
 
-[node name="AnimationHandler" type="Node" parent="."]
+[node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("Player", "animation_tree")]
+script = ExtResource("17_76bt2")
+Player = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
 
 [node name="StanceTimer" type="Timer" parent="."]
 

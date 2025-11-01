@@ -1,14 +1,27 @@
 class_name U_Attack1State extends UpperBodyState
 
-var hitbox: AttackHitbox = player.attack1hitbox 
+var hitbox: AttackHitbox
+
+# We get the reference once at the start
+#func _init(player_controller: PlayerControllerTest):
+	#super(player_controller)
+	#hitbox = player.attack_1_hitbox
 
 func get_state_name() -> String:
 	return "U_Attack1State"
 
 func enter() -> void:
 	# Use "OneShot" to play the animation once and then transition automatically
+	print(player.U_anim_state)
 	player.U_anim_state = "U_Attack1State"
+	print(player.U_anim_state)
 	player.animation_tree.set("parameters/UpperBodyFSM/playback", "U_Attack1")
+	print(player.animation_tree.get)
+	# Prepare the hitbox for a new swing
+	hitbox = player.attack_1_hitbox
+	hitbox.clear_hit_targets()
+	# Activate the hitbox!
+	hitbox.get_node("CollisionShape2D").disabled = false
 	
 	# We wait for the animation to tell us when it's finished.
 	# Connect to the signal in the AnimationTree (see Step 5).
@@ -29,4 +42,4 @@ func physics_process(delta: float):
 
 func exit() -> void:
 	# Clean up any attack logic if needed
-	pass
+	hitbox.get_node("CollisionShape2D").disabled = true

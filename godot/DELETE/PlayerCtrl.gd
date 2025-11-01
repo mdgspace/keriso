@@ -23,7 +23,7 @@ var L_anim_state = "L_IdleState"
 @onready var upper: Sprite2D = $upper
 @onready var lower: Sprite2D = $lower
 @onready var hurtbox: Area2D = $Hurtbox
-@onready var attack_1_hitbox: AttackHitBox = $Attack1Hitbox
+@onready var attack_1_hitbox: AttackHitbox = $Attack1Hitbox
 
 func _ready() -> void:
 	# Set the AnimationTree to active so it controls animations
@@ -34,7 +34,7 @@ func _ready() -> void:
 		L_IdleState.new(self),
 		L_RunState.new(self),
 		L_JumpState.new(self),
-		L_HurtState.new(self),
+		#L_HurtState.new(self),
 		# Add L_HurtState, L_BlockState here later
 	]
 	lower_fsm.start_machine(lower_states)

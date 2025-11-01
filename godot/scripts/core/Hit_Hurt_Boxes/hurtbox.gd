@@ -42,7 +42,7 @@ extends Area2D
 var current_health: float
 var is_invincible: bool = false
 
-@onready var owner_player: PlayerController = owner
+@onready var owner_player: PlayerControllerTest = owner
 
 func _ready() -> void:
 	current_health = max_health
