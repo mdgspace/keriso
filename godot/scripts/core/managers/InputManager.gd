@@ -76,7 +76,6 @@ func is_buffered_input(action_name: String, buffer_time_sec: float) -> bool:
 
 	return false
 
-# For analog inputs
 func horizontal_input() -> float:
 	return Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 
