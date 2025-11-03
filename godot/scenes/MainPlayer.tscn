@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=48 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/main_player.gd" id="1_5m47q"]
 [ext_resource type="Texture2D" uid="uid://chqm13knk48b4" path="res://assets/characters/knight.png" id="2_bqunt"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7kvb8t8mdb0i" path="res://scenes/InventoryUI.tscn" id="7_cbsqg"]
 [ext_resource type="Script" uid="uid://bstv4op17ha7s" path="res://scripts/core/ui_scripts/sampleSaveLoad.gd" id="8_2lu3o"]
 [ext_resource type="Script" uid="uid://ck8hmp0818mgj" path="res://scripts/core/Hit_Hurt_Boxes/hurtbox.gd" id="8_q7r2k"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://41e0qb6arprq" path="res://scenes/players/player.tres" id="10_11llm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsui4"]
 atlas = ExtResource("2_bqunt")
@@ -258,6 +259,18 @@ height = 18.0
 radius = 7.87879
 height = 21.8182
 
+[sub_resource type="Animation" id="Animation_11llm"]
+resource_name = "not_sheath_idle"
+
+[sub_resource type="Animation" id="Animation_yervt"]
+resource_name = "unsheath_run"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_su5v1"]
+_data = {
+&"not_sheath_idle": SubResource("Animation_11llm"),
+&"unsheath_run": SubResource("Animation_yervt")
+}
+
 [node name="MainPlayer" type="Node"]
 script = ExtResource("1_5m47q")
 
@@ -368,6 +381,24 @@ offset_top = -104.0
 offset_right = 161.0
 offset_bottom = -79.0
 text = "load"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = ExtResource("10_11llm")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/attack2 = false
+parameters/conditions/idle = false
+parameters/conditions/jump = false
+parameters/conditions/not_sheath_idle = false
+parameters/conditions/run = false
+parameters/conditions/sheath_idle = false
+parameters/conditions/walk = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_su5v1")
+}
+
+[node name="AnimationHandler" type="Node" parent="."]
 
 [connection signal="pressed" from="save" to="save" method="_on_pressed"]
 [connection signal="pressed" from="load" to="save" method="_on_load_pressed"]

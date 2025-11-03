@@ -113,7 +113,7 @@ func can_see_player() -> bool:
 		return false
 	
 	var distance = to_player.length()
-
+		
 	if distance < near_detection_range:
 		follow_end_timer = 0.0
 		return true

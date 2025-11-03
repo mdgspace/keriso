@@ -39,13 +39,15 @@ position = Vector2(466, -7)
 shape = SubResource("RectangleShape2D_3iwug")
 
 [node name="kunoichi_enemy" parent="." instance=ExtResource("2_hqfqh")]
-position = Vector2(655, -44)
+position = Vector2(672, -29)
 jump_force = 350
 attack_range = 60
+seen_player_timer = 4.0
 
 [node name="samurai_dash_enemy" parent="." instance=ExtResource("3_r177j")]
-position = Vector2(-65, -23)
-seen_player_timer = 10.0
+position = Vector2(-33, -27)
+attack_cooldown = 0.5
+seen_player_timer = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="samurai_dash_enemy"]
 position = Vector2(94, -35)
