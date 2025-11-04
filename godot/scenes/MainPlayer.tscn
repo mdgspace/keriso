@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=45 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/main_player.gd" id="1_5m47q"]
 [ext_resource type="Texture2D" uid="uid://chqm13knk48b4" path="res://assets/characters/knight.png" id="2_bqunt"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7kvb8t8mdb0i" path="res://scenes/InventoryUI.tscn" id="7_cbsqg"]
 [ext_resource type="Script" uid="uid://bstv4op17ha7s" path="res://scripts/core/ui_scripts/sampleSaveLoad.gd" id="8_2lu3o"]
 [ext_resource type="Script" uid="uid://ck8hmp0818mgj" path="res://scripts/core/Hit_Hurt_Boxes/hurtbox.gd" id="8_q7r2k"]
+[ext_resource type="PackedScene" uid="uid://yqron7w7uiyg" path="res://character_body_2d.tscn" id="10_11llm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsui4"]
 atlas = ExtResource("2_bqunt")
@@ -284,6 +285,7 @@ text = "load"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player"]]
 process_mode = 4
+visible = false
 scale = Vector2(1.65, 1.65)
 collision_layer = 4
 script = ExtResource("3_11llm")
@@ -369,6 +371,10 @@ script = ExtResource("8_q7r2k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
 position = Vector2(0, -10.303)
 shape = SubResource("CapsuleShape2D_ub0sc")
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("10_11llm")]
+position = Vector2(14, -48)
+scale = Vector2(0.12, 0.12)
 
 [connection signal="pressed" from="save" to="save" method="_on_pressed"]
 [connection signal="pressed" from="load" to="save" method="_on_load_pressed"]

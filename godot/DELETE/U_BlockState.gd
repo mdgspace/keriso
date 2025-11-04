@@ -1,10 +1,12 @@
-class_name U_IdleState extends UpperBodyState
+class_name U_BlockState extends UpperBodyState
 
 func get_state_name() -> String:
-	return "U_IdleState"
+	return "U_BlockState"
 
 func enter() -> void:
-	player.U_anim_state = "U_IdleState"
+	player.L_anim_state = "NULL" # this is to avoid overriding animations
+	player.U_anim_state = "U_BlockState"
+
 
 func physics_process(_delta: float) -> void:
 	# Transition to attack directly from idle (draws weapon automatically)
@@ -12,6 +14,6 @@ func physics_process(_delta: float) -> void:
 		# This will handle the transition to Stance and Attack
 		state_machine.transition("U_Attack1State")
 		return
-	elif  Input.is_action_just_pressed("Block"):
-		state_machine.transition("U_BlockState")
-		return
+
+func exit():
+	player.L_anim_state = "L_IdleState"

@@ -7,7 +7,6 @@ func get_state_name() -> String:
 
 func enter() -> void:
 	player.velocity.y = player.JUMP_VELOCITY
-	player.animation_tree.set("parameters/LowerBodyFSM/playback", "Jump") # Should be your jump/fall animation
 
 func physics_process(delta: float) -> void:
 	# Allow for air control

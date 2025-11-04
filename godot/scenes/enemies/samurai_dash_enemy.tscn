@@ -684,7 +684,6 @@ script = ExtResource("18_mqvsx")
 script = ExtResource("12_aq00o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
 deterministic = true
 libraries = {
 &"": SubResource("AnimationLibrary_45h6b")

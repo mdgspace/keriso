@@ -6,6 +6,7 @@ func get_state_name() -> String:
 	return "L_RunState"
 
 func enter() -> void:
+	player.L_anim_state = "L_RunState"
 	player.animation_tree.set("parameters/LowerBodyFSM/playback", "Run")
 
 func physics_process(delta: float) -> void:

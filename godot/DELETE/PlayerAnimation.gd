@@ -5,8 +5,8 @@ var Upper_anim_state
 var Lower_anim_state
 var playback: AnimationNodeStateMachinePlayback
 # List of all possible conditions (same as those defined in the AnimationTree editor)
-var lower_states := ["L_Idle", "L_Run","L_Jump"]
-var upper_states := ["U_Idle", "U_Stance","U_Attack1"]
+var lower_states := ["L_Idle", "L_Walk","L_Jump","L_Block"]
+var upper_states := ["U_Idle", "U_Stance","U_Attack1","U_Block"]
 #var all_conditions := ["idle","walk", "run", "attack1", "attack2","jump"]
 
 func _ready():
@@ -30,9 +30,16 @@ func update_animation_state():
 			set_upper_anim("U_Stance")
 		"U_Attack1State":
 			set_upper_anim("U_Attack1")
+		"U_BlockState":
+			set_upper_anim("U_Block")
+			set_lower_anim("L_Block")
 	match Lower_anim_state:
 		"L_IdleState":
 			set_lower_anim("L_Idle")
+		"L_RunState":
+			set_lower_anim("L_Walk")
+		"L_BlockState": # Dummy, not to be used
+			set_lower_anim("L_Block")
 
 		#"attack2":
 			#set_animation_condition("attack2")

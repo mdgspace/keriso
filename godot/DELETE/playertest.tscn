@@ -10,7 +10,8 @@ size = Vector2(7034, 228)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(935, 676)
+position = Vector2(900, 559)
 shape = SubResource("RectangleShape2D_yq770")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_8tqm5")]
+position = Vector2(-829, -1001)

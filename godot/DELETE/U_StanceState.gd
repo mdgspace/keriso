@@ -8,8 +8,13 @@ func enter() -> void:
 	player.animation_tree.set("parameters/UpperBodyFSM/playback", "U_Stance")
 
 func physics_process(_delta: float) -> void:
-	# Transition to attack from stance
+	if player._just_finished_attack:
+		player._just_finished_attack = false
+		return
 	if Input.is_action_just_pressed("attack"):
-		player.enter_stance() # Resets the stance timer
+		 # Resets the stance timer
 		state_machine.transition("U_Attack1State")
+		return
+	elif  Input.is_action_just_pressed("Block"):
+		state_machine.transition("U_BlockState")
 		return
