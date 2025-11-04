@@ -4,8 +4,9 @@ extends Node
 var animation_state
 var playback: AnimationNodeStateMachinePlayback
 # List of all possible conditions (same as those defined in the AnimationTree editor)
-var all_states := ["idle", "walk", "run", "attack1", "attack2", 
-"hurt","jump","jumpdown","die"]
+var all_states := ["idle_unsheath", "walk_unsheath", "run_unsheath", "attack","unsheathing","block",
+"idle_sheath","walk_sheath","run_sheath", 
+"hurt","die"]
 var all_conditions := ["idle","walk", "run", "attack1", "attack2","jump"]
 
 func _ready():
@@ -21,25 +22,33 @@ func _physics_process(delta):
 	
 func update_animation_state():
 	match animation_state:
-		"unsheath_idle":
+		"idle_unsheath":
 			set_animation_condition("idle")
-		"sheath_idle":
-			set_animation_condition("idle")
-		"walk":
+		"walk_unsheath":
 			set_animation_condition("walk")
-		"run":
+		"run_unsheath":
 			set_animation_condition("run")
-		"attack1":
-			set_animation_condition("attack1")
-		#"jump":
-			#set_animation_condition("jump")##Remember to add to all-conditions
+		"attack":
+			set_animation_condition("attack")
+		"unsheathing":
+			playback.travel("Unsheath")
+		"block":
+			playback.travel("Block")
+
+		"idle_sheath":
+			set_animation_condition("idle")
+		"walk_sheath":
+			set_animation_condition("walk")
+		"run_sheath":
+			set_animation_condition("run")
+
 		"hurt":
-			animation_tree.set("parameters/StateMachine/current", "Hurt")
+			playback.travel("Hurt")
 		"die":
-			animation_tree.set("parameters/StateMachine/current", "Die")
+			playback.travel("Die")
+
 		_:
-			# Optional: default fallback
-			set_animation_condition("unsheath_idle")
+			set_animation_condition("idle") # fallback safe state
 
 func set_animation_condition(active: String):
 	for cond in all_conditions:

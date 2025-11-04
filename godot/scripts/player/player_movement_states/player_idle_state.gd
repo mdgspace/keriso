@@ -17,6 +17,7 @@ func process(_delta: float) -> void:
 	if InputNode.is_just_pressed("attack"):
 		movement_state_machine.transition(PlayerAttackState.state_name)
 		pass
+		
 	if timer>player.unsheath_time:
 		player.animation_state = "unsheath_idle"
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=56 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/main_player.gd" id="1_5m47q"]
 [ext_resource type="Texture2D" uid="uid://chqm13knk48b4" path="res://assets/characters/knight.png" id="2_bqunt"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7kvb8t8mdb0i" path="res://scenes/InventoryUI.tscn" id="7_cbsqg"]
 [ext_resource type="Script" uid="uid://bstv4op17ha7s" path="res://scripts/core/ui_scripts/sampleSaveLoad.gd" id="8_2lu3o"]
 [ext_resource type="Script" uid="uid://ck8hmp0818mgj" path="res://scripts/core/Hit_Hurt_Boxes/hurtbox.gd" id="8_q7r2k"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://41e0qb6arprq" path="res://scenes/players/player.tres" id="10_11llm"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://swqow8b6bojn" path="res://scenes/players/player.tres" id="10_11llm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsui4"]
 atlas = ExtResource("2_bqunt")
@@ -259,16 +259,48 @@ height = 18.0
 radius = 7.87879
 height = 21.8182
 
-[sub_resource type="Animation" id="Animation_11llm"]
-resource_name = "not_sheath_idle"
-
 [sub_resource type="Animation" id="Animation_yervt"]
-resource_name = "unsheath_run"
+resource_name = "attack"
+
+[sub_resource type="Animation" id="Animation_su5v1"]
+resource_name = "walk_unsheath"
+
+[sub_resource type="Animation" id="Animation_bbg0t"]
+resource_name = "run_unsheath"
+
+[sub_resource type="Animation" id="Animation_cbsqg"]
+resource_name = "block"
+
+[sub_resource type="Animation" id="Animation_2lu3o"]
+resource_name = "unsheathing"
+
+[sub_resource type="Animation" id="Animation_regva"]
+resource_name = "idle_sheath"
+
+[sub_resource type="Animation" id="Animation_11llm"]
+resource_name = "idle_unsheath"
+
+[sub_resource type="Animation" id="Animation_duqpn"]
+resource_name = "sheathing"
+
+[sub_resource type="Animation" id="Animation_lr3tv"]
+resource_name = "walk_sheath"
+
+[sub_resource type="Animation" id="Animation_absal"]
+resource_name = "run_sheath"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_su5v1"]
 _data = {
-&"not_sheath_idle": SubResource("Animation_11llm"),
-&"unsheath_run": SubResource("Animation_yervt")
+&"attack": SubResource("Animation_yervt"),
+&"block": SubResource("Animation_cbsqg"),
+&"idle_sheath": SubResource("Animation_regva"),
+&"idle_unsheath": SubResource("Animation_11llm"),
+&"run_sheath": SubResource("Animation_absal"),
+&"run_unsheath": SubResource("Animation_bbg0t"),
+&"sheathing": SubResource("Animation_duqpn"),
+&"unsheathing": SubResource("Animation_2lu3o"),
+&"walk_sheath": SubResource("Animation_lr3tv"),
+&"walk_unsheath": SubResource("Animation_su5v1")
 }
 
 [node name="MainPlayer" type="Node"]
@@ -385,13 +417,13 @@ text = "load"
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource("10_11llm")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/attack2 = false
-parameters/conditions/idle = false
-parameters/conditions/jump = false
-parameters/conditions/not_sheath_idle = false
-parameters/conditions/run = false
-parameters/conditions/sheath_idle = false
-parameters/conditions/walk = false
+parameters/conditions/sheath = false
+parameters/conditions/unsheath = false
+parameters/UnSheath/conditions/attack = false
+parameters/UnSheath/conditions/block = false
+parameters/UnSheath/conditions/idle = false
+parameters/UnSheath/conditions/run = false
+parameters/UnSheath/conditions/walk = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
