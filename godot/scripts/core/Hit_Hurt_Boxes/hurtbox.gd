@@ -26,7 +26,7 @@ func take_damage(amount: int, applyknockback:bool,knockback: Vector2) -> void:
 		die()
 
 func apply_knockback(force: Vector2) -> void:
-	print("Applying knockback")
+	#print("Applying knockback")
 	# Apply knockback to parent node (e.g., CharacterBody2D)
 	var parent = get_parent()
 	if parent and parent.has_method("apply_knockback"):

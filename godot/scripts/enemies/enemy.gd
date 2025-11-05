@@ -48,7 +48,7 @@ var is_dashing: bool = false
 var low_collision:bool
 var down_collision:bool
 var player_position: Vector2
-var player
+var player 
 var to_player: Vector2 = Vector2.ZERO;
 
 
@@ -80,11 +80,9 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 0# Stop the dash
 			
 			
-	if not can_see_player():
-		follow_end_timer+=delta
+	follow_end_timer+=delta
 	##Jump Up And flip
 	if (low_ray1.is_colliding()):
-		print(true)
 		low_collision = true
 	else :
 		low_collision = false
@@ -111,31 +109,26 @@ func jump():
 func perform_attack() -> void:
 	pass
 func can_see_player() -> bool:
-	print("this is follow end tim4r",follow_end_timer)
 	if not is_instance_valid(player):
 		return false
 	
 	var distance = to_player.length()
-	print(distance," jk ", near_detection_range)
-
+		
 	if distance < near_detection_range:
 		follow_end_timer = 0.0
-		print("is returning true")
 		return true
 	if player_ray1.is_colliding() || player_ray2.is_colliding():
 		follow_end_timer = 0.0
-		print("is retyrbub true due to caste")
 		return true
 	#
 	#if _facing==Facing.RIGHT && to_player.x<0:
 		#return false
 	#if _facing==Facing.LEFT && to_player.x>0:
 		#return false
-	print(follow_end_timer,seen_player_timer)
+
 ##TODO:Have to do a check for player
 	if follow_end_timer>seen_player_timer:
 		return false
-		print("Retuenung false")
 	else:
 		return true
 

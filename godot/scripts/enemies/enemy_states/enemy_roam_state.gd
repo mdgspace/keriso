@@ -8,7 +8,7 @@ var small_timer:float = 0.0
 func enter() -> void:
 	# Choose random direction
 	roam_direction = [-1, 1][randi() % 2]
-	print("Start Roaming Direction",roam_direction)
+	#print("Start Roaming Direction",roam_direction)
 	roam_timer = roam_duration
 	# Set initial facing direction
 	enemy.set_facing_direction(roam_direction)

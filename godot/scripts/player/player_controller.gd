@@ -1,6 +1,5 @@
 class_name PlayerController extends CharacterBody2D
 
-
 enum Facing {
 	LEFT,
 	RIGHT
@@ -18,16 +17,22 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var jump_force:float = 400.0
 @export var hurt_time :float =.5
 @export var stun_time : float = .3 #Shopuld be less than hur5t time as I'm stunning in hurt state only
-
+@export var is_friendly_scene:float = false
+@export var unsheath_time:float = 10.0
 #@onready var movement_state_machine = $MovementStateMachine
+enum Animation_State{
+	unsheath_idle,shealth_idle,walk,run,attak,hurt,die,interaction,block
+}
+var animation_state = "idle"
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	var movement_states: Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self),PlayerHurtState.new(self)]
-	var action_states: Array[State] = [PlayerAttackState.new(self),PlayerParryState.new(self),PlayerDefenseState.new(self)]
+	var movement_states:Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self),PlayerHurtState.new(self),PlayerAttackState.new(self),PlayerParryState.new(self),PlayerDefenseState.new(self)]
+	#var action_states: Array[State] = []
 	movement_state_machine.start_machine(movement_states)
-	action_state_machine.start_machine(action_states)
+	
+	#action_state_machine.start_machine(action_states)
 
 func _physics_process(delta: float) -> void:	
 	horizontal_input = InputNode.horizontal_input()

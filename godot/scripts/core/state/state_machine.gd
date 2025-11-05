@@ -1,7 +1,7 @@
 class_name StateMachine extends Node
 
 
-@export var is_log_enabled: bool = false
+@export var is_log_enabled: bool = true
 
 var is_running: bool = false
 

@@ -1,22 +1,22 @@
 [gd_scene load_steps=33 format=3 uid="uid://c6j2dx0bksyro"]
 
-[ext_resource type="Script" path="res://samurai_dash_enemy.gd" id="1_q1hvf"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_animation.gd" id="2_of3he"]
+[ext_resource type="Script" uid="uid://c65l3hcv0aqgc" path="res://samurai_dash_enemy.gd" id="1_q1hvf"]
+[ext_resource type="Script" uid="uid://cj71hlqoxplrk" path="res://scripts/enemies/enemy_animation.gd" id="2_of3he"]
 [ext_resource type="Texture2D" uid="uid://bvuihd04vlgra" path="res://assets/enemies/samurai_dash_sprites/Attack1.png" id="2_pmxpo"]
-[ext_resource type="Script" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="3_ghp2t"]
-[ext_resource type="Script" path="res://scripts/core/state/state_machine.gd" id="12_aq00o"]
+[ext_resource type="Script" uid="uid://dyel5hqilhxh2" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="3_ghp2t"]
+[ext_resource type="Script" uid="uid://dtefr2kguqvvl" path="res://scripts/core/state/state_machine.gd" id="12_aq00o"]
 [ext_resource type="Texture2D" uid="uid://caeh0aiuwvvnt" path="res://assets/enemies/samurai_dash_sprites/Attack2.png" id="12_xa50c"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_idle_state.gd" id="13_an5jt"]
+[ext_resource type="Script" uid="uid://cqia6hj2vdjnr" path="res://scripts/enemies/enemy_states/enemy_idle_state.gd" id="13_an5jt"]
 [ext_resource type="Texture2D" uid="uid://cis4ieor4imcg" path="res://assets/enemies/samurai_dash_sprites/Idle.png" id="13_ct2eg"]
 [ext_resource type="Texture2D" uid="uid://vjcpowuocj38" path="res://assets/enemies/samurai_dash_sprites/Take Hit - white silhouette.png" id="13_gj0d8"]
 [ext_resource type="Texture2D" uid="uid://clexp464cwicp" path="res://assets/enemies/samurai_dash_sprites/Run.png" id="14_mm74t"]
 [ext_resource type="Texture2D" uid="uid://byk540on46m3j" path="res://assets/enemies/samurai_dash_sprites/Jump.png" id="14_nm37o"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_roam_state.gd" id="14_q7y55"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_attack2_state.gd" id="15_wvd8p"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_attack1_state.gd" id="16_4ohty"]
+[ext_resource type="Script" uid="uid://ntliof843w4f" path="res://scripts/enemies/enemy_states/enemy_roam_state.gd" id="14_q7y55"]
+[ext_resource type="Script" uid="uid://bej07v725uv11" path="res://scripts/enemies/enemy_states/enemy_attack2_state.gd" id="15_wvd8p"]
+[ext_resource type="Script" uid="uid://bmi1qmxo3li1" path="res://scripts/enemies/enemy_states/enemy_attack1_state.gd" id="16_4ohty"]
 [ext_resource type="Texture2D" uid="uid://dr5uhmh80ksbw" path="res://assets/enemies/samurai_dash_sprites/Death.png" id="17_8rjkl"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_jump_state.gd" id="17_m2g2c"]
-[ext_resource type="Script" path="res://scripts/enemies/enemy_states/enemy_jumpDown_state.gd" id="18_mqvsx"]
+[ext_resource type="Script" uid="uid://iio51yjkh81a" path="res://scripts/enemies/enemy_states/enemy_jump_state.gd" id="17_m2g2c"]
+[ext_resource type="Script" uid="uid://ffnn4rgpkqpm" path="res://scripts/enemies/enemy_states/enemy_jumpDown_state.gd" id="18_mqvsx"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cr7tsyty2pnde" path="res://assets/enemies/Animation_Trees/samuri_dash.tres" id="19_m6g2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctbht"]
@@ -562,16 +562,16 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_45h6b"]
 _data = {
-"Attack1": SubResource("Animation_fe3xe"),
-"Attack2": SubResource("Animation_fluks"),
-"Die": SubResource("Animation_t2mn8"),
-"Hurt": SubResource("Animation_bvadx"),
-"Jump": SubResource("Animation_xeayk"),
-"JumpDown": SubResource("Animation_pq4u8"),
-"RESET": SubResource("Animation_2gw1r"),
-"Run": SubResource("Animation_lsmjf"),
-"Walk": SubResource("Animation_ewgx5"),
-"idle": SubResource("Animation_naaq6")
+&"Attack1": SubResource("Animation_fe3xe"),
+&"Attack2": SubResource("Animation_fluks"),
+&"Die": SubResource("Animation_t2mn8"),
+&"Hurt": SubResource("Animation_bvadx"),
+&"Jump": SubResource("Animation_xeayk"),
+&"JumpDown": SubResource("Animation_pq4u8"),
+&"RESET": SubResource("Animation_2gw1r"),
+&"Run": SubResource("Animation_lsmjf"),
+&"Walk": SubResource("Animation_ewgx5"),
+&"idle": SubResource("Animation_naaq6")
 }
 
 [node name="samurai_dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox")]
@@ -582,6 +582,7 @@ script = ExtResource("1_q1hvf")
 near_detection_range = 80
 attack_range = 80
 attack_cooldown = 2.0
+seen_player_timer = 2.0
 Attack1Hitbox = NodePath("Attack1Hitbox")
 Attack2Hitbox = NodePath("Attack2Hitbox")
 
@@ -686,7 +687,7 @@ script = ExtResource("12_aq00o")
 active = false
 deterministic = true
 libraries = {
-"": SubResource("AnimationLibrary_45h6b")
+&"": SubResource("AnimationLibrary_45h6b")
 }
 autoplay = "idle"
 
