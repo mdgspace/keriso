@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://216ie00sal1k"]
+[gd_scene load_steps=7 format=3 uid="uid://216ie00sal1k"]
 
 [ext_resource type="Script" uid="uid://o3ahdhwyf63w" path="res://scripts/core/gameStarter.gd" id="1_w44h4"]
 [ext_resource type="PackedScene" uid="uid://ngcthb8yjthx" path="res://scenes/enemies/kunoichi_enemy.tscn" id="2_hqfqh"]
+[ext_resource type="PackedScene" uid="uid://bq2uqlw4lc38q" path="res://scenes/PauseScreen/PauseScreen.tscn" id="2_r5nxa"]
 [ext_resource type="PackedScene" uid="uid://c6j2dx0bksyro" path="res://scenes/enemies/samurai_dash_enemy.tscn" id="3_r177j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3iwug"]
@@ -11,6 +12,8 @@ size = Vector2(121, 23)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_w44h4")
+
+[node name="PauseScreen" parent="." instance=ExtResource("2_r5nxa")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -45,28 +48,29 @@ attack_range = 60
 seen_player_timer = 4.0
 
 [node name="samurai_dash_enemy" parent="." instance=ExtResource("3_r177j")]
-position = Vector2(-33, -27)
+position = Vector2(754, -35)
 attack_cooldown = 0.5
 seen_player_timer = 4.0
 
-[node name="Camera2D" type="Camera2D" parent="samurai_dash_enemy"]
-position = Vector2(94, -35)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(155, -97)
+scale = Vector2(2, 2)
 zoom = Vector2(2, 2)
 limit_left = -10000001
 
-[node name="Master" type="HSlider" parent="samurai_dash_enemy/Camera2D"]
+[node name="Master" type="HSlider" parent="Camera2D"]
 offset_left = -50.0
 offset_top = -76.0
 offset_right = 43.0
 offset_bottom = -60.0
 
-[node name="Background" type="HSlider" parent="samurai_dash_enemy/Camera2D"]
+[node name="Background" type="HSlider" parent="Camera2D"]
 offset_left = 43.0
 offset_top = -76.5
 offset_right = 143.0
 offset_bottom = -60.5
 
-[node name="SFX" type="HSlider" parent="samurai_dash_enemy/Camera2D"]
+[node name="SFX" type="HSlider" parent="Camera2D"]
 offset_left = -143.0
 offset_top = -76.0
 offset_right = -52.0

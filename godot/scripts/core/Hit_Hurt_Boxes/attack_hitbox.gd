@@ -13,7 +13,8 @@ var hit_targets: Array = []
 	#collision_mask = 3   #Player hurtbox currently
 
 func _ready() -> void:
-	connect("area_entered", self._on_area_entered)
+	pass
+	#connect("area_entered", self._on_area_entered)
 	
 func clear_hit_targets() -> void:
 	hit_targets.clear()

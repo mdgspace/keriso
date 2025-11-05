@@ -26,7 +26,7 @@ enum Animation_State{
 var animation_state = "idle"
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	process_mode = Node.PROCESS_MODE_INHERIT
 	
 	var movement_states:Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self),PlayerHurtState.new(self),PlayerAttackState.new(self),PlayerParryState.new(self),PlayerDefenseState.new(self)]
 	#var action_states: Array[State] = []
