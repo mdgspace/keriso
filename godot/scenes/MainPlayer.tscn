@@ -387,6 +387,13 @@ stun_time = null
 is_friendly_scene = null
 unsheath_time = null
 
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D"]
+position = Vector2(0, -10.303)
+scale = Vector2(3.40368, 4.55162)
+enabled = false
+target_position = Vector2(16.2035, -0.133152)
+collide_with_areas = true
+
 [node name="InteractUI" type="CanvasLayer" parent="CharacterBody2D"]
 visible = false
 

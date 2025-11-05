@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3m1sfas2cmtp"]
+
+[ext_resource type="Script" uid="uid://seyal717b6j8" path="res://scripts/NPCs/npc1.gd" id="1_n374i"]
+[ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="2_fh8mv"]
+[ext_resource type="Resource" uid="uid://bddrik2m7cy4w" path="res://Dialogues/Base.dialogue" id="2_l2s1u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh8mv"]
+size = Vector2(20, 80)
+
+[node name="Npc1" type="Node2D"]
+script = ExtResource("1_n374i")
+dialogue_resource = ExtResource("2_l2s1u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="DialogueLabel" type="RichTextLabel" parent="."]
+offset_left = -8.0
+offset_top = -19.0
+offset_right = 66.0
+offset_bottom = 27.0
+scale = Vector2(0.25, 0.25)
+text = "Let's talk"
+fit_content = true
+tab_size = 1
+script = ExtResource("2_fh8mv")
+skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
+metadata/_custom_type_script = "uid://g32um0mltv5d"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_fh8mv")
