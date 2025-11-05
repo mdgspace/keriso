@@ -398,6 +398,24 @@ script = ExtResource("8_q7r2k")
 position = Vector2(0, -10.303)
 shape = SubResource("CapsuleShape2D_ub0sc")
 
+[node name="raycast_interact" type="Node" parent="CharacterBody2D"]
+
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D/raycast_interact"]
+position = Vector2(0, -17)
+scale = Vector2(5.616069, 7.510178)
+enabled = false
+target_position = Vector2(16.203506, -0.13315248)
+collide_with_areas = true
+
+[node name="raycast_interact" type="Node" parent="CharacterBody2D"]
+
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D/raycast_interact"]
+position = Vector2(0, -17)
+scale = Vector2(5.616069, 7.510178)
+enabled = false
+target_position = Vector2(16.203506, -0.13315248)
+collide_with_areas = true
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource("10_11llm")
 anim_player = NodePath("../AnimationPlayer")
