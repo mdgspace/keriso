@@ -1,7 +1,7 @@
 extends Node2D
-@onready var Master: HSlider = $samurai_dash_enemy/Camera2D/Master
-@onready var Background: HSlider = $samurai_dash_enemy/Camera2D/Background
-@onready var Sfx: HSlider = $samurai_dash_enemy/Camera2D/SFX
+@onready var Master: HSlider = $Camera2D/Master
+@onready var Background: HSlider = $Camera2D/Background
+@onready var Sfx: HSlider = $Camera2D/SFX
 
 var background = preload("res://Music/We Rollin - Djjohal.fm.mp3")
 # Called when the node enters the scene tree for the first time.
