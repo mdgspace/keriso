@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://216ie00sal1k"]
+[gd_scene load_steps=8 format=3 uid="uid://216ie00sal1k"]
 
 [ext_resource type="Script" uid="uid://o3ahdhwyf63w" path="res://scripts/core/gameStarter.gd" id="1_w44h4"]
 [ext_resource type="PackedScene" uid="uid://ngcthb8yjthx" path="res://scenes/enemies/kunoichi_enemy.tscn" id="2_hqfqh"]
 [ext_resource type="PackedScene" uid="uid://bq2uqlw4lc38q" path="res://scenes/PauseScreen/PauseScreen.tscn" id="2_r5nxa"]
 [ext_resource type="PackedScene" uid="uid://c6j2dx0bksyro" path="res://scenes/enemies/samurai_dash_enemy.tscn" id="3_r177j"]
+[ext_resource type="Script" uid="uid://bq11sj4sufl4p" path="res://scripts/player/healthBar.gd" id="5_h30v7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3iwug"]
 size = Vector2(121, 23)
@@ -48,7 +49,7 @@ attack_range = 60
 seen_player_timer = 4.0
 
 [node name="samurai_dash_enemy" parent="." instance=ExtResource("3_r177j")]
-position = Vector2(754, -35)
+position = Vector2(133, -34)
 attack_cooldown = 0.5
 seen_player_timer = 4.0
 
@@ -75,3 +76,15 @@ offset_left = -143.0
 offset_top = -76.0
 offset_right = -52.0
 offset_bottom = -60.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_right = -113.0
+offset_bottom = 27.0
+grow_horizontal = 0
+script = ExtResource("5_h30v7")
