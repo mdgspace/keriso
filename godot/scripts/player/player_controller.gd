@@ -17,13 +17,9 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var jump_force:float = 400.0
 @export var hurt_time :float =.5
 @export var stun_time : float = .3 #Shopuld be less than hur5t time as I'm stunning in hurt state only
-<<<<<<< HEAD
 @export var is_friendly_scene:float = false
 @export var unsheath_time:float = 10.0
-=======
-@onready var forward_raycast: RayCast2D = $raycast_interact/RayCast2D
-
->>>>>>> main
+@onready var forward_raycast: RayCast2D = $RayCast2D
 #@onready var movement_state_machine = $MovementStateMachine
 enum Animation_State{
 	unsheath_idle,shealth_idle,walk,run,attak,hurt,die,interaction,block
@@ -53,12 +49,14 @@ func _physics_process(delta: float) -> void:
 	if(InputNode.is_pressed("interact")) :
 		forward_raycast.enabled = true
 		forward_raycast.force_raycast_update()
+		print("Trying to interact with npc")
 		if(animatedsprite2d.flip_h):
 			forward_raycast.target_position.x= abs(forward_raycast.target_position.x) *-1
 		else :
 			forward_raycast.target_position.x= abs(forward_raycast.target_position.x) 
 			
 		if forward_raycast.is_colliding():
+			print("collided")
 			var target = forward_raycast.get_collider().get_parent()
 			
 			if target and target.has_method("interact"):
