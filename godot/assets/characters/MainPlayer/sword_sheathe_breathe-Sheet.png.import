@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chpr4jjk8o0lv"
-path="res://.godot/imported/Spine.png-365be5a439273d7959802f3f5dca3907.ctex"
+uid="uid://c2aw2eoo7coth"
+path="res://.godot/imported/sword_sheathe_breathe-Sheet.png-7051725a30ef0545b00ae8c515f3aa3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/kunoichi/Spine.png"
-dest_files=["res://.godot/imported/Spine.png-365be5a439273d7959802f3f5dca3907.ctex"]
+source_file="res://assets/characters/MainPlayer/sword_sheathe_breathe-Sheet.png"
+dest_files=["res://.godot/imported/sword_sheathe_breathe-Sheet.png-7051725a30ef0545b00ae8c515f3aa3b.ctex"]
 
 [params]
 

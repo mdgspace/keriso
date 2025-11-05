@@ -10,7 +10,8 @@ var was_on_floor
 var _facing: Facing = Facing.RIGHT
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@onready var animatedsprite2d = $AnimatedSprite2D
+#@onready var animatedsprite2d = $AnimatedSprite2D
+@onready var animatedsprite2d: Sprite2D = $Sprite2D
 @onready var movement_state_machine = $MovementStateMachine
 @onready var action_state_machine = $ActionStateMachine
 @onready var main_player = $".."
@@ -28,7 +29,7 @@ var animation_state = "idle"
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 	
-	var movement_states:Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self),PlayerHurtState.new(self),PlayerAttackState.new(self),PlayerParryState.new(self),PlayerDefenseState.new(self)]
+	var movement_states:Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self),PlayerHurtState.new(self),PlayerAttackState.new(self),PlayerParryState.new(self),PlayerBlockState.new(self)]
 	#var action_states: Array[State] = []
 	movement_state_machine.start_machine(movement_states)
 	

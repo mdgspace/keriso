@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chpr4jjk8o0lv"
-path="res://.godot/imported/Spine.png-365be5a439273d7959802f3f5dca3907.ctex"
+uid="uid://b24ok6i0ulcpq"
+path="res://.godot/imported/interaction_keriso-Sheet.png-b321dc27acca126dddfbe7b102fef095.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/kunoichi/Spine.png"
-dest_files=["res://.godot/imported/Spine.png-365be5a439273d7959802f3f5dca3907.ctex"]
+source_file="res://assets/characters/MainPlayer/interaction_keriso-Sheet.png"
+dest_files=["res://.godot/imported/interaction_keriso-Sheet.png-b321dc27acca126dddfbe7b102fef095.ctex"]
 
 [params]
 

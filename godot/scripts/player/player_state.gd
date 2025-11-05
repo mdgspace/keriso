@@ -2,7 +2,7 @@ class_name PlayerState extends State
 
 
 var player: PlayerController
-var animatedsprite2d: AnimatedSprite2D
+var animatedsprite2d: Sprite2D
 var movement_state_machine: StateMachine
 var action_state_machine: StateMachine
 
