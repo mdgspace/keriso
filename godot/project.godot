@@ -12,14 +12,14 @@ config_version=5
 
 config/name="keriso"
 run/main_scene="res://scenes/world/game.tscn"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
 InputNode="*res://scripts/core/managers/InputManager.gd"
-PlayerGlobal="*res://scripts/player/Player.gd"
-SaveManagerGlobal="*res://scripts/core/SaveManager/SaveManager.gd"
 GameManagerNode="*res://scripts/core/managers/GameManager.gd"
+SaveManagerGlobal="*res://scripts/core/SaveManager/SaveManager.gd"
+PlayerGlobal="*res://scripts/player/Player.gd"
 Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 CheckpointSystemNode="*res://scripts/core/systems/CheckpointSystem.gd"
 RespawnSystem="*res://scripts/core/systems/RespawnSystem.gd"
@@ -77,7 +77,7 @@ pause={
 ]
 }
 inventory={
-"deadzone": 0.2,
+"deadzone": 0.96,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":73,"key_label":0,"unicode":105,"location":0,"echo":false,"script":null)
 ]
 }

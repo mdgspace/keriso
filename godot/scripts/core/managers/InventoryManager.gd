@@ -16,6 +16,7 @@ signal inventory_updated
 #var PlayerNode: Node = null
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	if save_id == "":
 		save_id = "inventory_manager"
 		

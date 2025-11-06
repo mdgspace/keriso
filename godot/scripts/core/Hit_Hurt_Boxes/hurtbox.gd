@@ -1,11 +1,15 @@
 extends Area2D
 
+signal health_changed(current_health: int, max_health: int)
+
 @export var max_health: int = 100
 var current_health: int = max_health
 var is_invincible: bool = false
 
 func _ready() -> void:
 	current_health = max_health
+	print("=========================Emitting init health====================")
+	emit_signal("health_changed", current_health, max_health) # emit initial state
 
 func take_damage(amount: int, applyknockback:bool,knockback: Vector2) -> void:
 	if is_invincible:
@@ -13,6 +17,8 @@ func take_damage(amount: int, applyknockback:bool,knockback: Vector2) -> void:
 	
 	current_health -= amount
 	print("Hurtbox: Took", amount, "damage. Remaining HP:", current_health)
+	
+	emit_signal("health_changed", current_health, max_health)
 
 	# Apply knockback (optional)
 	if(applyknockback):

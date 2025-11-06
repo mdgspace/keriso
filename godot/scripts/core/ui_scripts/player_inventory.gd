@@ -4,12 +4,13 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if (InputNode.is_just_pressed("inventory")):
+func _physics_process(delta: float)-> void:
+	if (InputNode.is_first_frame_pressed("inventory")):
 		print("alternating inventory")
 		inventoryCanvas.visible = !inventoryCanvas.visible
 		#print(inventoryCanvas.visible)

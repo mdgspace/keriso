@@ -3,6 +3,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	pass # Replace with function body.
 
 
@@ -18,5 +19,7 @@ func _on_pressed() -> void:
 
 
 
+
 func _on_load_pressed() -> void:
 	SaveManagerGlobal.load_game();
+	pass # Replace with function body.

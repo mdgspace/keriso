@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq2uqlw4lc38q"]
+
+[ext_resource type="Script" uid="uid://bstv4op17ha7s" path="res://scripts/core/ui_scripts/sampleSaveLoad.gd" id="1_7qve6"]
+
+[node name="PauseScreen" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 180.0
+offset_right = 339.0
+offset_bottom = 188.0
+text = "Quit"
+
+[node name="save" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 182.0
+offset_right = 569.0
+offset_bottom = 213.0
+text = "save"
+script = ExtResource("1_7qve6")
+
+[node name="load" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 182.0
+offset_right = 626.0
+offset_bottom = 213.0
+text = "load"
+
+[node name="volSettings" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 848.0
+offset_top = 71.0
+offset_right = 973.0
+offset_bottom = 94.0
+text = "Volume Settings"
+
+[node name="master" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 111.0
+offset_right = 865.0
+offset_bottom = 134.0
+text = "Master"
+
+[node name="Bgm" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 809.0
+offset_top = 145.0
+offset_right = 905.0
+offset_bottom = 168.0
+text = "BackGround"
+
+[node name="SFX2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 809.0
+offset_top = 178.0
+offset_right = 905.0
+offset_bottom = 201.0
+text = "SFX"
+
+[node name="Master" type="HSlider" parent="Control"]
+layout_mode = 0
+offset_left = 916.0
+offset_top = 113.0
+offset_right = 1009.0
+offset_bottom = 129.0
+
+[node name="Background" type="HSlider" parent="Control"]
+layout_mode = 0
+offset_left = 919.0
+offset_top = 148.0
+offset_right = 1019.0
+offset_bottom = 164.0
+
+[node name="SFX" type="HSlider" parent="Control"]
+layout_mode = 0
+offset_left = 923.0
+offset_top = 182.0
+offset_right = 1014.0
+offset_bottom = 198.0
+
+[connection signal="pressed" from="Control/save" to="Control/save" method="_on_pressed"]
+[connection signal="pressed" from="Control/load" to="Control/save" method="_on_load_pressed"]
