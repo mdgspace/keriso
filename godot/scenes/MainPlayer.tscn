@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=40 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/main_player.gd" id="1_5m47q"]
 [ext_resource type="Script" uid="uid://dvdxtbxvi6oqs" path="res://scripts/player/player_controller.gd" id="3_11llm"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://htwtlegp2edw" path="res://assets/characters/MainPlayer/sword_out-Sheet.png" id="14_absal"]
 [ext_resource type="Script" uid="uid://dyel5hqilhxh2" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="15_6qwig"]
 [ext_resource type="Texture2D" uid="uid://blwfrnoswxsbs" path="res://assets/characters/MainPlayer/keriso_walk-Sheet.png" id="15_na2w2"]
+[ext_resource type="Texture2D" uid="uid://cowc0vev13gfk" path="res://assets/characters/MainPlayer/running_sheathed-Sheet.png" id="20_46n8h"]
 [ext_resource type="Script" uid="uid://cj3ofjxdyv5sd" path="res://scripts/player/player_animation.gd" id="23_dcsbp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_duqpn"]
@@ -279,6 +280,44 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_absal"]
 resource_name = "run_sheath"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_46n8h")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
 
 [sub_resource type="Animation" id="Animation_bbg0t"]
 resource_name = "run_unsheath"
@@ -649,16 +688,27 @@ disabled = true
 root_node = NodePath("../..")
 tree_root = ExtResource("10_11llm")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/attack = false
+parameters/conditions/block = false
+parameters/conditions/idle = false
+parameters/conditions/idle_sheath = false
+parameters/conditions/run = false
+parameters/conditions/run_sheath = false
 parameters/conditions/sheath = false
-parameters/conditions/unsheath = true
+parameters/conditions/sheath_start = false
+parameters/conditions/sheathing = false
+parameters/conditions/unsheath = false
+parameters/conditions/unsheath_start = false
+parameters/conditions/unsheathing = false
+parameters/conditions/walk = false
+parameters/conditions/walk_sheath = false
+parameters/Sheath/conditions/idle_sheath = false
 parameters/Sheath/conditions/run_sheath = false
-parameters/Sheath/conditions/sheathing = false
 parameters/Sheath/conditions/walk_sheath = false
 parameters/UnSheath/conditions/attack = false
 parameters/UnSheath/conditions/block = false
 parameters/UnSheath/conditions/idle = false
 parameters/UnSheath/conditions/run = false
-parameters/UnSheath/conditions/unsheathing = false
 parameters/UnSheath/conditions/walk = false
 
 [node name="AnimationHandler" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("player", "animation_tree")]

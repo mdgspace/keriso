@@ -28,7 +28,11 @@ func update_animation_state():
 	if sheath:
 		match animation_state:
 			"PlayerIdleState":
-				set_sheath_animation_condition("sheathing")
+				set_sheath_animation_condition("idle_sheath")
+				#set_sheath_animation_condition("sheathing")
+			"PlayerMovementState":
+				if sprinting:
+					set_sheath_animation_condition("run_sheath")
 			_:
 				set_sheath_animation_condition("idle") # fallback safe state
 	else:
