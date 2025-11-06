@@ -1,95 +1,94 @@
+
 class_name PlayerController extends CharacterBody2D
 
-enum Facing {
-	LEFT,
-	RIGHT
-}
+# --- State & Input ---
+@onready var state_machine: StateMachine = $StateMachine
 
-var horizontal_input: float = 0
-var was_on_floor 
-var _facing: Facing = Facing.RIGHT
+#@onready var animatedsprite2d: AnimatedSprite2D = $AnimatedSprite2D # Use AnimatedSprite2D for easier animation control
+@onready var animatedsprite2d: Sprite2D = $Sprite2D
+@onready var hurtbox = $Hurtbox
+@onready var unsheath_timer = $UnsheathTimer
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var attack_hit_box: AttackHitBox = $AttackHitBox
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
+
+var horizontal_input: float = 0.0
+var is_sprinting: bool = false
+var is_sheathed: bool = true
+var animation_state = "idle"
+# --- Physics & Movement ---
+const WALK_SPEED: float = 150.0
+const RUN_SPEED: float = 250.0
+const JUMP_VELOCITY: float = -400.0
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-#@onready var animatedsprite2d = $AnimatedSprite2D
-@onready var animatedsprite2d: Sprite2D = $Sprite2D
-@onready var movement_state_machine = $MovementStateMachine
-@onready var action_state_machine = $ActionStateMachine
-@onready var main_player = $".."
-@export var jump_force:float = 400.0
-@export var hurt_time :float =.5
-@export var stun_time : float = .3 #Shopuld be less than hur5t time as I'm stunning in hurt state only
-@export var is_friendly_scene:float = false
-@export var unsheath_time:float = 10.0
-@onready var forward_raycast: RayCast2D = $RayCast2D
-#@onready var movement_state_machine = $MovementStateMachine
-enum Animation_State{
-	unsheath_idle,shealth_idle,walk,run,attak,hurt,die,interaction,block
-}
-var animation_state = "idle"
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_INHERIT
+	# We now have one FSM for everything.
+	var states: Array[State] = [
+		PlayerIdleState.new(self),
+		PlayerMovementState.new(self),
+		PlayerJumpState.new(self),
+		PlayerAttackState.new(self),
+		PlayerBlockState.new(self),
+		PlayerHurtState.new(self) # Don't forget the Hurt state
+	]
+	state_machine.start_machine(states)
+	#unsheath_timer.timeout.connect(_on_unsheath_timer_timeout)
 	
-	var movement_states:Array[State] = [PlayerIdleState.new(self), PlayerMovementState.new(self), PlayerJumpState.new(self),PlayerHurtState.new(self),PlayerAttackState.new(self),PlayerParryState.new(self),PlayerBlockState.new(self)]
-	#var action_states: Array[State] = []
-	movement_state_machine.start_machine(movement_states)
-	
-	#action_state_machine.start_machine(action_states)
 
-func _physics_process(delta: float) -> void:	
-	horizontal_input = InputNode.horizontal_input()
+func _get_input() -> void:
+	# Central place to get all input for the frame.
+	horizontal_input = Input.get_axis("ui_left", "ui_right")
+	# Assumes a "sprint" action is mapped (e.g., to Shift key)
+	is_sprinting = Input.is_action_pressed("sprint")
+	if Input.is_action_just_pressed("attack"):
+		start_sheath_timer()
+		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	#unsheath_timer.timeout.connect(_on_unsheath_timer_timeout)
 
+func _physics_process(delta: float) -> void:    
+	_get_input()
+	#print(is_sheathed)
 	# Always apply gravity
 	if not is_on_floor():
 		velocity.y += _gravity * delta
-		
-	if not is_on_floor() and was_on_floor:
-		movement_state_machine.transition("PlayerJumpState")
-
-	was_on_floor = is_on_floor()
-	if(InputNode.is_pressed("interact")) :
-		forward_raycast.enabled = true
-		forward_raycast.force_raycast_update()
-		print("Trying to interact with npc")
-		if(animatedsprite2d.flip_h):
-			forward_raycast.target_position.x= abs(forward_raycast.target_position.x) *-1
-		else :
-			forward_raycast.target_position.x= abs(forward_raycast.target_position.x) 
-			
-		if forward_raycast.is_colliding():
-			print("collided")
-			var target = forward_raycast.get_collider().get_parent()
-			
-			if target and target.has_method("interact"):
-				target.interact()
-		forward_raycast.enabled = false
+	
+	# The current state will handle velocity and transitions.
 	move_and_slide()
-	
-	
-	
-func apply_knockback(knockback:Vector2):
+
+# --- Public Functions for States ---
+func handle_facing() -> void:
+	if horizontal_input > 0.0:
+		animatedsprite2d.flip_h = true
+		ray_cast_2d.scale = -abs(ray_cast_2d.scale)
+		attack_hit_box.scale = -abs(attack_hit_box.scale)
+	elif horizontal_input < 0.0:
+		animatedsprite2d.flip_h = false
+		ray_cast_2d.scale = abs(ray_cast_2d.scale)
+		attack_hit_box.scale = abs(attack_hit_box.scale)
+
+func start_sheath_timer() -> void:
+	print("heyyyyyyyyyy i was caleddddddddd")
+	is_sheathed = false
+	unsheath_timer.start()
+
+func _on_unsheath_timer_timeout() -> void:
+	is_sheathed = true
+	print("timer endedddddddddddddddd")
+	# If we are currently in Idle, force an animation refresh
+	#if state_machine.current_state.get_state_name() == "PlayerIdleState":
+		#state_machine.current_state.enter() # Re-run enter() to update animation
+
+# --- Damage & Knockback ---
+func apply_knockback(knockback: Vector2) -> void:
 	velocity = knockback
 	
-func taken_damage()->void:
-	print("TakenDamage")
-	movement_state_machine.transition("PlayerHurtState")
+func taken_damage() -> void:
+	state_machine.transition("PlayerHurtState")
 	
-func handle_facing() -> void:
-	var flip: int = 0
-	
-	if horizontal_input < 0.0:
-		flip = 1
-	elif horizontal_input > 0.0:
-		flip = -1
-
-	# Apply facing
-	var _old_facing: Facing = _facing
-	
-	if flip == -1:
-		animatedsprite2d.flip_h = false
-		_facing = Facing.RIGHT
-	elif flip == 1:
-		animatedsprite2d.flip_h = true
-		_facing = Facing.LEFT	
-		
-		
+func change_state(state:String):
+	print("and hereeeeeeeeeeeeeee i aaaaammmmmmmmmmmmmmmm")
+	state_machine.transition(state)
+func printt(s):
+	print(s)

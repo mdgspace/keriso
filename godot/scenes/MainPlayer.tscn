@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=39 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/main_player.gd" id="1_5m47q"]
 [ext_resource type="Script" uid="uid://dvdxtbxvi6oqs" path="res://scripts/player/player_controller.gd" id="3_11llm"]
@@ -6,23 +6,34 @@
 [ext_resource type="Script" uid="uid://bpub60p0wky4y" path="res://scripts/core/ui_scripts/player_inventory.gd" id="5_su5v1"]
 [ext_resource type="Script" uid="uid://dtefr2kguqvvl" path="res://scripts/core/state/state_machine.gd" id="6_bbg0t"]
 [ext_resource type="PackedScene" uid="uid://b7kvb8t8mdb0i" path="res://scenes/InventoryUI.tscn" id="7_cbsqg"]
+[ext_resource type="Script" uid="uid://b5ljoq2qxi51l" path="res://scripts/player/player_movement_states/player_idle_state.gd" id="7_d5ld5"]
+[ext_resource type="Script" uid="uid://br6jadhq64704" path="res://scripts/player/player_movement_states/player_movement_state.gd" id="7_regva"]
 [ext_resource type="Texture2D" uid="uid://dvi8f34l5fdo8" path="res://assets/characters/MainPlayer/block_keriso-Sheet.png" id="8_bqunt"]
 [ext_resource type="Script" uid="uid://ck8hmp0818mgj" path="res://scripts/core/Hit_Hurt_Boxes/hurtbox.gd" id="8_q7r2k"]
+[ext_resource type="Script" uid="uid://bi8okmpdd8kpf" path="res://scripts/player/player_movement_states/player_jump_state.gd" id="9_dcsbp"]
 [ext_resource type="Texture2D" uid="uid://c2aw2eoo7coth" path="res://assets/characters/MainPlayer/sword_sheathe_breathe-Sheet.png" id="10_2lu3o"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://swqow8b6bojn" path="res://scenes/players/player.tres" id="10_11llm"]
+[ext_resource type="Script" uid="uid://bel2otsfxu5yi" path="res://scripts/player/player_action_states/player_block_state.gd" id="10_46n8h"]
 [ext_resource type="Texture2D" uid="uid://dhmqofc7loxpc" path="res://assets/characters/MainPlayer/sword_out_breathe-Sheet.png" id="11_regva"]
+[ext_resource type="Script" uid="uid://du4bs77gwdqgr" path="res://scripts/player/player_action_states/player_attack_state.gd" id="11_wwn25"]
+[ext_resource type="Script" uid="uid://b27g1vaisanmo" path="res://scripts/player/player_action_states/player_parry_state.gd" id="12_2g447"]
 [ext_resource type="Texture2D" uid="uid://8cp7811r5r1k" path="res://assets/characters/MainPlayer/running.png" id="12_duqpn"]
 [ext_resource type="Texture2D" uid="uid://dphxmn3hu3dkq" path="res://assets/characters/MainPlayer/sword_sheathe-Sheet.png" id="13_lr3tv"]
 [ext_resource type="Texture2D" uid="uid://htwtlegp2edw" path="res://assets/characters/MainPlayer/sword_out-Sheet.png" id="14_absal"]
+[ext_resource type="Script" uid="uid://dyel5hqilhxh2" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="15_6qwig"]
 [ext_resource type="Texture2D" uid="uid://blwfrnoswxsbs" path="res://assets/characters/MainPlayer/keriso_walk-Sheet.png" id="15_na2w2"]
+[ext_resource type="Script" uid="uid://cj3ofjxdyv5sd" path="res://scripts/player/player_animation.gd" id="23_dcsbp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_duqpn"]
-radius = 4.0
-height = 18.0
+radius = 2.42424
+height = 21.818182
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ub0sc"]
-radius = 7.87879
-height = 21.8182
+radius = 2.42424
+height = 23.030304
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjq4m"]
+size = Vector2(41.5, 40.5)
 
 [sub_resource type="Animation" id="Animation_na2w2"]
 length = 0.001
@@ -62,13 +73,55 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.49368683, 0.40530303)]
+}
 
 [sub_resource type="Animation" id="Animation_yervt"]
 resource_name = "attack"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.49),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["PlayerIdleState"],
+"method": &"change_state"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["started"],
+"method": &"printt"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_cbsqg"]
 resource_name = "block"
 length = 0.45
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -105,10 +158,23 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.49, 0.402)]
+}
 
 [sub_resource type="Animation" id="Animation_regva"]
 resource_name = "idle_sheath"
 length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -145,10 +211,23 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.49, 0.402)]
+}
 
 [sub_resource type="Animation" id="Animation_11llm"]
 resource_name = "idle_unsheath"
 length = 0.3
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -185,6 +264,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.49, 0.402)]
+}
 
 [sub_resource type="Animation" id="Animation_absal"]
 resource_name = "run_sheath"
@@ -192,6 +283,7 @@ resource_name = "run_sheath"
 [sub_resource type="Animation" id="Animation_bbg0t"]
 resource_name = "run_unsheath"
 length = 0.5
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -227,6 +319,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.49, 0.402)]
 }
 
 [sub_resource type="Animation" id="Animation_duqpn"]
@@ -268,6 +372,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.49, 0.402)]
+}
 
 [sub_resource type="Animation" id="Animation_2lu3o"]
 resource_name = "unsheathing"
@@ -307,6 +423,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.205)]
 }
 
 [sub_resource type="Animation" id="Animation_su5v1"]
@@ -352,6 +480,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.49, 0.402)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_su5v1"]
 _data = {
@@ -378,18 +518,14 @@ script = ExtResource("4_yervt")
 script = ExtResource("5_su5v1")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Player"]]
+position = Vector2(-102, 19.000002)
 scale = Vector2(1.65, 1.65)
 collision_layer = 4
 script = ExtResource("3_11llm")
-jump_force = null
-hurt_time = null
-stun_time = null
-is_friendly_scene = null
-unsheath_time = null
 
 [node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D"]
 position = Vector2(0, -10.303)
-scale = Vector2(3.40368, 4.55162)
+scale = Vector2(3.404, 4.552)
 enabled = false
 target_position = Vector2(16.2035, -0.133152)
 collide_with_areas = true
@@ -452,11 +588,29 @@ offset_bottom = -73.0
 grow_horizontal = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(1, -9)
+position = Vector2(-1.8181839, -10.303032)
 shape = SubResource("CapsuleShape2D_duqpn")
 
-[node name="MovementStateMachine" type="Node" parent="CharacterBody2D"]
+[node name="StateMachine" type="Node" parent="CharacterBody2D"]
 script = ExtResource("6_bbg0t")
+
+[node name="Idle" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("7_d5ld5")
+
+[node name="movement" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("7_regva")
+
+[node name="jump" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("9_dcsbp")
+
+[node name="block" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("10_46n8h")
+
+[node name="attack" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("11_wwn25")
+
+[node name="parry" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("12_2g447")
 
 [node name="ActionStateMachine" type="Node" parent="CharacterBody2D"]
 script = ExtResource("6_bbg0t")
@@ -467,28 +621,55 @@ collision_mask = 0
 script = ExtResource("8_q7r2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
-position = Vector2(0, -10.303)
+position = Vector2(-2.424243, -10.909093)
 shape = SubResource("CapsuleShape2D_ub0sc")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(-32.121216, -21.212118)
+position = Vector2(-3.0302963, -15.151516)
 scale = Vector2(0.49368683, 0.40530303)
 texture = ExtResource("8_bqunt")
 hframes = 9
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="UnsheathTimer" type="Timer" parent="CharacterBody2D"]
+wait_time = 10.0
+one_shot = true
+
+[node name="AttackHitBox" type="Area2D" parent="CharacterBody2D"]
+position = Vector2(3.030305, -21.81818)
+scale = Vector2(0.606, 0.606)
+script = ExtResource("15_6qwig")
+metadata/_custom_type_script = "uid://dyel5hqilhxh2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackHitBox"]
+position = Vector2(-17.001701, 0)
+shape = SubResource("RectangleShape2D_xjq4m")
+disabled = true
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
+root_node = NodePath("../..")
 tree_root = ExtResource("10_11llm")
+anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/sheath = false
-parameters/conditions/unsheath = false
+parameters/conditions/unsheath = true
+parameters/Sheath/conditions/run_sheath = false
+parameters/Sheath/conditions/sheathing = false
+parameters/Sheath/conditions/walk_sheath = false
 parameters/UnSheath/conditions/attack = false
 parameters/UnSheath/conditions/block = false
 parameters/UnSheath/conditions/idle = false
 parameters/UnSheath/conditions/run = false
+parameters/UnSheath/conditions/unsheathing = false
 parameters/UnSheath/conditions/walk = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationHandler" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("player", "animation_tree")]
+script = ExtResource("23_dcsbp")
+player = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_su5v1")
 }
 
-[node name="AnimationHandler" type="Node" parent="."]
+[connection signal="timeout" from="CharacterBody2D/UnsheathTimer" to="CharacterBody2D" method="_on_unsheath_timer_timeout"]

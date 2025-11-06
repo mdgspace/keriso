@@ -20,15 +20,19 @@ animation = &"walk_sheath"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d61ku"]
 advance_mode = 2
+advance_condition = &"sheathing"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nuw64"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rs51n"]
 advance_mode = 2
+advance_condition = &"walk_sheath"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aenfl"]
 advance_mode = 2
+advance_condition = &"run_sheath"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0gdo4"]
 states/Start/position = Vector2(162, 252)
@@ -41,7 +45,7 @@ states/sheathing/position = Vector2(312, 252)
 states/walk_sheath/node = SubResource("AnimationNodeAnimation_uwfk7")
 states/walk_sheath/position = Vector2(655.568, 75)
 transitions = ["Start", "sheathing", SubResource("AnimationNodeStateMachineTransition_d61ku"), "sheathing", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_nuw64"), "idle_sheath", "walk_sheath", SubResource("AnimationNodeStateMachineTransition_rs51n"), "idle_sheath", "run_sheath", SubResource("AnimationNodeStateMachineTransition_aenfl")]
-graph_offset = Vector2(170.56839, 153)
+graph_offset = Vector2(113.56839, -1)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_inap5"]
 animation = &"attack"
@@ -63,8 +67,10 @@ animation = &"walk_unsheath"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l1jdh"]
 advance_mode = 2
+advance_condition = &"unsheathing"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v0yad"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vuyis"]
@@ -155,7 +161,7 @@ states/unsheathing/position = Vector2(197, 273)
 states/walk_unsheath/node = SubResource("AnimationNodeAnimation_hsgxn")
 states/walk_unsheath/position = Vector2(625, 446)
 transitions = ["Start", "unsheathing", SubResource("AnimationNodeStateMachineTransition_l1jdh"), "unsheathing", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_v0yad"), "idle_unsheath", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_vuyis"), "idle_unsheath", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_fbkno"), "run_unsheath", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_23ob4"), "walk_unsheath", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_2flgh"), "idle_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_hhnwi"), "block", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_sswei"), "idle_unsheath", "attack", SubResource("AnimationNodeStateMachineTransition_e7aab"), "attack", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_0722y"), "run_unsheath", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_clqa5"), "walk_unsheath", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_c4uiw"), "walk_unsheath", "attack", SubResource("AnimationNodeStateMachineTransition_et57a"), "attack", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_dkkhh"), "run_unsheath", "attack", SubResource("AnimationNodeStateMachineTransition_m6yp7"), "attack", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_u202u"), "walk_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_ybak8"), "block", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_ybe36"), "run_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_fm31f"), "block", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_5cfjv")]
-graph_offset = Vector2(-44, 109)
+graph_offset = Vector2(-46, 209)
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dkabh"]
 advance_mode = 2
@@ -179,6 +185,6 @@ states/Sheath/node = SubResource("AnimationNodeStateMachine_0gdo4")
 states/Sheath/position = Vector2(-1.08157, 106.733)
 states/Start/position = Vector2(-358, 197)
 states/UnSheath/node = SubResource("AnimationNodeStateMachine_iycfb")
-states/UnSheath/position = Vector2(-1.08157, 350.733)
+states/UnSheath/position = Vector2(-1.08157, 349.733)
 transitions = ["Die", "End", SubResource("AnimationNodeStateMachineTransition_dkabh"), "Start", "UnSheath", SubResource("AnimationNodeStateMachineTransition_bua70"), "Start", "Sheath", SubResource("AnimationNodeStateMachineTransition_76pvh")]
-graph_offset = Vector2(-490.08197, 195.73279)
+graph_offset = Vector2(-440.08197, 212.73279)
