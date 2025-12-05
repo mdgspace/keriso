@@ -18,6 +18,8 @@ func process(_delta: float) -> void:
 	if InputNode.is_just_pressed("attack"):
 		state_machine.transition(PlayerAttackState.state_name)
 		pass
+	elif Input.is_action_just_pressed("block"):
+		state_machine.transition("PlayerBlockState")
 		
 	#if timer>player.unsheath_timer.get_time_left():
 		#player.animation_state = "unsheath_idle"

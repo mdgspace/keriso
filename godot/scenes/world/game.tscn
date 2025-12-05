@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://ngcthb8yjthx" path="res://scenes/enemies/kunoichi_enemy.tscn" id="2_hqfqh"]
 [ext_resource type="PackedScene" uid="uid://bq2uqlw4lc38q" path="res://scenes/PauseScreen/PauseScreen.tscn" id="2_r5nxa"]
 [ext_resource type="PackedScene" uid="uid://c6j2dx0bksyro" path="res://scenes/enemies/samurai_dash_enemy.tscn" id="3_r177j"]
-[ext_resource type="Script" path="res://scripts/core/ui_scripts/pause_screen.gd" id="3_sarsd"]
-[ext_resource type="Script" path="res://scripts/player/healthBar.gd" id="5_h30v7"]
+[ext_resource type="Script" uid="uid://doihnm2j04x68" path="res://scripts/core/ui_scripts/pause_screen.gd" id="3_sarsd"]
+[ext_resource type="Script" uid="uid://bq11sj4sufl4p" path="res://scripts/player/MainPlayerScripts/healthBar.gd" id="5_h30v7"]
 [ext_resource type="PackedScene" uid="uid://d3m1sfas2cmtp" path="res://scenes/npcs/npc1.tscn" id="7_3gx7t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3iwug"]
@@ -53,7 +53,7 @@ attack_range = 60
 seen_player_timer = 4.0
 
 [node name="samurai_dash_enemy" parent="." instance=ExtResource("3_r177j")]
-position = Vector2(742, -31)
+position = Vector2(127, -33)
 attack_cooldown = 0.5
 seen_player_timer = 4.0
 

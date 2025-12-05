@@ -6,7 +6,6 @@ extends Node2D
 
 var has_dialogue_started= false;
 func interact():
-	print("Npc interact called")
 	if not DialogueManager.dialogue_active and !has_dialogue_started:
 		DialogueManager.show_dialogue_balloon(dialogue_resource, "start")
 		has_dialogue_started=true

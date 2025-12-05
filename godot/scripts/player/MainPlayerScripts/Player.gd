@@ -1,6 +1,6 @@
 extends Node
 
-var player_scene = preload("res://scenes/MainPlayer.tscn")
+var player_scene = preload("res://scenes/players/MainPlayer.tscn")
 var player_instance: Node = null
 
 

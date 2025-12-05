@@ -30,8 +30,7 @@ func _ready() -> void:
 		PlayerMovementState.new(self),
 		PlayerJumpState.new(self),
 		PlayerAttackState.new(self),
-		PlayerBlockState.new(self),
-		PlayerHurtState.new(self) # Don't forget the Hurt state
+		PlayerBlockState.new(self) # Don't forget the Hurt state
 	]
 	state_machine.start_machine(states)
 	#unsheath_timer.timeout.connect(_on_unsheath_timer_timeout)
@@ -42,9 +41,8 @@ func _get_input() -> void:
 	horizontal_input = Input.get_axis("ui_left", "ui_right")
 	# Assumes a "sprint" action is mapped (e.g., to Shift key)
 	is_sprinting = Input.is_action_pressed("sprint")
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("block"):
 		start_sheath_timer()
-		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 	#unsheath_timer.timeout.connect(_on_unsheath_timer_timeout)
 
 func _physics_process(delta: float) -> void:    
@@ -53,7 +51,20 @@ func _physics_process(delta: float) -> void:
 	# Always apply gravity
 	if not is_on_floor():
 		velocity.y += _gravity * delta
-	
+
+	if (InputNode.is_pressed("interact")):
+		ray_cast_2d.enabled = true
+	ray_cast_2d.force_raycast_update()
+
+
+	if ray_cast_2d.is_colliding():
+		var target = ray_cast_2d.get_collider().get_parent()
+
+		if target and target.has_method("interact"):
+			target.interact()
+
+	ray_cast_2d.enabled = false
+
 	# The current state will handle velocity and transitions.
 	move_and_slide()
 
@@ -69,26 +80,20 @@ func handle_facing() -> void:
 		attack_hit_box.scale = abs(attack_hit_box.scale)
 
 func start_sheath_timer() -> void:
-	print("heyyyyyyyyyy i was caleddddddddd")
 	is_sheathed = false
 	unsheath_timer.start()
 
 func _on_unsheath_timer_timeout() -> void:
 	is_sheathed = true
-	print("timer endedddddddddddddddd")
 	# If we are currently in Idle, force an animation refresh
-	#if state_machine.current_state.get_state_name() == "PlayerIdleState":
-		#state_machine.current_state.enter() # Re-run enter() to update animation
+	if state_machine.current_state.get_state_name() == "PlayerIdleState":
+		state_machine.current_state.enter() 
 
 # --- Damage & Knockback ---
 func apply_knockback(knockback: Vector2) -> void:
 	velocity = knockback
 	
-func taken_damage() -> void:
-	state_machine.transition("PlayerHurtState")
+
 	
 func change_state(state:String):
-	print("and hereeeeeeeeeeeeeee i aaaaammmmmmmmmmmmmmmm")
 	state_machine.transition(state)
-func printt(s):
-	print(s)

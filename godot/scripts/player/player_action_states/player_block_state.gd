@@ -1,4 +1,3 @@
-
 class_name PlayerBlockState extends PlayerState
 
 static var state_name = "PlayerBlockState"
@@ -8,14 +7,16 @@ func get_state_name() -> String:
 	return state_name
 
 func enter() -> void:
-	player.reset_sheath_timer()
+	player.animation_state = state_name
+	player.is_sheathed = false
+	player.start_sheath_timer()
 	player.hurtbox.is_invincible = true
 	#animatedsprite2d.play("block")
 
-func process(_delta: float) -> void:
+#func process(_delta: float) -> void:
 	# Exit state when block button is released
-	if Input.is_action_just_released("block"):
-		state_machine.transition("PlayerIdleState")
+	#if Input.is_action_just_released("block"):
+		#state_machine.transition("PlayerIdleState")
 
 func physics_process(delta: float) -> void:
 	# Prevent player from sliding while blocking

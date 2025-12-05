@@ -1,12 +1,52 @@
-[gd_scene load_steps=41 format=3 uid="uid://yqron7w7uiyg"]
+[gd_scene load_steps=41 format=3 uid="uid://dddkdecg7d5jo"]
 
-[ext_resource type="Script" uid="uid://uv37h7sl2j4a" path="res://test.gd" id="1_ghijl"]
-[ext_resource type="Texture2D" uid="uid://dyd1mn70aysl0" path="res://assets/characters/test/sword_out_breathe-Sheet.png" id="2_4sjlk"]
-[ext_resource type="Texture2D" uid="uid://byvl4wavwy8fl" path="res://assets/characters/test/sword_out-Sheet(1)t.png" id="3_qp52p"]
-[ext_resource type="Texture2D" uid="uid://btytn6o1hwu0r" path="res://assets/characters/test/sword_out_breathe-Sheet(1).png" id="4_6ct3r"]
-[ext_resource type="Texture2D" uid="uid://dmy3218sgpbhl" path="res://assets/characters/test/sword_sheathe_breathe-Sheet.png" id="5_1kp85"]
-[ext_resource type="Texture2D" uid="uid://dk7r3w0ycoh1e" path="res://assets/characters/test/sword_sheathe_breathe-Sheet(1).png" id="6_qnedo"]
-[ext_resource type="Texture2D" uid="uid://bvlrls2xwxhjg" path="res://assets/characters/test/sword_out-Sheet.png" id="7_wyqjk"]
+[sub_resource type="GDScript" id="GDScript_186t8"]
+script/source = "# Player.gd
+
+extends CharacterBody2D
+
+# ... (export variables for speed, etc.)
+
+@onready var anim_tree = $AnimationTree
+@onready var lower_body_fsm = anim_tree.get(\"parameters/LowerBodyFSM/playback\")
+@onready var upper_body_fsm = anim_tree.get(\"parameters/UpperBodyFSM/playback\")
+
+func _physics_process(delta):
+	# --- Handle Input and Movement ---
+	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
+	velocity.x = direction * 10
+	move_and_slide()
+
+	# --- Update Animation Tree ---
+	update_animation_parameters()
+
+func update_animation_parameters():
+	# --- Control the Lower Body State Machine ---
+
+	if velocity.x == 0:
+		lower_body_fsm.travel(\"Idle\")
+	else:
+		upper_body_fsm.travel(\"Shoot\")
+			# Flip sprites based on direction
+		$lower.flip_h = velocity.x < 0
+		$upper.flip_h = velocity.x < 0
+	# Add jump/fall animation logic here later
+
+	# --- Control the Upper Body State Machine ---
+	if Input.is_action_pressed(\"ui_page_down\"):
+		upper_body_fsm.travel(\"Shoot\")
+	else:
+		# Only go back to idle if not already in idle
+		# to avoid interrupting the shoot animation
+		if upper_body_fsm.get_current_node() == \"Shoot\":
+			upper_body_fsm.travel(\"Idle\")
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f50pn"]
+load_path = "res://.godot/imported/sword_sheathe_breathe-Sheet.png-6a4700bf2957efbf86d0cc2ae9877dc6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ij6vw"]
+load_path = "res://.godot/imported/sword_out-Sheet.png-76569fbc8ef5c25993793121d507f07a.ctex"
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_4sjlk"]
 
@@ -102,15 +142,15 @@ transitions = ["Start", "Idle_upper", SubResource("AnimationNodeStateMachineTran
 graph_offset = Vector2(-6, 16)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ucfvk"]
-graph_offset = Vector2(-437.222, 75.5131)
+graph_offset = Vector2(-444.33673, 110.66861)
+nodes/output/position = Vector2(680, 240)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_4sjlk")
 nodes/Add2/position = Vector2(320, 140)
 nodes/LowerBodyFSM/node = SubResource("AnimationNodeStateMachine_wyqjk")
 nodes/LowerBodyFSM/position = Vector2(-280, 200)
 nodes/UpperBodyFSM/node = SubResource("AnimationNodeStateMachine_sxias")
 nodes/UpperBodyFSM/position = Vector2(0, 280)
-nodes/output/position = Vector2(680, 240)
-node_connections = [&"Add2", 0, &"LowerBodyFSM", &"Add2", 1, &"UpperBodyFSM", &"output", 0, &"Add2"]
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"LowerBodyFSM", &"Add2", 1, &"UpperBodyFSM"]
 
 [sub_resource type="Animation" id="Animation_k3r5w"]
 resource_name = "Attack_lower"
@@ -125,7 +165,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_wyqjk")]
+"values": [SubResource("CompressedTexture2D_ij6vw")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -164,6 +204,9 @@ tracks/3/keys = {
 "values": [Vector2(0.5, 0.5)]
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ghijl"]
+load_path = "res://.godot/imported/sword_out-Sheet(1)t.png-e6c209686ed848f1c32c5b089a6b429e.ctex"
+
 [sub_resource type="Animation" id="Animation_73nau"]
 resource_name = "Attack_upper"
 length = 1.4
@@ -190,7 +233,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_qp52p")]
+"values": [SubResource("CompressedTexture2D_ghijl")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -217,6 +260,9 @@ tracks/3/keys = {
 "values": [Vector2(0.5, 0.5)]
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_44cfe"]
+load_path = "res://.godot/imported/sword_out_breathe-Sheet.png-0f31c6dfcadacac66b7755a7b08b1c63.ctex"
+
 [sub_resource type="Animation" id="Animation_1rslu"]
 resource_name = "Idle_lower"
 loop_mode = 1
@@ -230,7 +276,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_4sjlk")]
+"values": [SubResource("CompressedTexture2D_44cfe")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -269,6 +315,9 @@ tracks/3/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dd465"]
+load_path = "res://.godot/imported/sword_out_breathe-Sheet(1).png-c73bb913439d27e7f30e3752934faf95.ctex"
+
 [sub_resource type="Animation" id="Animation_2dyae"]
 resource_name = "Idle_upper"
 length = 0.6
@@ -295,7 +344,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_6ct3r")]
+"values": [SubResource("CompressedTexture2D_dd465")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -361,6 +410,9 @@ tracks/2/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lhvu3"]
+load_path = "res://.godot/imported/sword_sheathe_breathe-Sheet(1).png-f1c6d6b13c96f266816d7c3f7e5221dd.ctex"
+
 [sub_resource type="Animation" id="Animation_lmwkj"]
 resource_name = "Stance_lower"
 loop_mode = 1
@@ -374,7 +426,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_qnedo")]
+"values": [SubResource("CompressedTexture2D_lhvu3")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -439,7 +491,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_1kp85")]
+"values": [SubResource("CompressedTexture2D_f50pn")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -481,18 +533,18 @@ _data = {
 size = Vector2(125, 16)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_ghijl")
+script = SubResource("GDScript_186t8")
 
 [node name="upper" type="Sprite2D" parent="."]
 position = Vector2(241.5, 239.75)
-texture = ExtResource("4_6ct3r")
-hframes = 3
+texture = SubResource("CompressedTexture2D_f50pn")
+hframes = 4
 
 [node name="lower" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(244, 235)
-texture = ExtResource("2_4sjlk")
-hframes = 3
+texture = SubResource("CompressedTexture2D_ij6vw")
+hframes = 6
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_ucfvk")
