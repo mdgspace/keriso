@@ -39,11 +39,11 @@ func add_item(item):
 func remove_item(item, quantity):
 	for i in range(inventory.size()):
 		if inventory[i] != null and inventory[i]["item_type"] == item["item_type"] and inventory[i]["item_name"] == item["item_name"] and inventory[i]["item_effect"] == item["item_effect"]:
-			print(inventory[i]["quantity"])
-			print(quantity)
+		#	print(inventory[i]["quantity"])
+		#	print(quantity)
 			inventory[i]["quantity"] -= quantity;
 			print("quantity in inventory is", inventory[i]["quantity"])
-			print(quantity)
+		#	print(quantity)
 			if inventory[i]["quantity"] <= 0:
 				print("Marking empty slot as null")
 				inventory[i] = null

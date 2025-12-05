@@ -1,1 +1,0 @@
-class_name samurai_dash_enemy extends Enemy

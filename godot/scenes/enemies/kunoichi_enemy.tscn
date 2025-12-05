@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ngcthb8yjthx"]
+[gd_scene load_steps=36 format=3 uid="uid://ngcthb8yjthx"]
 
 [ext_resource type="Texture2D" uid="uid://cuc2spu43l0ut" path="res://assets/characters/kunoichi/Attack_1.png" id="1_ah5tw"]
 [ext_resource type="Texture2D" uid="uid://d0iv7ylev7e0u" path="res://assets/characters/kunoichi/Attack_2.png" id="2_p760b"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bt757g20brp1u" path="res://assets/characters/kunoichi/Hurt.png" id="16_pwxop"]
 [ext_resource type="Script" uid="uid://cj71hlqoxplrk" path="res://scripts/enemies/enemy_animation.gd" id="17_ihcg2"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cr7tsyty2pnde" path="res://assets/enemies/Animation_Trees/samuri_dash.tres" id="18_6obtf"]
+[ext_resource type="Script" uid="uid://gutd0dkiviyr" path="res://scripts/enemies/enemy_hurtbox.gd" id="19_tuk1b"]
 
 [sub_resource type="GDScript" id="GDScript_pghlm"]
 script/source = "class_name kunoichi_enemy1 extends Enemy
@@ -638,6 +639,10 @@ _data = {
 &"idle": SubResource("Animation_naaq6")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bxlp"]
+radius = 7.0
+height = 25.0
+
 [node name="kunoichi_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox")]
 scale = Vector2(2, 2)
 collision_layer = 2
@@ -764,6 +769,17 @@ parameters/conditions/idle = false
 parameters/conditions/jump = false
 parameters/conditions/run = false
 parameters/conditions/walk = false
+
+[node name="Hurtbox_enemy" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("19_tuk1b")
+max_health = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox_enemy"]
+visible = false
+position = Vector2(3.5, -4.5)
+shape = SubResource("CapsuleShape2D_5bxlp")
 
 [connection signal="area_entered" from="Attack1Hitbox" to="Attack1Hitbox" method="_on_area_entered"]
 [connection signal="area_entered" from="Attack2Hitbox" to="Attack2Hitbox" method="_on_area_entered"]

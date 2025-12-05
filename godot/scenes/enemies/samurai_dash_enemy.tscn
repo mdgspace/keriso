@@ -1,6 +1,6 @@
-[gd_scene load_steps=33 format=3 uid="uid://c6j2dx0bksyro"]
+[gd_scene load_steps=35 format=3 uid="uid://c6j2dx0bksyro"]
 
-[ext_resource type="Script" uid="uid://c65l3hcv0aqgc" path="res://samurai_dash_enemy.gd" id="1_q1hvf"]
+[ext_resource type="Script" uid="uid://c65l3hcv0aqgc" path="res://scripts/enemies/SamuraiDash/samurai_dash_enemy.gd" id="1_q1hvf"]
 [ext_resource type="Script" uid="uid://cj71hlqoxplrk" path="res://scripts/enemies/enemy_animation.gd" id="2_of3he"]
 [ext_resource type="Texture2D" uid="uid://bvuihd04vlgra" path="res://assets/enemies/samurai_dash_sprites/Attack1.png" id="2_pmxpo"]
 [ext_resource type="Script" uid="uid://dyel5hqilhxh2" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="3_ghp2t"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dr5uhmh80ksbw" path="res://assets/enemies/samurai_dash_sprites/Death.png" id="17_8rjkl"]
 [ext_resource type="Script" uid="uid://iio51yjkh81a" path="res://scripts/enemies/enemy_states/enemy_jump_state.gd" id="17_m2g2c"]
 [ext_resource type="Script" uid="uid://ffnn4rgpkqpm" path="res://scripts/enemies/enemy_states/enemy_jumpDown_state.gd" id="18_mqvsx"]
+[ext_resource type="Script" uid="uid://gutd0dkiviyr" path="res://scripts/enemies/enemy_hurtbox.gd" id="19_hoyra"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cr7tsyty2pnde" path="res://assets/enemies/Animation_Trees/samuri_dash.tres" id="19_m6g2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctbht"]
@@ -574,6 +575,10 @@ _data = {
 &"idle": SubResource("Animation_naaq6")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xr3me"]
+radius = 7.0
+height = 25.0
+
 [node name="samurai_dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox")]
 position = Vector2(96, -4)
 scale = Vector2(2, 2)
@@ -684,7 +689,6 @@ script = ExtResource("18_mqvsx")
 script = ExtResource("12_aq00o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
 deterministic = true
 libraries = {
 &"": SubResource("AnimationLibrary_45h6b")
@@ -701,6 +705,17 @@ parameters/conditions/idle = false
 parameters/conditions/jump = false
 parameters/conditions/run = false
 parameters/conditions/walk = false
+
+[node name="Hurtbox_enemy" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("19_hoyra")
+max_health = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox_enemy"]
+visible = false
+position = Vector2(3.5, -4.5)
+shape = SubResource("CapsuleShape2D_xr3me")
 
 [connection signal="area_entered" from="Attack1Hitbox" to="Attack1Hitbox" method="_on_area_entered"]
 [connection signal="area_entered" from="Attack2Hitbox" to="Attack2Hitbox" method="_on_area_entered"]
