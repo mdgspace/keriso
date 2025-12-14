@@ -1,0 +1,146 @@
+[gd_scene load_steps=12 format=3 uid="uid://cusj32v4o6dp5"]
+
+[ext_resource type="Texture2D" uid="uid://cr0die1q5i3rb" path="res://assets/UI/health_bar-export(!) 1.png" id="1_7n4fj"]
+[ext_resource type="Script" uid="uid://b7eatqso74xj7" path="res://scripts/core/ui_scripts/PlayerHUD.gd" id="1_vphgt"]
+[ext_resource type="Texture2D" uid="uid://bljto2o2rk53e" path="res://assets/UI/Health.png" id="2_5ip4n"]
+[ext_resource type="Texture2D" uid="uid://bxuonsgowhhw7" path="res://assets/UI/UIElements.tres" id="2_vphgt"]
+[ext_resource type="Texture2D" uid="uid://ck48bsc7igsjf" path="res://assets/PlayButton.tres" id="5_l8xe2"]
+[ext_resource type="Texture2D" uid="uid://blxsdlquqo61i" path="res://assets/UI/sword 2.png" id="5_ucsqe"]
+[ext_resource type="FontFile" uid="uid://ba1u4j00iapr8" path="res://assets/UI/FONTS/PixelifySans-SemiBold.ttf" id="6_0qpk7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ip4n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qpk7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ucsqe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a0qax"]
+
+[node name="Hud" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vphgt")
+
+[node name="health" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.045
+anchor_top = 0.81100005
+anchor_right = 0.32200003
+anchor_bottom = 0.90400004
+offset_left = -0.40000153
+offset_top = 0.11993408
+offset_right = -0.24005127
+offset_bottom = -0.32006836
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5ip4n")
+
+[node name="TextureRect" type="TextureRect" parent="health"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.86300004
+anchor_bottom = 0.69000006
+offset_right = -0.11602783
+texture = ExtResource("1_7n4fj")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="health"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013
+anchor_right = 0.837
+anchor_bottom = 0.758
+offset_left = 0.08399916
+offset_top = -0.99999994
+offset_right = 585.716
+offset_bottom = 947.2
+scale = Vector2(0.428, 0.075)
+value = 95.0
+texture_progress = ExtResource("2_5ip4n")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.84700006
+anchor_top = 0.753
+anchor_right = 0.961
+anchor_bottom = 0.919
+offset_left = 0.7598877
+offset_top = -0.24005127
+offset_right = -0.11999512
+offset_bottom = -0.52001953
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0qpk7")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.124000005
+anchor_top = 0.117000006
+anchor_right = 0.85800004
+anchor_bottom = 0.883
+offset_left = 13.9679985
+offset_top = -2.9430008
+offset_right = -7.0440063
+offset_bottom = -1.0570068
+texture = ExtResource("2_vphgt")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.133
+anchor_right = 0.86200005
+anchor_bottom = 1.028
+offset_left = 0.006000519
+offset_right = 0.083984375
+offset_bottom = -0.011993408
+texture = ExtResource("5_ucsqe")
+
+[node name="PauseScreen" type="Panel" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ucsqe")
+
+[node name="TextureRect" type="TextureRect" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47300002
+anchor_top = 0.358
+anchor_right = 0.59300005
+anchor_bottom = 0.531
+offset_left = -0.16003418
+offset_top = 0.35998535
+offset_right = -0.34301758
+offset_bottom = -0.4800415
+texture = ExtResource("5_l8xe2")
+
+[node name="TextEdit" type="TextEdit" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.354
+anchor_top = 0.531
+anchor_right = 0.72400004
+anchor_bottom = 0.625
+offset_left = 0.32000732
+offset_top = 0.5199585
+offset_right = -0.080078125
+theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/selection_color = Color(0.5019608, 0.5019608, 0.5019608, 0)
+theme_override_colors/font_color = Color(0.41960785, 0.18431373, 0.039215688, 1)
+theme_override_colors/current_line_color = Color(0.24705882, 0.2509804, 0.25882354, 0)
+theme_override_fonts/font = ExtResource("6_0qpk7")
+theme_override_font_sizes/font_size = 66
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a0qax")
+text = "Press ENTER to play!!!"
