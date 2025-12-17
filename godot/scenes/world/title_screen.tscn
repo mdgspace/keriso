@@ -1,0 +1,471 @@
+[gd_scene load_steps=35 format=3 uid="uid://cqm6kykm357yf"]
+
+[ext_resource type="Script" uid="uid://daowp8udccg2f" path="res://scripts/core/ui_scripts/TitleScreen.gd" id="1_uy4i0"]
+[ext_resource type="FontFile" uid="uid://cohkuuivrytuo" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_8klmt"]
+[ext_resource type="Texture2D" uid="uid://dnheot14gsh7f" path="res://assets/test-downloaded-assets/bg_image.png" id="3_r4fdk"]
+[ext_resource type="Texture2D" uid="uid://blwfrnoswxsbs" path="res://assets/characters/MainPlayer/keriso_walk-Sheet.png" id="4_o4hef"]
+[ext_resource type="Texture2D" uid="uid://c73lsifyat1oc" path="res://assets/ui/Screenshot 2025-12-16 023120-Photoroom.png" id="5_3cp6k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o4hef"]
+texture = ExtResource("3_r4fdk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4fdk"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 3.0
+expand_margin_right = 5.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0.103743516, 0.10374353, 0.103743516, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4hef"]
+bg_color = Color(0.8175213, 0.8175213, 0.81752115, 1)
+border_width_left = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 3.0
+expand_margin_right = 5.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0.103743516, 0.10374353, 0.103743516, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8klmt"]
+bg_color = Color(0.89059, 0.89059, 0.89058983, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 5.0
+expand_margin_top = 3.0
+expand_margin_right = 5.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0.103743516, 0.10374353, 0.103743516, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cp6k"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orvp4"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u1hy"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5urwf"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq5qc"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17eqt"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pugtb"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_majod"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03pjn"]
+atlas = ExtResource("4_o4hef")
+region = Rect2(768, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y7x1a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cp6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orvp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u1hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5urwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq5qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17eqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pugtb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_majod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03pjn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7x1a"]
+atlas = ExtResource("5_3cp6k")
+region = Rect2(31, 33, 255, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xctf"]
+atlas = ExtResource("5_3cp6k")
+region = Rect2(489, 284, 96, 95)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cp6k"]
+bg_color = Color(0.4571991, 0.595978, 0.55821204, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orvp4"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1u1hy"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5urwf"]
+bg_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3cp6k"]
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_orvp4"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1u1hy"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5urwf"]
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xq5qc"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_17eqt"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pugtb"]
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_majod"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_03pjn"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uy4i0")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -323.0
+offset_right = 575.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_o4hef")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 95.0
+offset_right = 572.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.37413922, 0.37413934, 0.37413907, 0.99607843)
+theme_override_colors/font_outline_color = Color(0.51107246, 0.6479761, 1, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 21
+theme_override_fonts/font = ExtResource("2_8klmt")
+theme_override_font_sizes/font_size = 80
+text = "KERISO"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 116.99999
+offset_top = -70.000015
+offset_right = 318.695
+offset_bottom = 42.83191
+grow_vertical = 2
+scale = Vector2(2.3599987, 2.419529)
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8klmt")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_r4fdk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o4hef")
+text = "Start"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8klmt")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_r4fdk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8klmt")
+text = "Options"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8klmt")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_r4fdk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8klmt")
+text = "Quit"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(980.00006, 388)
+scale = Vector2(4.7864575, 4.7552085)
+sprite_frames = SubResource("SpriteFrames_y7x1a")
+autoplay = "default"
+frame_progress = 0.07814032
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.55
+anchor_top = 0.33600003
+anchor_right = -0.55
+anchor_bottom = 0.33600003
+offset_left = -20.399963
+offset_top = -19.728012
+offset_right = 19.600037
+offset_bottom = 20.271988
+
+[node name="TextureRect" type="TextureRect" parent="Panel2"]
+layout_mode = 0
+offset_left = -1405.0
+offset_top = 1027.0
+offset_right = -944.0
+offset_bottom = 1427.0
+texture = SubResource("AtlasTexture_y7x1a")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel2"]
+layout_mode = 0
+offset_left = -1118.0
+offset_top = 1100.0
+offset_right = -1066.0
+offset_bottom = 1151.0
+texture = SubResource("AtlasTexture_3xctf")
+expand_mode = 1
+
+[node name="Panel3" type="Panel" parent="." node_paths=PackedStringArray("shortcut_context")]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 248.0
+offset_right = 623.0
+offset_bottom = 561.0
+shortcut_context = NodePath(".")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3cp6k")
+
+[node name="Label" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -111.0
+offset_top = 28.0
+offset_right = 111.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_8klmt")
+text = "Volume Settings"
+
+[node name="Back" type="Button" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -79.0
+offset_right = 56.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8klmt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_orvp4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1u1hy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5urwf")
+text = "Back"
+
+[node name="Sfx" type="HSlider" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -133.0
+offset_right = 82.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/slider = SubResource("StyleBoxLine_3cp6k")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_orvp4")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_1u1hy")
+
+[node name="Background" type="HSlider" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.0
+offset_top = -8.0
+offset_right = 81.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_5urwf")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_xq5qc")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_17eqt")
+
+[node name="Master" type="HSlider" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -149.0
+offset_top = 121.0
+offset_right = 81.0
+offset_bottom = 137.0
+grow_horizontal = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_pugtb")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_majod")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_03pjn")
+value = 1.0
+
+[node name="Label2" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 131.0
+offset_top = 120.0
+offset_right = 227.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_8klmt")
+text = "Master"
+
+[node name="Label3" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 87.0
+offset_top = 149.0
+offset_right = 309.0
+offset_bottom = 172.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_8klmt")
+text = "Background"
+
+[node name="Label4" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 142.0
+offset_top = 179.0
+offset_right = 188.0
+offset_bottom = 202.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_8klmt")
+text = "Sfx"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Panel3/Back" to="." method="_on_back_pressed"]

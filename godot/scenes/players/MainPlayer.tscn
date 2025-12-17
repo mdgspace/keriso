@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=41 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/MainPlayerScripts/main_player.gd" id="1_3h6gf"]
 [ext_resource type="Script" uid="uid://d2q2ib2ysam0l" path="res://scripts/core/managers/InventoryManager.gd" id="2_vlwgi"]
@@ -18,6 +18,7 @@
 [ext_resource type="AnimationNodeStateMachine" uid="uid://swqow8b6bojn" path="res://scenes/players/player.tres" id="16_pxg8l"]
 [ext_resource type="Script" uid="uid://cj3ofjxdyv5sd" path="res://scripts/player/MainPlayerScripts/player_animation.gd" id="17_4f5qc"]
 [ext_resource type="Texture2D" uid="uid://c2aw2eoo7coth" path="res://assets/characters/MainPlayer/sword_sheathe_breathe-Sheet.png" id="18_cm8gn"]
+[ext_resource type="Texture2D" uid="uid://drc61e1k7r7bx" path="res://assets/characters/MainPlayer/attack.png" id="18_vlwgi"]
 [ext_resource type="Texture2D" uid="uid://dhmqofc7loxpc" path="res://assets/characters/MainPlayer/sword_out_breathe-Sheet.png" id="19_oi0bs"]
 [ext_resource type="Texture2D" uid="uid://cowc0vev13gfk" path="res://assets/characters/MainPlayer/running_sheathed-Sheet.png" id="20_6skj4"]
 [ext_resource type="Texture2D" uid="uid://8cp7811r5r1k" path="res://assets/characters/MainPlayer/running.png" id="21_scjxb"]
@@ -101,7 +102,6 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_yervt"]
 resource_name = "attack"
-length = 2.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,7 +109,7 @@ tracks/0/path = NodePath("CharacterBody2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.9),
+"times": PackedFloat32Array(0.95),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["PlayerIdleState"],
@@ -123,7 +123,7 @@ tracks/1/path = NodePath("CharacterBody2D/AttackHitBox")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.9),
+"times": PackedFloat32Array(0.95),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -137,10 +137,58 @@ tracks/2/path = NodePath("CharacterBody2D/AttackHitBox/CollisionShape2D:disabled
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.9),
+"times": PackedFloat32Array(0, 0.95),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_vlwgi")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CharacterBody2D/Sprite2D:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CharacterBody2D/Sprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.51, 0.418)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_cbsqg"]
