@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://cusj32v4o6dp5"]
 
-[ext_resource type="Texture2D" uid="uid://cr0die1q5i3rb" path="res://assets/UI/health_bar-export(!) 1.png" id="1_7n4fj"]
+[ext_resource type="Texture2D" uid="uid://cr0die1q5i3rb" path="res://assets/ui/health_bar-export(!) 1.png" id="1_7n4fj"]
 [ext_resource type="Script" uid="uid://b7eatqso74xj7" path="res://scripts/core/ui_scripts/PlayerHUD.gd" id="1_vphgt"]
-[ext_resource type="Texture2D" uid="uid://bljto2o2rk53e" path="res://assets/UI/Health.png" id="2_5ip4n"]
-[ext_resource type="Texture2D" uid="uid://bxuonsgowhhw7" path="res://assets/UI/UIElements.tres" id="2_vphgt"]
+[ext_resource type="Texture2D" uid="uid://bljto2o2rk53e" path="res://assets/ui/Health.png" id="2_5ip4n"]
+[ext_resource type="Texture2D" uid="uid://bxuonsgowhhw7" path="res://assets/ui/UIElements.tres" id="2_vphgt"]
 [ext_resource type="Texture2D" uid="uid://ck48bsc7igsjf" path="res://assets/PlayButton.tres" id="5_l8xe2"]
-[ext_resource type="Texture2D" uid="uid://blxsdlquqo61i" path="res://assets/UI/sword 2.png" id="5_ucsqe"]
-[ext_resource type="FontFile" uid="uid://ba1u4j00iapr8" path="res://assets/UI/FONTS/PixelifySans-SemiBold.ttf" id="6_0qpk7"]
+[ext_resource type="Texture2D" uid="uid://blxsdlquqo61i" path="res://assets/ui/sword 2.png" id="5_ucsqe"]
+[ext_resource type="FontFile" uid="uid://ba1u4j00iapr8" path="res://assets/ui/FONTS/PixelifySans-SemiBold.ttf" id="6_0qpk7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ip4n"]
 
@@ -25,6 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vphgt")
+metadata/_edit_horizontal_guides_ = [-262.0]
 
 [node name="health" type="Panel" parent="."]
 layout_mode = 1
@@ -60,7 +61,7 @@ offset_top = -0.99999994
 offset_right = 585.716
 offset_bottom = 947.2
 scale = Vector2(0.428, 0.075)
-value = 95.0
+value = 20.0
 texture_progress = ExtResource("2_5ip4n")
 
 [node name="Panel" type="Panel" parent="."]

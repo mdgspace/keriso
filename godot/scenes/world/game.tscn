@@ -75,7 +75,7 @@ attack_range = 60
 seen_player_timer = 4.0
 
 [node name="samurai_dash_enemy" parent="." instance=ExtResource("3_r177j")]
-position = Vector2(445, -41)
+position = Vector2(428, -38)
 attack_cooldown = 0.5
 seen_player_timer = 4.0
 

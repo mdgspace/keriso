@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var dialogue_manager = get_tree().get_first_node_in_group("DialogueManager")
+@onready var dialogue_manager = DialogueManager
 @export var dialogue_resource: DialogueResource
 
 var in_dialogue := false
@@ -12,6 +12,7 @@ func _ready():
 
 func interact():
 	if in_dialogue:
+		print("returning bacvkkkkkkkkkkkkkkk")
 		return
 
 	DialogueManager.show_dialogue_balloon(dialogue_resource, "start")
