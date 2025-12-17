@@ -38,7 +38,7 @@ func _ready() -> void:
 
 func _get_input() -> void:
 	# Central place to get all input for the frame.
-	horizontal_input = Input.get_axis("ui_left", "ui_right")
+	horizontal_input = Input.get_axis("move_left", "move_right")
 	# Assumes a "sprint" action is mapped (e.g., to Shift key)
 	is_sprinting = Input.is_action_pressed("sprint")
 	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("block"):
