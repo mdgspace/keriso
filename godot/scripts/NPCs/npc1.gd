@@ -6,7 +6,7 @@ extends Node2D
 
 var has_dialogue_started= false;
 func interact():
-	if not DialogueManager.dialogue_active and !has_dialogue_started:
+	if not DialogueManager.dialogue_active:
 		DialogueManager.show_dialogue_balloon(dialogue_resource, "start")
-		has_dialogue_started=true
+		
 	

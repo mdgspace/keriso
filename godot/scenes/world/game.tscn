@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://216ie00sal1k"]
+[gd_scene load_steps=20 format=3 uid="uid://216ie00sal1k"]
 
 [ext_resource type="Script" uid="uid://o3ahdhwyf63w" path="res://scripts/core/gameStarter.gd" id="1_w44h4"]
 [ext_resource type="PackedScene" uid="uid://ngcthb8yjthx" path="res://scenes/enemies/kunoichi_enemy.tscn" id="2_hqfqh"]
@@ -10,9 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://d3m1sfas2cmtp" path="res://scenes/npcs/npc1.tscn" id="7_3gx7t"]
 [ext_resource type="Texture2D" uid="uid://jwi1fwa6potd" path="res://assets/background/forest_mid 2.png" id="8_wmpba"]
 [ext_resource type="Texture2D" uid="uid://diew1g0pu3oud" path="res://assets/background/forest_long 1.png" id="9_6xs6q"]
+[ext_resource type="Resource" uid="uid://4j7sb5lfp4na" path="res://Dialogues/tutorial/jump_tutorial.dialogue" id="9_ngoy0"]
 [ext_resource type="Texture2D" uid="uid://cui0k7egp7vsa" path="res://assets/background/forest_mountain 1.png" id="10_taqjv"]
 [ext_resource type="Texture2D" uid="uid://2nev54r4uhe7" path="res://assets/background/Ground.png" id="11_ngoy0"]
 [ext_resource type="Texture2D" uid="uid://c7wpmky8jb5oq" path="res://assets/background/forest_sky 1.png" id="12_6xs6q"]
+[ext_resource type="PackedScene" uid="uid://dtkrwapu0b5qe" path="res://scenes/UI/TooltipCanvas.tscn" id="15_rxlek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3iwug"]
 size = Vector2(121, 23)
@@ -99,8 +101,12 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngoy0")
 value = 50.0
 script = ExtResource("5_h30v7")
 
-[node name="Npc1" parent="." instance=ExtResource("7_3gx7t")]
-position = Vector2(355, -63)
+[node name="move_npc" parent="." instance=ExtResource("7_3gx7t")]
+position = Vector2(-300, -47)
+
+[node name="Jump_npc" parent="." instance=ExtResource("7_3gx7t")]
+position = Vector2(-235, -47)
+dialogue_resource = ExtResource("9_ngoy0")
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -162,3 +168,9 @@ z_index = -4
 position = Vector2(-914.00006, -208)
 scale = Vector2(0.74289477, 0.42749998)
 texture = ExtResource("12_6xs6q")
+
+[node name="CanvasLayer2" parent="." instance=ExtResource("15_rxlek")]
+visibility_layer = 495
+z_index = 9
+position = Vector2(-85, -10)
+labelText = "Hello world"

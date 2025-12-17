@@ -54,10 +54,14 @@ func _physics_process(delta: float) -> void:
 
 	if (InputNode.is_pressed("interact")):
 		ray_cast_2d.enabled = true
+		#print("Enabled ray cast")
+	else:
+		ray_cast_2d.enabled = false
+		#print("Disabled ray cast")
 	ray_cast_2d.force_raycast_update()
 
 
-	if ray_cast_2d.is_colliding():
+	if ray_cast_2d.enabled == true and ray_cast_2d.is_colliding():
 		var target = ray_cast_2d.get_collider().get_parent()
 
 		if target and target.has_method("interact"):

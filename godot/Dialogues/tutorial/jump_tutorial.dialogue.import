@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://4j7sb5lfp4na"
+path="res://.godot/imported/jump_tutorial.dialogue-9b49c3673d972d2efed73fe63a110c18.tres"
+
+[deps]
+
+source_file="res://Dialogues/tutorial/jump_tutorial.dialogue"
+dest_files=["res://.godot/imported/jump_tutorial.dialogue-9b49c3673d972d2efed73fe63a110c18.tres"]
+
+[params]
+
+defaults=true
