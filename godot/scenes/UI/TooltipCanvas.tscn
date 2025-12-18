@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cohkuuivrytuo" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_gbjq3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yx7o"]
+size = Vector2(20, 65)
 
 [node name="TooltipCanvas" type="Node2D"]
 script = ExtResource("1_7yx7o")
@@ -30,14 +31,20 @@ offset_bottom = -21.0
 color = Color(1, 1, 1, 0)
 
 [node name="Label" type="Label" parent="Area2D/Control/ColorRect"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_top = -45.0
+offset_right = 30.0
+offset_bottom = -22.0
 theme_override_fonts/font = ExtResource("2_gbjq3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 22.5)
 shape = SubResource("RectangleShape2D_7yx7o")
 
 [node name="Checkpt" type="Label" parent="."]
@@ -46,7 +53,6 @@ offset_top = -36.0
 offset_right = 95.0
 offset_bottom = -19.0
 theme_override_fonts/font = ExtResource("2_gbjq3")
-text = "Checkpoint 1"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
