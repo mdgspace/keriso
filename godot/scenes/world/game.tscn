@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cui0k7egp7vsa" path="res://assets/background/forest_mountain 1.png" id="10_taqjv"]
 [ext_resource type="Texture2D" uid="uid://2nev54r4uhe7" path="res://assets/background/Ground.png" id="11_ngoy0"]
 [ext_resource type="Texture2D" uid="uid://c7wpmky8jb5oq" path="res://assets/background/forest_sky 1.png" id="12_6xs6q"]
-[ext_resource type="Texture2D" uid="uid://blxsdlquqo61i" path="res://assets/ui/sword 2.png" id="15_isy5x"]
+[ext_resource type="Texture2D" uid="uid://blxsdlquqo61i" path="res://assets/UI/sword 2.png" id="15_isy5x"]
 [ext_resource type="PackedScene" uid="uid://dtkrwapu0b5qe" path="res://scenes/UI/TooltipCanvas.tscn" id="15_rxlek"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hqfqh"]
@@ -32,7 +32,6 @@ corner_radius_bottom_left = 6
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_w44h4")
-fade_speed = 0.01
 
 [node name="PauseScreen" parent="." instance=ExtResource("2_r5nxa")]
 visible = false
@@ -150,3 +149,7 @@ z_index = 9
 position = Vector2(1041, -11)
 labelText = "Now Fight!"
 checkptDescription = "Checkpt2"
+
+[node name="TooltipCanvas" parent="." instance=ExtResource("15_rxlek")]
+position = Vector2(15, -53)
+labelText = "press E to interact"
