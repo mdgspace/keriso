@@ -17,7 +17,13 @@ func process(_delta: float) -> void:
 		state_machine.transition("PlayerDisableInputState")
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		state_machine.transition("PlayerJumpState")
-	elif Input.is_action_just_pressed("attack"):
+	if InputManagerInstance.was_action_held_for("attack", 30):
+		print("HEAVY ATTACK triggered!")
+		state_machine.transition("PlayerAttackState")
+
+# This will only be checked if the heavy attack condition wasn't met.
+	elif InputManagerInstance.was_short_press_released("attack"):
+		print("LIGHT ATTACK triggered!")
 		state_machine.transition("PlayerAttackState")
 	elif Input.is_action_just_pressed("block"):
 		state_machine.transition("PlayerBlockState")

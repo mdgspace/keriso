@@ -11,6 +11,7 @@ class_name PlayerController extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var attack_hit_box: AttackHitBox = $AttackHitBox
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var horizontal_input: float = 0.0
 var is_sprinting: bool = false
@@ -30,6 +31,7 @@ func _ready() -> void:
 		PlayerMovementState.new(self),
 		PlayerJumpState.new(self),
 		PlayerAttackState.new(self),
+		PlayerHeavyAttackState.new(self),
 		PlayerBlockState.new(self), # Don't forget the Hurt state
 		PlayerDisableInputState.new(self)
 	]

@@ -29,15 +29,12 @@ metadata/_edit_horizontal_guides_ = [-262.0]
 
 [node name="health" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.045
-anchor_top = 0.81100005
-anchor_right = 0.32200003
-anchor_bottom = 0.90400004
-offset_left = -0.40000153
-offset_top = 0.11993408
-offset_right = -0.24005127
-offset_bottom = -0.32006836
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 0.15991211
+grow_vertical = 0
+scale = Vector2(1.6859848, 1.1550798)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5ip4n")
 
 [node name="TextureRect" type="TextureRect" parent="health"]
@@ -66,17 +63,15 @@ texture_progress = ExtResource("2_5ip4n")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.84700006
-anchor_top = 0.753
-anchor_right = 0.961
-anchor_bottom = 0.919
-offset_left = 0.7598877
-offset_top = -0.24005127
-offset_right = -0.11999512
-offset_bottom = -0.52001953
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -21.248047
+offset_top = -32.207947
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0qpk7")
 
 [node name="TextureRect2" type="TextureRect" parent="Panel"]
@@ -86,10 +81,10 @@ anchor_left = 0.124000005
 anchor_top = 0.117000006
 anchor_right = 0.85800004
 anchor_bottom = 0.883
-offset_left = 13.9679985
-offset_top = -2.9430008
-offset_right = -7.0440063
-offset_bottom = -1.0570068
+offset_left = -22.386742
+offset_top = 70.43963
+offset_right = 40.01719
+offset_bottom = 121.15097
 texture = ExtResource("2_vphgt")
 expand_mode = 1
 
@@ -99,17 +94,21 @@ anchors_preset = -1
 anchor_left = 0.133
 anchor_right = 0.86200005
 anchor_bottom = 1.028
-offset_left = 0.006000519
-offset_right = 0.083984375
-offset_bottom = -0.011993408
+offset_left = -25.577984
+offset_top = 60.20794
+offset_right = 117.93218
+offset_bottom = 211.09818
+scale = Vector2(0.5367841, 0.57013595)
 texture = ExtResource("5_ucsqe")
 
 [node name="PauseScreen" type="Panel" parent="."]
 process_mode = 2
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ucsqe")
@@ -121,10 +120,10 @@ anchor_left = 0.47300002
 anchor_top = 0.358
 anchor_right = 0.59300005
 anchor_bottom = 0.531
-offset_left = -0.16003418
-offset_top = 0.35998535
-offset_right = -0.34301758
-offset_bottom = -0.4800415
+offset_left = -92.0
+offset_top = -120.0
+offset_right = 107.0
+offset_bottom = 66.0
 texture = ExtResource("5_l8xe2")
 
 [node name="TextEdit" type="TextEdit" parent="PauseScreen"]
@@ -134,9 +133,10 @@ anchor_left = 0.354
 anchor_top = 0.531
 anchor_right = 0.72400004
 anchor_bottom = 0.625
-offset_left = 0.32000732
-offset_top = 0.5199585
-offset_right = -0.080078125
+offset_left = -327.0
+offset_top = 76.0
+offset_right = 440.95197
+offset_bottom = 178.08801
 theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
 theme_override_colors/selection_color = Color(0.5019608, 0.5019608, 0.5019608, 0)
 theme_override_colors/font_color = Color(0.41960785, 0.18431373, 0.039215688, 1)

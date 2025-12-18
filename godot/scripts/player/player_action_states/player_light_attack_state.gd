@@ -2,7 +2,6 @@
 class_name PlayerAttackState extends PlayerState
 
 static var state_name = "PlayerAttackState"
-const ATTACK_DURATION = 0.5 # Duration of the attack animation
 const STOP_FORCE: float = 1000.0
 
 
@@ -12,6 +11,7 @@ func get_state_name() -> String:
 
 func enter() -> void:
 	player.animation_state = state_name
+
 
 	#player.reset_sheath_timer()
 	#animatedsprite2d.play("attack")

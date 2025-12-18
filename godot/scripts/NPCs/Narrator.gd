@@ -3,6 +3,7 @@ extends Node2D
 @onready var dialogue_manager = DialogueManager #this is an autoload
 @export var dialogue_resource: DialogueResource
 var is_narrating = false
+var is_fullscreen = false
 
 enum NarratorPhase {
 	INTRO,
@@ -19,6 +20,7 @@ func play_current_phase():
 	if is_narrating:
 		return
 	is_narrating = true
+	is_fullscreen = true
 	var title = phase_to_title.get(current_phase, "")
 	if title != "":
 		dialogue_manager.show_dialogue_balloon(dialogue_resource, title)
@@ -33,3 +35,4 @@ func _ready():
 
 func _on_dialogue_ended(_resource: DialogueResource) -> void:
 	is_narrating = false
+	is_fullscreen = false

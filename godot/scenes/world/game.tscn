@@ -32,7 +32,6 @@ corner_radius_bottom_left = 6
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_w44h4")
-fade_speed = 0.01
 
 [node name="PauseScreen" parent="." instance=ExtResource("2_r5nxa")]
 visible = false

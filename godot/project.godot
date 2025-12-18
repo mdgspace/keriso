@@ -27,6 +27,7 @@ ProgressSystem="*res://scripts/core/systems/ProgressSystem.gd"
 AudioManager="*res://scenes/audio_manager/AudioManager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 NarratorGlobal="*res://scenes/npcs/Narrator.tscn"
+InputManagerInstance="*res://scripts/core/managers/InputManager.gd"
 
 [display]
 

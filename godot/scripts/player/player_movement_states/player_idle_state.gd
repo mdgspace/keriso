@@ -17,9 +17,20 @@ func process(_delta: float) -> void:
 		state_machine.transition(PlayerJumpState.state_name)
 		pass
 		
-	if InputNode.is_just_pressed("attack"):
-		state_machine.transition(PlayerAttackState.state_name)
-		pass
+	#if InputNode.is_just_pressed("attack"):
+		#state_machine.transition(PlayerAttackState.state_name)
+		#pass
+
+	if InputManagerInstance.was_action_held_for("attack", 30):
+		print("HEAVY ATTACK triggered!")
+		state_machine.transition("PlayerAttackState")
+
+# This will only be checked if the heavy attack condition wasn't met.
+	elif InputManagerInstance.was_short_press_released("attack"):
+		print("LIGHT ATTACK triggered!")
+		state_machine.transition("PlayerAttackState")
+
+
 	elif Input.is_action_just_pressed("block"):
 		state_machine.transition("PlayerBlockState")
 		

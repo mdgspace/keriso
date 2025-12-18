@@ -8,6 +8,7 @@ func get_state_name() -> String:
 	return state_name
 
 func enter() -> void:
+
 	player.animation_state = state_name
 	player.is_sheathed = false
 	player.start_sheath_timer()

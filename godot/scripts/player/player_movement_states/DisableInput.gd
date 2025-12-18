@@ -7,7 +7,6 @@ func enter() -> void:
 
 func process(_delta: float) -> void:
 	player.velocity = Vector2(0,0)
-	print(NarratorGlobal.is_narrating)
 	if !NarratorGlobal.is_narrating:
 		state_machine.transition("PlayerIdleState")
 
