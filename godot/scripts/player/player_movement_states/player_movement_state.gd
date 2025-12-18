@@ -13,6 +13,8 @@ func enter():
 
 func process(_delta: float) -> void:
 	# Check for action inputs
+	if NarratorGlobal.is_narrating:
+		state_machine.transition("PlayerDisableInputState")
 	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		state_machine.transition("PlayerJumpState")
 	elif Input.is_action_just_pressed("attack"):

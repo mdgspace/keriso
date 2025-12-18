@@ -3,6 +3,7 @@ class_name PlayerBlockState extends PlayerState
 static var state_name = "PlayerBlockState"
 const STOP_FORCE: float = 1000.0
 
+
 func get_state_name() -> String:
 	return state_name
 
@@ -20,6 +21,8 @@ func enter() -> void:
 
 func physics_process(delta: float) -> void:
 	# Prevent player from sliding while blocking
+	if NarratorGlobal.is_narrating:
+		state_machine.transition("PlayerDisableInputState")
 	player.velocity.x = move_toward(player.velocity.x, 0, STOP_FORCE * delta)
 
 func exit() -> void:

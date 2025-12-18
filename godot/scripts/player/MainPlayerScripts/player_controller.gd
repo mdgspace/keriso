@@ -30,7 +30,8 @@ func _ready() -> void:
 		PlayerMovementState.new(self),
 		PlayerJumpState.new(self),
 		PlayerAttackState.new(self),
-		PlayerBlockState.new(self) # Don't forget the Hurt state
+		PlayerBlockState.new(self), # Don't forget the Hurt state
+		PlayerDisableInputState.new(self)
 	]
 	state_machine.start_machine(states)
 	#unsheath_timer.timeout.connect(_on_unsheath_timer_timeout)

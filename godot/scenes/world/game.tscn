@@ -1,23 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://216ie00sal1k"]
+[gd_scene load_steps=17 format=3 uid="uid://216ie00sal1k"]
 
 [ext_resource type="Script" uid="uid://o3ahdhwyf63w" path="res://scripts/core/gameStarter.gd" id="1_w44h4"]
-[ext_resource type="PackedScene" uid="uid://ngcthb8yjthx" path="res://scenes/enemies/kunoichi_enemy.tscn" id="2_hqfqh"]
 [ext_resource type="PackedScene" uid="uid://bq2uqlw4lc38q" path="res://scenes/PauseScreen/PauseScreen.tscn" id="2_r5nxa"]
-[ext_resource type="PackedScene" uid="uid://c6j2dx0bksyro" path="res://scenes/enemies/samurai_dash_enemy.tscn" id="3_r177j"]
 [ext_resource type="Script" uid="uid://doihnm2j04x68" path="res://scripts/core/ui_scripts/pause_screen.gd" id="3_sarsd"]
 [ext_resource type="Script" uid="uid://bq11sj4sufl4p" path="res://scripts/player/MainPlayerScripts/healthBar.gd" id="5_h30v7"]
 [ext_resource type="FontFile" uid="uid://cohkuuivrytuo" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_taqjv"]
 [ext_resource type="PackedScene" uid="uid://d3m1sfas2cmtp" path="res://scenes/npcs/npc1.tscn" id="7_3gx7t"]
 [ext_resource type="Texture2D" uid="uid://jwi1fwa6potd" path="res://assets/background/forest_mid 2.png" id="8_wmpba"]
 [ext_resource type="Texture2D" uid="uid://diew1g0pu3oud" path="res://assets/background/forest_long 1.png" id="9_6xs6q"]
-[ext_resource type="Resource" uid="uid://4j7sb5lfp4na" path="res://Dialogues/tutorial/jump_tutorial.dialogue" id="9_ngoy0"]
 [ext_resource type="Texture2D" uid="uid://cui0k7egp7vsa" path="res://assets/background/forest_mountain 1.png" id="10_taqjv"]
 [ext_resource type="Texture2D" uid="uid://2nev54r4uhe7" path="res://assets/background/Ground.png" id="11_ngoy0"]
 [ext_resource type="Texture2D" uid="uid://c7wpmky8jb5oq" path="res://assets/background/forest_sky 1.png" id="12_6xs6q"]
+[ext_resource type="Texture2D" uid="uid://blxsdlquqo61i" path="res://assets/ui/sword 2.png" id="15_isy5x"]
 [ext_resource type="PackedScene" uid="uid://dtkrwapu0b5qe" path="res://scenes/UI/TooltipCanvas.tscn" id="15_rxlek"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3iwug"]
-size = Vector2(121, 23)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hqfqh"]
 
@@ -37,47 +32,18 @@ corner_radius_bottom_left = 6
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_w44h4")
+fade_speed = 0.01
 
 [node name="PauseScreen" parent="." instance=ExtResource("2_r5nxa")]
 visible = false
 script = ExtResource("3_sarsd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(159.5, -7)
-shape = SubResource("RectangleShape2D_3iwug")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(228, -28)
-shape = SubResource("RectangleShape2D_3iwug")
+position = Vector2(-46, -3)
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1, 0)
 shape = SubResource("WorldBoundaryShape2D_hqfqh")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(345, -7)
-shape = SubResource("RectangleShape2D_3iwug")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(554, -30)
-shape = SubResource("RectangleShape2D_3iwug")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(466, -7)
-shape = SubResource("RectangleShape2D_3iwug")
-
-[node name="kunoichi_enemy" parent="." instance=ExtResource("2_hqfqh")]
-position = Vector2(672, -29)
-jump_force = 350
-attack_range = 60
-seen_player_timer = 4.0
-
-[node name="samurai_dash_enemy" parent="." instance=ExtResource("3_r177j")]
-position = Vector2(428, -38)
-attack_cooldown = 0.5
-seen_player_timer = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(139, -129)
@@ -102,11 +68,7 @@ value = 50.0
 script = ExtResource("5_h30v7")
 
 [node name="move_npc" parent="." instance=ExtResource("7_3gx7t")]
-position = Vector2(-300, -47)
-
-[node name="Jump_npc" parent="." instance=ExtResource("7_3gx7t")]
-position = Vector2(-235, -47)
-dialogue_resource = ExtResource("9_ngoy0")
+position = Vector2(15, -46)
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -169,8 +131,22 @@ position = Vector2(-914.00006, -208)
 scale = Vector2(0.74289477, 0.42749998)
 texture = ExtResource("12_6xs6q")
 
-[node name="CanvasLayer2" parent="." instance=ExtResource("15_rxlek")]
+[node name="MoveFrwd" parent="." instance=ExtResource("15_rxlek")]
 visibility_layer = 495
 z_index = 9
-position = Vector2(-85, -10)
-labelText = "Hello world"
+position = Vector2(136, -11)
+labelText = "Good. Move forward to get weapon"
+checkptDescription = "Checkpt1"
+
+[node name="Sword2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(275, -105)
+scale = Vector2(0.25058347, 0.22554341)
+texture = ExtResource("15_isy5x")
+
+[node name="Fight" parent="." instance=ExtResource("15_rxlek")]
+visibility_layer = 495
+z_index = 9
+position = Vector2(1041, -11)
+labelText = "Now Fight!"
+checkptDescription = "Checkpt2"

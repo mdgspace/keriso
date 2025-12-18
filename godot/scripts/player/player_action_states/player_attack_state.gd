@@ -5,6 +5,7 @@ static var state_name = "PlayerAttackState"
 const ATTACK_DURATION = 0.5 # Duration of the attack animation
 const STOP_FORCE: float = 1000.0
 
+
 func get_state_name() -> String:
 	return state_name
 
@@ -26,6 +27,8 @@ func enter() -> void:
 func physics_process(delta: float) -> void:
 	# Prevent player from sliding during attack
 	player.velocity.x = move_toward(player.velocity.x, 0, STOP_FORCE * delta)
+	if NarratorGlobal.is_narrating:
+		state_machine.transition("PlayerDisableInputState")
 
 func exit() -> void:
 	# You would disable your hitbox here

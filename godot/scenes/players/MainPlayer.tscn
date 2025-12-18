@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=42 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/MainPlayerScripts/main_player.gd" id="1_3h6gf"]
 [ext_resource type="Script" uid="uid://d2q2ib2ysam0l" path="res://scripts/core/managers/InventoryManager.gd" id="2_vlwgi"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bel2otsfxu5yi" path="res://scripts/player/player_action_states/player_block_state.gd" id="10_ncu4r"]
 [ext_resource type="Script" uid="uid://du4bs77gwdqgr" path="res://scripts/player/player_action_states/player_attack_state.gd" id="11_50e1p"]
 [ext_resource type="Script" uid="uid://b27g1vaisanmo" path="res://scripts/player/player_action_states/player_parry_state.gd" id="12_8u17c"]
+[ext_resource type="Script" uid="uid://d1skdfhm1dxdo" path="res://scripts/player/player_movement_states/DisableInput.gd" id="13_bxsaa"]
 [ext_resource type="Script" uid="uid://ck8hmp0818mgj" path="res://scripts/core/Hit_Hurt_Boxes/hurtbox.gd" id="13_rfihl"]
 [ext_resource type="Texture2D" uid="uid://dvi8f34l5fdo8" path="res://assets/characters/MainPlayer/block_keriso-Sheet.png" id="14_frxgo"]
 [ext_resource type="Script" uid="uid://dyel5hqilhxh2" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="15_qc0mh"]
@@ -651,7 +652,7 @@ script = ExtResource("4_sr8sg")
 position = Vector2(0, -10.303)
 rotation = 3.1415927
 scale = Vector2(3.404, 4.552)
-target_position = Vector2(16.2035, -0.133152)
+target_position = Vector2(9.080227, 0.2662895)
 collision_mask = 32
 collide_with_areas = true
 
@@ -736,6 +737,9 @@ script = ExtResource("11_50e1p")
 
 [node name="parry" type="Node" parent="CharacterBody2D/StateMachine"]
 script = ExtResource("12_8u17c")
+
+[node name="DisableInput" type="Node" parent="CharacterBody2D/StateMachine"]
+script = ExtResource("13_bxsaa")
 
 [node name="ActionStateMachine" type="Node" parent="CharacterBody2D"]
 script = ExtResource("6_e6xi4")
