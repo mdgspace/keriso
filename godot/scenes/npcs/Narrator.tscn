@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceibo034gcf86"]
+
+[ext_resource type="Script" uid="uid://d3kvul6wqlptw" path="res://scripts/NPCs/Narrator.gd" id="1_dwgk4"]
+[ext_resource type="Resource" uid="uid://byosve1tmhq7r" path="res://Dialogues/tutorial/Narrator.dialogue" id="2_l25h7"]
+[ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="3_t0amr"]
+
+[node name="Narrator" type="Node2D"]
+script = ExtResource("1_dwgk4")
+dialogue_resource = ExtResource("2_l25h7")
+
+[node name="DialogueLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_t0amr")
+skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
+metadata/_custom_type_script = "uid://g32um0mltv5d"

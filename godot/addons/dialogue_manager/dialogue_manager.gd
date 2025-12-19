@@ -457,7 +457,10 @@ func show_dialogue_balloon_scene(balloon_scene, resource: DialogueResource, titl
 		balloon_scene = load(balloon_scene)
 	if balloon_scene is PackedScene:
 		balloon_scene = balloon_scene.instantiate()
-
+	if NarratorGlobal.is_fullscreen:
+		balloon_scene.Margincontainer.anchor_top = 0
+	else:
+		balloon_scene.Margincontainer.anchor_top = 0.65
 	var balloon: Node = balloon_scene
 	_start_balloon.call_deferred(balloon, resource, title, extra_game_states)
 	return balloon

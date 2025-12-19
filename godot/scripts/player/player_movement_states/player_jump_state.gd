@@ -4,6 +4,7 @@ class_name PlayerJumpState extends PlayerState
 static var state_name = "PlayerJumpState"
 const AIR_ACCELERATION: float = 800.0
 
+
 func get_state_name() -> String:
 	return state_name
 
@@ -15,7 +16,8 @@ func enter() -> void:
 
 func physics_process(delta: float) -> void:
 	player.handle_facing()
-
+	if NarratorGlobal.is_narrating:
+		state_machine.transition("PlayerDisableInputState")
 	# Animation based on vertical velocity
 	#if player.velocity.y < 0:
 		#sprite2d.play("jump_up")

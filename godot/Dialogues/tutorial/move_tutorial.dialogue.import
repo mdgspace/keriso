@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bddrik2m7cy4w"
+path="res://.godot/imported/move_tutorial.dialogue-8e54655c2ad3e67030f8ff2f4075f7d2.tres"
+
+[deps]
+
+source_file="res://Dialogues/tutorial/move_tutorial.dialogue"
+dest_files=["res://.godot/imported/move_tutorial.dialogue-8e54655c2ad3e67030f8ff2f4075f7d2.tres"]
+
+[params]
+
+defaults=true
