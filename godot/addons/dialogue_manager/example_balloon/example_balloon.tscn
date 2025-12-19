@@ -63,9 +63,10 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_qkmqt")
 
-[node name="ExampleBalloon" type="CanvasLayer"]
+[node name="ExampleBalloon" type="CanvasLayer" node_paths=PackedStringArray("Margincontainer")]
 layer = 100
 script = ExtResource("1_36de5")
+Margincontainer = NodePath("Balloon/MarginContainer")
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
@@ -79,11 +80,11 @@ theme = SubResource("Theme_qq3yp")
 
 [node name="MarginContainer" type="MarginContainer" parent="Balloon"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = -1
+anchor_top = 0.713
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -219.0
+offset_top = 0.023956299
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -113,6 +114,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Dialogue..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true

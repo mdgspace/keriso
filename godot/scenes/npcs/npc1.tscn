@@ -1,32 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3m1sfas2cmtp"]
+[gd_scene load_steps=7 format=3 uid="uid://d3m1sfas2cmtp"]
 
 [ext_resource type="Script" uid="uid://seyal717b6j8" path="res://scripts/NPCs/npc1.gd" id="1_n374i"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="2_fh8mv"]
-[ext_resource type="Resource" uid="uid://bddrik2m7cy4w" path="res://Dialogues/Base.dialogue" id="2_l2s1u"]
+[ext_resource type="Resource" uid="uid://bddrik2m7cy4w" path="res://Dialogues/tutorial/move_tutorial.dialogue" id="2_l2s1u"]
+[ext_resource type="Texture2D" uid="uid://bw8oucm2thxee" path="res://icon.svg" id="3_mo0ci"]
+[ext_resource type="FontFile" uid="uid://cohkuuivrytuo" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_2nibj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh8mv"]
 size = Vector2(20, 80)
 
 [node name="Npc1" type="Node2D"]
+position = Vector2(4, 0)
 script = ExtResource("1_n374i")
 dialogue_resource = ExtResource("2_l2s1u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.9073486e-06, 4.000001)
+scale = Vector2(0.15625, 0.625)
+texture = ExtResource("3_mo0ci")
 
 [node name="DialogueLabel" type="RichTextLabel" parent="."]
-offset_left = -8.0
-offset_top = -19.0
-offset_right = 66.0
-offset_bottom = 27.0
-scale = Vector2(0.25, 0.25)
+offset_left = -9.0
+offset_top = -53.0
+offset_right = 65.0
+offset_bottom = -7.0
+scale = Vector2(0.23249213, 0.4521785)
+theme_override_fonts/normal_font = ExtResource("4_2nibj")
 text = "Let's talk"
 fit_content = true
 tab_size = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("2_fh8mv")
 skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
 metadata/_custom_type_script = "uid://g32um0mltv5d"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 4)

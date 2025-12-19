@@ -1,5 +1,7 @@
 extends Node
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+var index_bg = AudioServer.get_bus_index("Background")
+var index_sfx = AudioServer.get_bus_index("SFX")
 
 func play_audio(audio:AudioStream, volume_linear: float):
 	if audio_stream_player.stream == audio:
@@ -29,9 +31,11 @@ func set_master_vol(val:float):
 		AudioServer.set_bus_volume_linear(0, val) #bw 0 to 1
 		
 func set_background_vol(val:float):
-	var index = AudioServer.get_bus_index("Background")
-	AudioServer.set_bus_volume_linear(index,val)
+	AudioServer.set_bus_volume_linear(index_bg,val)
 	
 func set_SFX_vol(val:float):
-	var index = AudioServer.get_bus_index("SFX")
-	AudioServer.set_bus_volume_linear(index,val)
+	AudioServer.set_bus_volume_linear(index_sfx,val)
+
+func ReturnLastVolArray():
+	var array = [AudioServer.get_bus_volume_linear(0),AudioServer.get_bus_volume_linear(index_bg),AudioServer.get_bus_volume_linear(index_sfx)]
+	return array

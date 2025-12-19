@@ -1,9 +1,91 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq2uqlw4lc38q"]
+[gd_scene load_steps=20 format=3 uid="uid://bq2uqlw4lc38q"]
 
 [ext_resource type="Script" uid="uid://bstv4op17ha7s" path="res://scripts/core/ui_scripts/sampleSaveLoad.gd" id="1_7qve6"]
+[ext_resource type="Texture2D" uid="uid://c73lsifyat1oc" path="res://assets/ui/Screenshot 2025-12-16 023120-Photoroom.png" id="1_508i4"]
+[ext_resource type="FontFile" uid="uid://drvr8q1gf0vba" path="res://assets/fonts/PixelOperator8.ttf" id="2_spoyf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smotu"]
+atlas = ExtResource("1_508i4")
+region = Rect2(31, 33, 255, 232)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq01c"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwpx2"]
+bg_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpitx"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aupaj"]
+bg_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pepbc"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyhcn"]
+bg_color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2ctr0"]
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gf1os"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ey3vi"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gmml8"]
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_4r3qs"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_o7ha6"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_n62vj"]
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gmo26"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1l30g"]
+color = Color(0.9687452, 0.63617545, 0, 1)
+thickness = 6
 
 [node name="PauseScreen" type="CanvasLayer"]
 process_mode = 3
+process_priority = 3
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -12,54 +94,93 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7qve6")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = 740.0
+offset_top = 9.0
+offset_right = 1126.0
+offset_bottom = 351.0
+texture = SubResource("AtlasTexture_smotu")
 
 [node name="Quit" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 331.0
-offset_top = 180.0
-offset_right = 339.0
-offset_bottom = 188.0
+offset_left = 995.0
+offset_top = 258.0
+offset_right = 1059.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_spoyf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aq01c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cwpx2")
 text = "Quit"
 
 [node name="save" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 520.0
-offset_top = 182.0
-offset_right = 569.0
-offset_bottom = 213.0
+offset_left = 796.0
+offset_top = 259.0
+offset_right = 860.0
+offset_bottom = 291.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_spoyf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dpitx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_aupaj")
 text = "save"
-script = ExtResource("1_7qve6")
 
 [node name="load" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 577.0
-offset_top = 182.0
-offset_right = 626.0
-offset_bottom = 213.0
+offset_left = 898.0
+offset_top = 260.0
+offset_right = 962.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_spoyf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pepbc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pyhcn")
 text = "load"
 
 [node name="volSettings" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 848.0
 offset_top = 71.0
-offset_right = 973.0
+offset_right = 1044.0
 offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.12941177, 0.03137255, 0, 1)
+theme_override_fonts/font = ExtResource("2_spoyf")
 text = "Volume Settings"
 
 [node name="master" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 810.0
 offset_top = 111.0
-offset_right = 865.0
+offset_right = 896.0
 offset_bottom = 134.0
+theme_override_colors/font_color = Color(0.13108891, 0.029674308, 6.016344e-09, 1)
+theme_override_fonts/font = ExtResource("2_spoyf")
 text = "Master"
 
 [node name="Bgm" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 809.0
 offset_top = 145.0
-offset_right = 905.0
+offset_right = 949.0
 offset_bottom = 168.0
+theme_override_colors/font_color = Color(0.12941177, 0.03137255, 0, 1)
+theme_override_fonts/font = ExtResource("2_spoyf")
 text = "BackGround"
 
 [node name="SFX2" type="Label" parent="Control"]
@@ -68,28 +189,41 @@ offset_left = 809.0
 offset_top = 178.0
 offset_right = 905.0
 offset_bottom = 201.0
+theme_override_colors/font_color = Color(0.12941177, 0.03137255, 0, 1)
+theme_override_fonts/font = ExtResource("2_spoyf")
 text = "SFX"
 
 [node name="Master" type="HSlider" parent="Control"]
 layout_mode = 0
-offset_left = 916.0
+offset_left = 957.0
 offset_top = 113.0
-offset_right = 1009.0
+offset_right = 1047.0
 offset_bottom = 129.0
+theme_override_styles/slider = SubResource("StyleBoxLine_2ctr0")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_gf1os")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ey3vi")
 
 [node name="Background" type="HSlider" parent="Control"]
 layout_mode = 0
-offset_left = 919.0
-offset_top = 148.0
-offset_right = 1019.0
-offset_bottom = 164.0
+offset_left = 958.0
+offset_top = 144.0
+offset_right = 1048.0
+offset_bottom = 160.0
+theme_override_styles/slider = SubResource("StyleBoxLine_gmml8")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_4r3qs")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_o7ha6")
 
 [node name="SFX" type="HSlider" parent="Control"]
+process_mode = 3
 layout_mode = 0
-offset_left = 923.0
-offset_top = 182.0
-offset_right = 1014.0
-offset_bottom = 198.0
+offset_left = 958.0
+offset_top = 178.0
+offset_right = 1048.0
+offset_bottom = 194.0
+theme_override_styles/slider = SubResource("StyleBoxLine_n62vj")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_gmo26")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_1l30g")
 
-[connection signal="pressed" from="Control/save" to="Control/save" method="_on_pressed"]
-[connection signal="pressed" from="Control/load" to="Control/save" method="_on_load_pressed"]
+[connection signal="pressed" from="Control/Quit" to="Control" method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/save" to="Control" method="_on_save_pressed"]
+[connection signal="pressed" from="Control/load" to="Control" method="_on_load_pressed"]
