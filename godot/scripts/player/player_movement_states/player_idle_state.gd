@@ -23,7 +23,7 @@ func process(_delta: float) -> void:
 
 	if InputManagerInstance.was_action_held_for("attack", 30):
 		print("HEAVY ATTACK triggered!")
-		state_machine.transition("PlayerAttackState")
+		state_machine.transition("PlayerHeavyAttackState")
 
 # This will only be checked if the heavy attack condition wasn't met.
 	elif InputManagerInstance.was_short_press_released("attack"):

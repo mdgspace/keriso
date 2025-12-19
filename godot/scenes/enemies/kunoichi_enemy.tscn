@@ -649,7 +649,6 @@ collision_layer = 2
 script = SubResource("GDScript_pghlm")
 jump_force = 500
 near_detection_range = 50
-attack_range = 80
 Attack1Hitbox = NodePath("Attack1Hitbox")
 Attack2Hitbox = NodePath("Attack2Hitbox")
 

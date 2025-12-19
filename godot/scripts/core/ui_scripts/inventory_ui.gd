@@ -7,11 +7,11 @@ var InventoryManager
 func _ready() -> void:
 	await get_tree().process_frame
 	
-	InventoryManager = PlayerGlobal.player_instance.get_node("InventoryManager")
-	print(PlayerGlobal.player_instance)
-	print("This is inventory manager",InventoryManager)
-	InventoryManager.inventory_updated.connect(_on_inventory_updated)
-	_on_inventory_updated()
+	#InventoryManager = PlayerGlobal.player_instance.get_node("InventoryManager")
+	#print(PlayerGlobal.player_instance)
+	#print("This is inventory manager",InventoryManager)
+	#InventoryManager.inventory_updated.connect(_on_inventory_updated)
+	#_on_inventory_updated()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

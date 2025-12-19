@@ -1,0 +1,155 @@
+[gd_scene load_steps=17 format=3 uid="uid://d157ys2l7rpvm"]
+
+[ext_resource type="Script" uid="uid://o3ahdhwyf63w" path="res://scripts/core/gameStarter.gd" id="1_0kvgg"]
+[ext_resource type="PackedScene" uid="uid://bq2uqlw4lc38q" path="res://scenes/PauseScreen/PauseScreen.tscn" id="2_vlwc1"]
+[ext_resource type="Script" uid="uid://doihnm2j04x68" path="res://scripts/core/ui_scripts/pause_screen.gd" id="3_nwmq4"]
+[ext_resource type="FontFile" uid="uid://cohkuuivrytuo" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_fdre8"]
+[ext_resource type="Script" uid="uid://bq11sj4sufl4p" path="res://scripts/player/MainPlayerScripts/healthBar.gd" id="5_rlvaq"]
+[ext_resource type="PackedScene" uid="uid://d3m1sfas2cmtp" path="res://scenes/npcs/npc1.tscn" id="6_omg6h"]
+[ext_resource type="Texture2D" uid="uid://jwi1fwa6potd" path="res://assets/background/forest_mid 2.png" id="7_a5uqt"]
+[ext_resource type="Texture2D" uid="uid://diew1g0pu3oud" path="res://assets/background/forest_long 1.png" id="8_6jnxt"]
+[ext_resource type="Texture2D" uid="uid://cui0k7egp7vsa" path="res://assets/background/forest_mountain 1.png" id="9_cetey"]
+[ext_resource type="Texture2D" uid="uid://2nev54r4uhe7" path="res://assets/background/Ground.png" id="10_gkyum"]
+[ext_resource type="Texture2D" uid="uid://c7wpmky8jb5oq" path="res://assets/background/forest_sky 1.png" id="11_c408g"]
+[ext_resource type="PackedScene" uid="uid://dtkrwapu0b5qe" path="res://scenes/UI/TooltipCanvas.tscn" id="12_jkvty"]
+[ext_resource type="Texture2D" uid="uid://blxsdlquqo61i" path="res://assets/UI/sword 2.png" id="13_a5a7e"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hqfqh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_taqjv"]
+bg_color = Color(0.5801458, 0.5801458, 0.5801458, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngoy0"]
+bg_color = Color(0, 0.7243937, 0.23359758, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_0kvgg")
+
+[node name="PauseScreen" parent="." instance=ExtResource("2_vlwc1")]
+visible = false
+script = ExtResource("3_nwmq4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-46, -3)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 0)
+shape = SubResource("WorldBoundaryShape2D_hqfqh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(139, -129)
+scale = Vector2(2, 2)
+zoom = Vector2(2, 2)
+limit_left = -10000001
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -226.0
+offset_right = -6.0
+offset_bottom = 27.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("4_fdre8")
+theme_override_styles/background = SubResource("StyleBoxFlat_taqjv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngoy0")
+value = 50.0
+script = ExtResource("5_rlvaq")
+
+[node name="move_npc" parent="." instance=ExtResource("6_omg6h")]
+position = Vector2(15, -46)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D"]
+z_index = -1
+scroll_scale = Vector2(0.75, 0.75)
+scroll_offset = Vector2(-13, 95.525)
+repeat_size = Vector2(1000, 0)
+repeat_times = 7
+
+[node name="TreesBehind" type="Sprite2D" parent="Node2D/Parallax2D"]
+position = Vector2(-764, -266.52502)
+scale = Vector2(0.27055666, 0.25758502)
+texture = ExtResource("7_a5uqt")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node2D"]
+z_index = -1
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(0, 55)
+repeat_size = Vector2(1000, 0)
+repeat_times = 6
+
+[node name="TreesFront" type="Sprite2D" parent="Node2D/Parallax2D2"]
+position = Vector2(194.00002, -155)
+scale = Vector2(0.27055666, 0.25758502)
+texture = ExtResource("8_6jnxt")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Node2D"]
+z_index = -1
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(0, 250)
+repeat_size = Vector2(1000, 0)
+repeat_times = 7
+
+[node name="Mountains" type="Sprite2D" parent="Node2D/Parallax2D3"]
+z_index = -2
+position = Vector2(-717.00006, -199)
+scale = Vector2(0.27055666, 0.25758502)
+texture = ExtResource("9_cetey")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-280, 8)
+repeat_size = Vector2(300, 0)
+repeat_times = 20
+
+[node name="Ground" type="Sprite2D" parent="Node2D/Parallax2D4"]
+position = Vector2(-172, 2.0000153)
+scale = Vector2(0.40810812, 0.30593607)
+texture = ExtResource("10_gkyum")
+
+[node name="Parallax2D5" type="Parallax2D" parent="Node2D"]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, 450)
+repeat_size = Vector2(1400, 0)
+repeat_times = 5
+
+[node name="Sky" type="Sprite2D" parent="Node2D/Parallax2D5"]
+z_index = -4
+position = Vector2(-914.00006, -208)
+scale = Vector2(0.74289477, 0.42749998)
+texture = ExtResource("11_c408g")
+
+[node name="MoveFrwd" parent="." instance=ExtResource("12_jkvty")]
+visibility_layer = 495
+z_index = 9
+position = Vector2(136, -11)
+labelText = "Good. Move forward to get weapon"
+checkptDescription = "Checkpt1"
+
+[node name="Sword2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(275, -105)
+scale = Vector2(0.25058347, 0.22554341)
+texture = ExtResource("13_a5a7e")
+
+[node name="Fight" parent="." instance=ExtResource("12_jkvty")]
+visibility_layer = 495
+z_index = 9
+position = Vector2(1041, -11)
+labelText = "Now Fight!"
+checkptDescription = "Checkpt2"
+
+[node name="TooltipCanvas" parent="." instance=ExtResource("12_jkvty")]
+position = Vector2(15, -53)
+labelText = "press E to interact"

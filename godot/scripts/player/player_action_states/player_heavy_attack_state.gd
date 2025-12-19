@@ -12,7 +12,8 @@ func get_state_name() -> String:
 
 func enter() -> void:
 	player.animation_state = state_name
-
+	player.is_sheathed = false
+	player.start_sheath_timer()
 	#player.reset_sheath_timer()
 	#animatedsprite2d.play("attack")
 	# You would enable your hitbox here

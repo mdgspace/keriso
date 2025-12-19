@@ -21,11 +21,11 @@ var _short_press_released: Dictionary = {}
 ## Define your game actions here and add in InputMap
 const ACTIONS := [
 	"move_left", "move_right",
-	"jump", "attack", "interact", "pause", "inventory"
+	"jump", "attack", "interact", "pause", "inventory","dash"
 ]
 
 func _ready() -> void:
-	Input.action_press("attack")
+	#Input.action_press("attack")
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	for action in ACTIONS:
 		if not InputMap.has_action(action):

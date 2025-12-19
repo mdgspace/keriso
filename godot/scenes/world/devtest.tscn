@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://chqbj3r8bo33h"]
+
+[ext_resource type="PackedScene" uid="uid://bl3dnwhmbvq7e" path="res://scenes/players/MainPlayer.tscn" id="1_a5njp"]
+[ext_resource type="Texture2D" uid="uid://jwi1fwa6potd" path="res://assets/background/forest_mid 2.png" id="2_fbno5"]
+[ext_resource type="Texture2D" uid="uid://diew1g0pu3oud" path="res://assets/background/forest_long 1.png" id="3_5iipk"]
+[ext_resource type="Texture2D" uid="uid://cui0k7egp7vsa" path="res://assets/background/forest_mountain 1.png" id="4_pjyds"]
+[ext_resource type="Texture2D" uid="uid://2nev54r4uhe7" path="res://assets/background/Ground.png" id="5_4hqdn"]
+[ext_resource type="Texture2D" uid="uid://c7wpmky8jb5oq" path="res://assets/background/forest_sky 1.png" id="6_0wyuw"]
+[ext_resource type="PackedScene" uid="uid://xn2xkw17jrxo" path="res://scenes/enemies/necro_ranged_enemy.tscn" id="7_5iipk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_84bfr"]
+
+[node name="Devtest" type="Node2D"]
+
+[node name="MainPlayer" parent="." instance=ExtResource("1_a5njp")]
+
+[node name="Camera2D" type="Camera2D" parent="MainPlayer"]
+position = Vector2(-4, -53)
+zoom = Vector2(2.2, 2.2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-46, -3)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-14, 40)
+shape = SubResource("WorldBoundaryShape2D_84bfr")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 41)
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D"]
+z_index = -1
+scroll_scale = Vector2(0.75, 0.75)
+scroll_offset = Vector2(-13, 95.525)
+repeat_size = Vector2(1000, 0)
+repeat_times = 7
+
+[node name="TreesBehind" type="Sprite2D" parent="Node2D/Parallax2D"]
+position = Vector2(-764, -266.52502)
+scale = Vector2(0.27055666, 0.25758502)
+texture = ExtResource("2_fbno5")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node2D"]
+z_index = -1
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(0, 55)
+repeat_size = Vector2(1000, 0)
+repeat_times = 6
+
+[node name="TreesFront" type="Sprite2D" parent="Node2D/Parallax2D2"]
+position = Vector2(194.00002, -155)
+scale = Vector2(0.27055666, 0.25758502)
+texture = ExtResource("3_5iipk")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Node2D"]
+z_index = -1
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(0, 250)
+repeat_size = Vector2(1000, 0)
+repeat_times = 7
+
+[node name="Mountains" type="Sprite2D" parent="Node2D/Parallax2D3"]
+z_index = -2
+position = Vector2(-717.00006, -199)
+scale = Vector2(0.27055666, 0.25758502)
+texture = ExtResource("4_pjyds")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Node2D"]
+scroll_offset = Vector2(-280, 8)
+repeat_size = Vector2(300, 0)
+repeat_times = 20
+
+[node name="Ground" type="Sprite2D" parent="Node2D/Parallax2D4"]
+position = Vector2(-172, 2.0000153)
+scale = Vector2(0.40810812, 0.30593607)
+texture = ExtResource("5_4hqdn")
+
+[node name="Parallax2D5" type="Parallax2D" parent="Node2D"]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, 450)
+repeat_size = Vector2(1400, 0)
+repeat_times = 5
+
+[node name="Sky" type="Sprite2D" parent="Node2D/Parallax2D5"]
+z_index = -4
+position = Vector2(-914.00006, -208)
+scale = Vector2(0.74289477, 0.42749998)
+texture = ExtResource("6_0wyuw")
+
+[node name="necro_ranged_enemy" parent="." instance=ExtResource("7_5iipk")]
+position = Vector2(169, -2)

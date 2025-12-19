@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=50 format=3 uid="uid://swqow8b6bojn"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=54 format=3 uid="uid://swqow8b6bojn"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_633ay"]
 animation = &"Die"
@@ -11,9 +11,6 @@ animation = &"Hurt"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w5sp0"]
 animation = &"LightAttack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ebdu"]
-animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nuw64"]
 animation = &"block"
@@ -157,7 +154,7 @@ advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vqnmt"]
 advance_mode = 2
-advance_condition = &"lightattack"
+advance_condition = &"attack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_22ggt"]
 advance_mode = 2
@@ -174,17 +171,36 @@ advance_mode = 2
 advance_condition = &"heavyattack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l1jdh"]
-switch_mode = 2
 advance_mode = 2
-advance_condition = &"attack"
+advance_condition = &"heavyattack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v0yad"]
 advance_mode = 2
-advance_condition = &"idle"
+advance_condition = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vuyis"]
 advance_mode = 2
+advance_condition = &"heavyattack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fbkno"]
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_23ob4"]
+advance_mode = 2
 advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2flgh"]
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hhnwi"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sswei"]
+advance_mode = 2
+advance_condition = &"run"
 
 [resource]
 allow_transition_to_self = true
@@ -198,8 +214,6 @@ states/Hurt/position = Vector2(1225, 281)
 states/LightAttack/node = SubResource("AnimationNodeAnimation_w5sp0")
 states/LightAttack/position = Vector2(873.918, 640)
 states/Start/position = Vector2(34, 236.73279)
-states/attack/node = SubResource("AnimationNodeAnimation_4ebdu")
-states/attack/position = Vector2(1304.918, 785.7328)
 states/block/node = SubResource("AnimationNodeAnimation_nuw64")
 states/block/position = Vector2(607.918, 981.7328)
 states/idle_sheath/node = SubResource("AnimationNodeAnimation_rs51n")
@@ -209,7 +223,7 @@ states/idle_unsheath/position = Vector2(272.91803, 697.7328)
 states/run_sheath/node = SubResource("AnimationNodeAnimation_0gdo4")
 states/run_sheath/position = Vector2(369.91803, -264.2672)
 states/run_unsheath/node = SubResource("AnimationNodeAnimation_1trhv")
-states/run_unsheath/position = Vector2(492.91803, 630.7328)
+states/run_unsheath/position = Vector2(494.91803, 630.7328)
 states/sheathing/node = SubResource("AnimationNodeAnimation_l1jdh")
 states/sheathing/position = Vector2(291.91803, 338)
 states/unsheathing/node = SubResource("AnimationNodeAnimation_v0yad")
@@ -217,6 +231,6 @@ states/unsheathing/position = Vector2(1088.918, 640)
 states/walk_sheath/node = SubResource("AnimationNodeAnimation_vuyis")
 states/walk_sheath/position = Vector2(614.918, -181.26721)
 states/walk_unsheath/node = SubResource("AnimationNodeAnimation_fbkno")
-states/walk_unsheath/position = Vector2(393.91803, 937.7328)
-transitions = ["Die", "End", SubResource("AnimationNodeStateMachineTransition_dkabh"), "idle_sheath", "run_sheath", SubResource("AnimationNodeStateMachineTransition_iycfb"), "idle_sheath", "walk_sheath", SubResource("AnimationNodeStateMachineTransition_o3acv"), "walk_sheath", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_qspky"), "run_sheath", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_f2wxa"), "idle_unsheath", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_fvkbi"), "walk_unsheath", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_a51kh"), "idle_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_goeom"), "block", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_xobo8"), "idle_unsheath", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_nxvjx"), "run_unsheath", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_bg827"), "run_unsheath", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_2qmqk"), "walk_unsheath", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_jne4m"), "run_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_4g64e"), "block", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_ce1cp"), "block", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_tknvv"), "walk_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_ajvoj"), "Start", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_tigg7"), "idle_sheath", "unsheathing", SubResource("AnimationNodeStateMachineTransition_w5sp0"), "run_sheath", "unsheathing", SubResource("AnimationNodeStateMachineTransition_4ebdu"), "unsheathing", "block", SubResource("AnimationNodeStateMachineTransition_d61ku"), "idle_unsheath", "sheathing", SubResource("AnimationNodeStateMachineTransition_nuw64"), "walk_unsheath", "sheathing", SubResource("AnimationNodeStateMachineTransition_rs51n"), "run_unsheath", "sheathing", SubResource("AnimationNodeStateMachineTransition_aenfl"), "sheathing", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_0gdo4"), "sheathing", "run_sheath", SubResource("AnimationNodeStateMachineTransition_inap5"), "idle_unsheath", "HeavyAttack", SubResource("AnimationNodeStateMachineTransition_uwfk7"), "HeavyAttack", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_ducit"), "idle_unsheath", "LightAttack", SubResource("AnimationNodeStateMachineTransition_vqnmt"), "LightAttack", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_22ggt"), "unsheathing", "LightAttack", SubResource("AnimationNodeStateMachineTransition_1trhv"), "unsheathing", "HeavyAttack", SubResource("AnimationNodeStateMachineTransition_hsgxn"), "unsheathing", "attack", SubResource("AnimationNodeStateMachineTransition_l1jdh"), "attack", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_v0yad"), "idle_unsheath", "attack", SubResource("AnimationNodeStateMachineTransition_vuyis")]
-graph_offset = Vector2(419.91803, 525.7328)
+states/walk_unsheath/position = Vector2(400.91803, 932.7328)
+transitions = ["Die", "End", SubResource("AnimationNodeStateMachineTransition_dkabh"), "idle_sheath", "run_sheath", SubResource("AnimationNodeStateMachineTransition_iycfb"), "idle_sheath", "walk_sheath", SubResource("AnimationNodeStateMachineTransition_o3acv"), "walk_sheath", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_qspky"), "run_sheath", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_f2wxa"), "idle_unsheath", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_fvkbi"), "walk_unsheath", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_a51kh"), "idle_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_goeom"), "block", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_xobo8"), "idle_unsheath", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_nxvjx"), "run_unsheath", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_bg827"), "run_unsheath", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_2qmqk"), "walk_unsheath", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_jne4m"), "run_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_4g64e"), "block", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_ce1cp"), "block", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_tknvv"), "walk_unsheath", "block", SubResource("AnimationNodeStateMachineTransition_ajvoj"), "Start", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_tigg7"), "idle_sheath", "unsheathing", SubResource("AnimationNodeStateMachineTransition_w5sp0"), "run_sheath", "unsheathing", SubResource("AnimationNodeStateMachineTransition_4ebdu"), "unsheathing", "block", SubResource("AnimationNodeStateMachineTransition_d61ku"), "idle_unsheath", "sheathing", SubResource("AnimationNodeStateMachineTransition_nuw64"), "walk_unsheath", "sheathing", SubResource("AnimationNodeStateMachineTransition_rs51n"), "run_unsheath", "sheathing", SubResource("AnimationNodeStateMachineTransition_aenfl"), "sheathing", "idle_sheath", SubResource("AnimationNodeStateMachineTransition_0gdo4"), "sheathing", "run_sheath", SubResource("AnimationNodeStateMachineTransition_inap5"), "idle_unsheath", "HeavyAttack", SubResource("AnimationNodeStateMachineTransition_uwfk7"), "HeavyAttack", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_ducit"), "idle_unsheath", "LightAttack", SubResource("AnimationNodeStateMachineTransition_vqnmt"), "LightAttack", "idle_unsheath", SubResource("AnimationNodeStateMachineTransition_22ggt"), "unsheathing", "LightAttack", SubResource("AnimationNodeStateMachineTransition_1trhv"), "unsheathing", "HeavyAttack", SubResource("AnimationNodeStateMachineTransition_hsgxn"), "walk_unsheath", "HeavyAttack", SubResource("AnimationNodeStateMachineTransition_l1jdh"), "HeavyAttack", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_v0yad"), "run_unsheath", "HeavyAttack", SubResource("AnimationNodeStateMachineTransition_vuyis"), "HeavyAttack", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_fbkno"), "walk_unsheath", "LightAttack", SubResource("AnimationNodeStateMachineTransition_23ob4"), "LightAttack", "walk_unsheath", SubResource("AnimationNodeStateMachineTransition_2flgh"), "run_unsheath", "LightAttack", SubResource("AnimationNodeStateMachineTransition_hhnwi"), "LightAttack", "run_unsheath", SubResource("AnimationNodeStateMachineTransition_sswei")]
+graph_offset = Vector2(114.91803, 22.732788)
