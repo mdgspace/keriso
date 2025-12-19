@@ -1,7 +1,5 @@
 extends Node
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	area_2d.visible = false
@@ -23,7 +21,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		print(body)
 		area_2d.visible = true
 		if checkptDescription == "Checkpt1":
-			NarratorGlobal.advance_phase()
+			NarratorGlobal.play_given_phase(NarratorGlobal.NarratorPhase.TUTORIAL_FIGHT)
 		elif checkptDescription == "Checkpt2":
 			spawn_enemy_once()
 

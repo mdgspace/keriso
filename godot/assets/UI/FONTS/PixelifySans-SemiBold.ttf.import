@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://ba1u4j00iapr8"
-path="res://.godot/imported/PixelifySans-SemiBold.ttf-f58aaaee7e40355aff5dd484285b5d80.fontdata"
+path="res://.godot/imported/PixelifySans-SemiBold.ttf-e24cf51a8ea2036a0e9e03b793791a0e.fontdata"
 
 [deps]
 
-source_file="res://assets/UI/FONTS/PixelifySans-SemiBold.ttf"
-dest_files=["res://.godot/imported/PixelifySans-SemiBold.ttf-f58aaaee7e40355aff5dd484285b5d80.fontdata"]
+source_file="res://assets/ui/FONTS/PixelifySans-SemiBold.ttf"
+dest_files=["res://.godot/imported/PixelifySans-SemiBold.ttf-e24cf51a8ea2036a0e9e03b793791a0e.fontdata"]
 
 [params]
 

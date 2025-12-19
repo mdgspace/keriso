@@ -1,6 +1,6 @@
 class_name PlayerDisableInputState extends PlayerState
 
-static var state_name = "PlayerDisableState"
+static var state_name = "PlayerDisableInputState"
 
 func enter() -> void:
 	pass

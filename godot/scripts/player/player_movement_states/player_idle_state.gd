@@ -12,7 +12,7 @@ func enter() -> void:
 
 func process(_delta: float) -> void:
 	if NarratorGlobal.is_narrating:
-		state_machine.transition(PlayerDisableInputState.state_name)
+		state_machine.transition("PlayerDisableInputState")
 	if InputNode.is_just_pressed("jump"):
 		state_machine.transition(PlayerJumpState.state_name)
 		pass

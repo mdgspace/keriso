@@ -18,7 +18,7 @@ func _ready() -> void:
 		camera.make_current()
 		camera.zoom = Vector2(2,2)
 		camera.position.y -= 75
-		narrator.play_current_phase()
+		narrator.play_given_phase(NarratorGlobal.NarratorPhase.INTRO)
 
 func _process(delta: float) -> void:
 	if t < 1.0:
