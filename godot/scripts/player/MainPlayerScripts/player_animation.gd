@@ -5,10 +5,10 @@ var animation_state
 var playback: AnimationNodeStateMachinePlayback
 # List of all possible conditions (same as those defined in the AnimationTree editor)
 var all_states := ["PlayerIdleState","PlayerMovementState","PlayerJumpState"
-,"PlayerBlockState","PlayerAttackState","hurt","die"]
-var all_conditions_sheath := ["idle_sheath","run_sheath","walk_sheath"]#"sheathing"
-var all_conditions_unsheath := ["attack","block","idle","run","walk"]#"unsheathing"
-var all_conditions := ["idle_sheath","run_sheath","walk_sheath","attack","block","idle","run","walk"]
+,"PlayerBlockState","PlayerAttackState","PlayerHeavyAttackState","PlayerDashState","hurt","die"]
+var all_conditions_sheath := ["idle_sheath","run_sheath","walk_sheath","dash"]#"sheathing"
+var all_conditions_unsheath := ["attack","block","idle","run","walk","dash"]#"unsheathing"
+var all_conditions := ["idle_sheath","run_sheath","walk_sheath","attack","heavyattack","dash","block","idle","run","walk"]
 var sprinting
 var sheath
 
@@ -17,7 +17,7 @@ func _ready():
 	playback = animation_tree.get("parameters/playback")
 func enter() -> void:	
 	animation_state = player.animation_state
-func _physics_process(delta):
+func _physics_process(_delta):
 	animation_state = player.animation_state
 	sheath = player.is_sheathed
 	sprinting = player.is_sprinting
@@ -49,6 +49,8 @@ func update_animation_state():
 					set_unsheath_animation_condition("walk")
 			"PlayerAttackState":
 				set_unsheath_animation_condition("attack")
+			"PlayerHeavyAttackState":
+				set_unsheath_animation_condition("heavyattack")
 			#"unsheathing":
 				#playback.travel("Unsheath")
 			"PlayerBlockState":

@@ -1,0 +1,176 @@
+[gd_scene load_steps=26 format=3 uid="uid://bmsr0phrcr3eg"]
+
+[ext_resource type="Texture2D" uid="uid://ba1n2omeqee5j" path="res://assets/particles/leaves/ELR_SpringlLeaf.png" id="1_lu5xh"]
+[ext_resource type="Texture2D" uid="uid://b0qxesgi0tr3c" path="res://assets/particles/Pixel Fire Asset Pack Colored/fire asset red/Group 4 - 1/Group 4 - 1.png" id="2_illcw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_illcw"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g8hta"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 200, 1)
+direction = Vector3(1, 0.8, 0)
+spread = 20.0
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 10, 0)
+anim_offset_max = 1.0
+
+[sub_resource type="Gradient" id="Gradient_lu5xh"]
+offsets = PackedFloat32Array(0, 0.2569558, 0.5695581, 0.797054, 1)
+colors = PackedColorArray(0.84705883, 0.59607846, 0.7254902, 0, 0.9137255, 0.7607843, 0.8352941, 0.6862745, 0.6516946, 0.6944607, 0.8415891, 1, 0, 0.972549, 0.84705883, 0.6666667, 0, 0.972549, 0.84705883, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_illcw"]
+gradient = SubResource("Gradient_lu5xh")
+width = 1
+height = 32
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_5gakd"]
+offsets = PackedFloat32Array(0.0017636684, 0.32804233, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.49019608, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fq2gc"]
+gradient = SubResource("Gradient_5gakd")
+
+[sub_resource type="Gradient" id="Gradient_fxm4s"]
+offsets = PackedFloat32Array(0, 0.5308642, 1)
+colors = PackedColorArray(1, 1, 1, 0.4745098, 1, 1, 1, 0.9882353, 1, 1, 1, 0.36862746)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xl72x"]
+gradient = SubResource("Gradient_fxm4s")
+
+[sub_resource type="Curve" id="Curve_np51a"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.08431703, 84.301605), 0.0, 0.0, 0, 0, Vector2(0.15177067, 2.3485565), 0.0, 0.0, 0, 0, Vector2(0.22259696, 84.301605), 0.0, 0.0, 0, 0, Vector2(0.30016863, 2.3485565), 0.0, 0.0, 0, 0, Vector2(0.3693086, 82.69467), 0.0, 0.0, 0, 0, Vector2(0.45193928, -4.079132), 0.0, 0.0, 0, 0, Vector2(0.51096123, 74.660065), 0.0, 0.0, 0, 0, Vector2(0.5969646, -0.86528015), 0.0, 0.0, 0, 0, Vector2(0.6694773, 76.26698), 0.0, 0.0, 0, 0, Vector2(0.74873525, -2.4721985), 0.0, 0.0, 0, 0, Vector2(0.81787527, 66.62546), 0.0, 0.0, 0, 0, Vector2(0.9072513, -0.86528015), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 14
+
+[sub_resource type="CurveTexture" id="CurveTexture_jwgpt"]
+curve = SubResource("Curve_np51a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fp381"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(200, 200, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(100, 20, 0)
+tangential_accel_min = -13.130002
+tangential_accel_max = 5.239998
+tangential_accel_curve = SubResource("CurveTexture_jwgpt")
+scale_max = 1.8
+color_ramp = SubResource("GradientTexture1D_xl72x")
+color_initial_ramp = SubResource("GradientTexture1D_fq2gc")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_illcw"]
+atlas = ExtResource("2_illcw")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gakd"]
+atlas = ExtResource("2_illcw")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq2gc"]
+atlas = ExtResource("2_illcw")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxm4s"]
+atlas = ExtResource("2_illcw")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl72x"]
+atlas = ExtResource("2_illcw")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np51a"]
+atlas = ExtResource("2_illcw")
+region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwgpt"]
+atlas = ExtResource("2_illcw")
+region = Rect2(192, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp381"]
+atlas = ExtResource("2_illcw")
+region = Rect2(224, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5gakd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_illcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gakd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq2gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxm4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl72x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np51a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwgpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp381")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="Environment" id="Environment_illcw"]
+tonemap_exposure = 1.74
+volumetric_fog_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5gakd"]
+
+[sub_resource type="Compositor" id="Compositor_fq2gc"]
+
+[node name="ParticleEffects" type="Node2D"]
+
+[node name="Leaves" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_illcw")
+position = Vector2(-26, -245)
+emitting = false
+amount = 50
+texture = ExtResource("1_lu5xh")
+lifetime = 5.0
+visibility_rect = Rect2(-500, -200, 1000, 400)
+process_material = SubResource("ParticleProcessMaterial_g8hta")
+
+[node name="WindTrails" type="GPUParticles2D" parent="."]
+position = Vector2(-373, -89)
+emitting = false
+amount = 15
+texture = SubResource("GradientTexture2D_illcw")
+lifetime = 5.0
+preprocess = 2.0
+trail_enabled = true
+trail_lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_fp381")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(4, 0)
+zoom = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-159, -73)
+scale = Vector2(1.1875, 1)
+sprite_frames = SubResource("SpriteFrames_5gakd")
+frame_progress = 0.8683644
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_illcw")
+camera_attributes = SubResource("CameraAttributesPractical_5gakd")
+compositor = SubResource("Compositor_fq2gc")

@@ -79,7 +79,7 @@ repeat_size = Vector2(1000, 0)
 repeat_times = 7
 
 [node name="TreesBehind" type="Sprite2D" parent="Node2D/Parallax2D"]
-position = Vector2(-764, -288)
+position = Vector2(-764, -266.52502)
 scale = Vector2(0.27055666, 0.25758502)
 texture = ExtResource("8_wmpba")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=47 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/MainPlayerScripts/main_player.gd" id="1_3h6gf"]
 [ext_resource type="Script" uid="uid://d2q2ib2ysam0l" path="res://scripts/core/managers/InventoryManager.gd" id="2_vlwgi"]
@@ -134,7 +134,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_sr8sg"]
 resource_name = "LightAttack"
-length = 0.4
+length = 0.41
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -804,6 +804,60 @@ tracks/3/keys = {
 "values": [Vector2(0.49, 0.402)]
 }
 
+[sub_resource type="Animation" id="Animation_e6xi4"]
+resource_name = "dash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.13333336),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("21_scjxb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.13333336),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.277),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 2, 4]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterBody2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["PlayerIdleState"],
+"method": &"change_state"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_su5v1"]
 _data = {
 &"HeavyAttack": SubResource("Animation_wd8xg"),
@@ -811,6 +865,7 @@ _data = {
 &"RESET": SubResource("Animation_na2w2"),
 &"attack": SubResource("Animation_yervt"),
 &"block": SubResource("Animation_cbsqg"),
+&"dash": SubResource("Animation_e6xi4"),
 &"idle_sheath": SubResource("Animation_regva"),
 &"idle_unsheath": SubResource("Animation_11llm"),
 &"run_sheath": SubResource("Animation_absal"),
@@ -974,7 +1029,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
 parameters/conditions/block = false
 parameters/conditions/heavyattack = false
-parameters/conditions/idle = false
+parameters/conditions/idle = true
 parameters/conditions/idle_sheath = false
 parameters/conditions/lightattack = false
 parameters/conditions/run = false
@@ -994,6 +1049,8 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_su5v1")
 }
+
+[node name="SpriteTrail" type="Node" parent="."]
 
 [connection signal="timeout" from="CharacterBody2D/UnsheathTimer" to="CharacterBody2D" method="_on_unsheath_timer_timeout"]
 [connection signal="area_entered" from="CharacterBody2D/AttackHitBox" to="CharacterBody2D/AttackHitBox" method="_on_area_entered"]
