@@ -21,7 +21,7 @@ func _physics_process(_delta):
 	animation_state = player.animation_state
 	sheath = player.is_sheathed
 	sprinting = player.is_sprinting
-
+	#print(animation_state)
 
 	update_animation_state()
 	
@@ -36,6 +36,8 @@ func update_animation_state():
 					set_sheath_animation_condition("run_sheath")
 				else:
 					set_sheath_animation_condition("run_sheath")
+			"PlayerDashState":
+				set_unsheath_animation_condition("dash")
 			_:
 				set_sheath_animation_condition("idle") # fallback safe state
 	else:
@@ -47,6 +49,8 @@ func update_animation_state():
 					set_unsheath_animation_condition("run")
 				else:
 					set_unsheath_animation_condition("walk")
+			"PlayerDashState":
+				set_unsheath_animation_condition("dash")
 			"PlayerAttackState":
 				set_unsheath_animation_condition("attack")
 			"PlayerHeavyAttackState":
