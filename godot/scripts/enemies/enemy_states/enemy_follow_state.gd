@@ -46,7 +46,7 @@ func check_transitions() -> void:
 	# Attack if in range and ready
 	# Change this to handling in idle
 	if distance_to_player <= enemy.attack_range:
-		if randf() < 1:
+		if randf() < enemy.attack1Probibility:
 			movement_state_machine.transition("EnemyAttack1State")
 		else:
 			movement_state_machine.transition("EnemyAttack2State")

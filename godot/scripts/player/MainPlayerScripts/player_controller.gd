@@ -19,10 +19,11 @@ var animation_state = "idle"
 # --- Physics & Movement ---
 const WALK_SPEED: float = 130.0
 const RUN_SPEED: float = 200.0
-const JUMP_VELOCITY: float = -400.0
+const JUMP_VELOCITY: float = -320.0
 const DASH_Velocity:float = 600.0
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var original_color: Color
+var _last_health: int
 
 func _ready() -> void:
 	# We now have one FSM for everything.
@@ -37,6 +38,8 @@ func _ready() -> void:
 		PlayerDisableInputState.new(self)
 	]
 	state_machine.start_machine(states)
+	original_color = animatedsprite2d.modulate
+	hurtbox.health_changed.connect(_on_player_health_changed)
 	#unsheath_timer.timeout.connect(_on_unsheath_timer_timeout)
 	
 
@@ -48,6 +51,7 @@ func _get_input() -> void:
 	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("block"):
 		start_sheath_timer()
 	#unsheath_timer.timeout.connect(_on_unsheath_timer_timeout)
+
 
 func _physics_process(delta: float) -> void:    
 	_get_input()
@@ -97,7 +101,20 @@ func _on_unsheath_timer_timeout() -> void:
 func apply_knockback(knockback: Vector2) -> void:
 	velocity = knockback
 	
+func flash_color( color: Color, duration: float) -> void:
+	animatedsprite2d.modulate = color 
+	await get_tree().create_timer(duration).timeout
+	animatedsprite2d.modulate = original_color
 
-	
+
+func _on_player_health_changed(current: int, _max: int) -> void:
+	if _last_health == 0:
+		_last_health = current
+		return
+
+	if current < _last_health:
+		flash_color(Color.RED, 0.15)
+
+	_last_health = current
 func change_state(state:String):
 	state_machine.transition(state)

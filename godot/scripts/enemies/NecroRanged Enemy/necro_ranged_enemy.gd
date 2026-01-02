@@ -1,1 +1,0 @@
-class_name necro_ranged_enemy extends Enemy

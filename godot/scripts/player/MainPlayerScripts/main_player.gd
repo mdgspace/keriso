@@ -6,6 +6,9 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#process_mode = Node.PROCESS_MODE_ALWAYS
+	##TODO change it 
+	##Direct reference passing to global
+	PlayerGlobal.player_instance = $"."
 	process_mode = Node.PROCESS_MODE_INHERIT
 	pass # Replace with function body.
 

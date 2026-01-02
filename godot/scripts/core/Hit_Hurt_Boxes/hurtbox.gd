@@ -15,7 +15,7 @@ func take_damage(amount: int, applyknockback:bool,knockback: Vector2) -> void:
 	if is_invincible:
 		return
 	
-	current_health -= amount
+	current_health = max(current_health - amount, 0)
 	print("Hurtbox: Took", amount, "damage. Remaining HP:", current_health)
 	
 	emit_signal("health_changed", current_health, max_health)

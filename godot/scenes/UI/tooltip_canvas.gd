@@ -35,6 +35,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		area_2d.visible = false
 
 func spawn_enemy_once():
+	print("Trying to spawn enemy")
 	if !enemy_yet_to_spawn:
 		return
 	enemy_yet_to_spawn = false
@@ -47,8 +48,8 @@ func spawn_enemy_once():
 	var enemy1_scene = enemy1.instantiate()
 	var enemy2_scene = enemy2.instantiate()
 
-	enemy1_scene.global_position = player_pos + Vector2(-200, 0)
-	enemy2_scene.global_position = player_pos + Vector2(200, 0)
-
+	enemy1_scene.global_position = player_pos + Vector2(-100, 0)
+	enemy2_scene.global_position = player_pos + Vector2(100, 0)
+	
 	get_tree().current_scene.add_child(enemy1_scene)
 	get_tree().current_scene.add_child(enemy2_scene)

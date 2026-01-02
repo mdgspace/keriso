@@ -9,6 +9,7 @@ class_name Enemy extends CharacterBody2D
 @export var attack_range = 60;
 @export var attack_cooldown = 0.5
 @export var seen_player_timer:float =10
+@export var attack1Probibility:float =.5
 enum Facing {
 	LEFT,
 	RIGHT
