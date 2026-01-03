@@ -1,5 +1,6 @@
 extends Area2D
 
+signal enemy_health_changed(current_health: int, max_health: int)
 @export var max_health: int = 100
 var current_health: int = max_health
 
@@ -10,6 +11,7 @@ func take_damage(amount: int, applyknockback:bool,knockback: Vector2) -> void:
 	current_health -= amount
 	print("Hurtbox: Took", amount, "damage. Remaining HP:", current_health)
 	
+	emit_signal("enemy_health_changed", current_health, max_health)
 
 	# Apply knockback (optional)
 	if(applyknockback):

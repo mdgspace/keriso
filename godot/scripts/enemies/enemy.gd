@@ -36,6 +36,9 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var Attack1Hitbox: Area2D
 @export var Attack2Hitbox: Area2D
 
+var original_color: Color
+var _last_health: int
+
 var dash_speed := 1000.0
 var dash_duration := 0.15
 #to tackle distace =9 for 1 sec bug 
@@ -67,6 +70,7 @@ func _ready() -> void:
 	movement_state_machine.start_machine(movement_states)
 	action_state_machine.start_machine(action_states)
 	follow_end_timer = 100
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -200,3 +204,19 @@ func dash():
 		dash_vector = 1 
 	else:
 		dash_vector = -1
+		
+func flash_color( color: Color, duration: float) -> void:
+	sprite.modulate = color 
+	await get_tree().create_timer(duration).timeout
+	sprite.modulate = original_color
+	
+func _on_enemy_health_changed(current: int, _max: int) -> void:
+	if _last_health == 0:
+		_last_health = current
+		return
+
+	if current < _last_health:
+		flash_color(Color.RED, 0.15)
+
+	_last_health = current
+	

@@ -76,11 +76,12 @@ color_initial_ramp = SubResource("GradientTexture1D_fq2gc")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_84bfr"]
 
 [node name="Devtest" type="Node2D"]
+position = Vector2(-66, -3)
 
 [node name="MainPlayer" parent="." instance=ExtResource("1_a5njp")]
 
 [node name="Camera2D" type="Camera2D" parent="MainPlayer"]
-position = Vector2(-4, -53)
+position = Vector2(-99, -53)
 zoom = Vector2(2.2, 2.2)
 
 [node name="Leaves" type="GPUParticles2D" parent="MainPlayer"]
@@ -174,9 +175,10 @@ scale = Vector2(0.74289477, 0.42749998)
 texture = ExtResource("6_0wyuw")
 
 [node name="necro_ranged_enemy" parent="." instance=ExtResource("7_5iipk")]
-position = Vector2(169, -2)
+position = Vector2(-217, -13)
 
 [node name="Fight" parent="." instance=ExtResource("8_pjyds")]
+process_mode = 4
 visibility_layer = 495
 z_index = 9
 position = Vector2(116, -16)

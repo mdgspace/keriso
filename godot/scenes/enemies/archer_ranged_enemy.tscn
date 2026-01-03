@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://xn2xkw17jrxo"]
+[gd_scene load_steps=35 format=3 uid="uid://xn2xkw17jrxo"]
 
 [ext_resource type="Script" uid="uid://bgq7h7qmgai84" path="res://scripts/enemies/ArcherRanged Enemy/archer_ranged_enemy.gd" id="1_46uou"]
+[ext_resource type="PackedScene" uid="uid://ft6gx1q4uxxd" path="res://scenes/enemies/enemy_weapon/archer_arrow.tscn" id="2_xclao"]
 [ext_resource type="Script" uid="uid://cj71hlqoxplrk" path="res://scripts/enemies/enemy_animation.gd" id="3_pfcxw"]
 [ext_resource type="Script" uid="uid://dyel5hqilhxh2" path="res://scripts/core/Hit_Hurt_Boxes/attack_hitbox.gd" id="4_x0jbl"]
 [ext_resource type="Script" uid="uid://dtefr2kguqvvl" path="res://scripts/core/state/state_machine.gd" id="5_4hrgp"]
@@ -115,51 +116,37 @@ tracks/0/keys = {
 "method": &"transition_to_state"
 }]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack2Hitbox")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"clear_hit_targets"
-}]
+"update": 1,
+"values": [ExtResource("12_46uou")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("12_46uou")]
+"values": [6]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:hframes")
+tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -514,12 +501,16 @@ _data = {
 radius = 7.0
 height = 25.0
 
-[node name="archer_ranged_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox")]
-position = Vector2(96, -4)
-scale = Vector2(2, 2)
+[node name="archer_ranged_enemy" type="CharacterBody2D" node_paths=PackedStringArray("shoot_point", "Attack1Hitbox", "Attack2Hitbox")]
+position = Vector2(98, -12)
+scale = Vector2(2.2, 2.2)
 collision_layer = 2
 script = ExtResource("1_46uou")
-attack_range = 140
+arrow_scene = ExtResource("2_xclao")
+shoot_point = NodePath("Sprite2D")
+near_detection_range = 80
+far_detection_range = 240
+attack_range = 190
 attack_cooldown = 1.4
 seen_player_timer = 2.0
 attack1Probibility = 1.0
@@ -553,17 +544,20 @@ collide_with_areas = true
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 show_behind_parent = true
-position = Vector2(6.5, -13)
+position = Vector2(-15.5, -10)
 scale = Vector2(1, 4.32)
-target_position = Vector2(110, -0.115740776)
+target_position = Vector2(136.5, -0.6944444)
 collision_mask = 4
 
 [node name="PlayerRayCast2D3" type="RayCast2D" parent="."]
 show_behind_parent = true
-position = Vector2(7, -8.5)
+position = Vector2(-15, -7)
 scale = Vector2(1, 4.32)
-target_position = Vector2(109.5, 1.7361112)
+target_position = Vector2(136, 1.9675926)
 collision_mask = 4
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(10.90909, -3.181818)
 
 [node name="Attack1Hitbox" type="Area2D" parent="."]
 show_behind_parent = true
@@ -641,6 +635,7 @@ parameters/conditions/run = false
 parameters/conditions/walk = false
 
 [node name="Hurtbox_enemy" type="Area2D" parent="."]
+position = Vector2(11, -6.5)
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("19_pv171")

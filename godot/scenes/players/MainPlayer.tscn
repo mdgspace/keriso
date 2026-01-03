@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=49 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/MainPlayerScripts/main_player.gd" id="1_3h6gf"]
 [ext_resource type="Script" uid="uid://d2q2ib2ysam0l" path="res://scripts/core/managers/InventoryManager.gd" id="2_vlwgi"]
@@ -38,8 +38,10 @@ height = 21.818182
 radius = 2.42424
 height = 23.030304
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6xi4"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xjq4m"]
-size = Vector2(41.5, 40.5)
+size = Vector2(32.0032, 37.251698)
 
 [sub_resource type="Animation" id="Animation_wd8xg"]
 resource_name = "HeavyAttack"
@@ -61,7 +63,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AttackHitBox")
+tracks/1/path = NodePath("CharacterBody2D/LightAttackHitBox")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -123,7 +125,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CharacterBody2D/AttackHitBox/CollisionShape2D:disabled")
+tracks/6/path = NodePath("CharacterBody2D/LightAttackHitBox/CollisionShape2D:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -153,7 +155,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AttackHitBox")
+tracks/1/path = NodePath("CharacterBody2D/LightAttackHitBox")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -167,7 +169,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterBody2D/AttackHitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("CharacterBody2D/LightAttackHitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -278,7 +280,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CharacterBody2D/AttackHitBox/CollisionShape2D:disabled")
+tracks/4/path = NodePath("CharacterBody2D/LightAttackHitBox/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -307,7 +309,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/AttackHitBox")
+tracks/1/path = NodePath("CharacterBody2D/LightAttackHitBox")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -321,7 +323,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterBody2D/AttackHitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("CharacterBody2D/LightAttackHitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1027,7 +1029,14 @@ hframes = 9
 wait_time = 10.0
 one_shot = true
 
-[node name="AttackHitBox" type="Area2D" parent="CharacterBody2D"]
+[node name="HeavyAttackHitbox" type="Area2D" parent="CharacterBody2D"]
+script = ExtResource("15_qc0mh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HeavyAttackHitbox"]
+position = Vector2(-13.939394, -20.606062)
+shape = SubResource("RectangleShape2D_e6xi4")
+
+[node name="LightAttackHitBox" type="Area2D" parent="CharacterBody2D"]
 position = Vector2(3.030305, -21.81818)
 scale = Vector2(0.606, 0.606)
 collision_layer = 16
@@ -1035,8 +1044,8 @@ collision_mask = 32
 script = ExtResource("15_qc0mh")
 metadata/_custom_type_script = "uid://dyel5hqilhxh2"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackHitBox"]
-position = Vector2(-17.001701, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/LightAttackHitBox"]
+position = Vector2(-16.001572, 5.6245413)
 shape = SubResource("RectangleShape2D_xjq4m")
 disabled = true
 
@@ -1077,4 +1086,4 @@ lifetime = 0.6
 start_color = Color(1, 1, 1, 1)
 
 [connection signal="timeout" from="CharacterBody2D/UnsheathTimer" to="CharacterBody2D" method="_on_unsheath_timer_timeout"]
-[connection signal="area_entered" from="CharacterBody2D/AttackHitBox" to="CharacterBody2D/AttackHitBox" method="_on_area_entered"]
+[connection signal="area_entered" from="CharacterBody2D/LightAttackHitBox" to="CharacterBody2D/LightAttackHitBox" method="_on_area_entered"]

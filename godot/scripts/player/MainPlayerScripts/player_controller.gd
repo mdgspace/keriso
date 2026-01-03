@@ -8,7 +8,8 @@ class_name PlayerController extends CharacterBody2D
 @onready var hurtbox = $Hurtbox
 @onready var unsheath_timer = $UnsheathTimer
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var attack_hit_box: AttackHitBox = $AttackHitBox
+@onready var attack_hit_box: AttackHitBox = $LightAttackHitBox
+@onready var heavy_attack_hit_box: AttackHitBox = $HeavyAttackHitbox
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -17,7 +18,7 @@ var is_sprinting: bool = false
 var is_sheathed: bool = true
 var animation_state = "idle"
 # --- Physics & Movement ---
-const WALK_SPEED: float = 130.0
+const WALK_SPEED: float = 130.0	
 const RUN_SPEED: float = 200.0
 const JUMP_VELOCITY: float = -320.0
 const DASH_Velocity:float = 600.0
