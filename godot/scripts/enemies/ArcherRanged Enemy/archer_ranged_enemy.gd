@@ -16,7 +16,7 @@ func shoot_arrow() -> void:
 
 	var arrow = arrow_scene.instantiate()
 	arrow.global_position = shoot_point.global_position+ Vector2(80,-10)
-	print("Shooting arrow from position",arrow.global_position)
+	#print("Shooting arrow from position",arrow.global_position)
 	if _facing == Facing.RIGHT:
 		direction = Vector2.RIGHT
 	else:

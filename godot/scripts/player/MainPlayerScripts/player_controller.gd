@@ -41,6 +41,7 @@ func _ready() -> void:
 	state_machine.start_machine(states)
 	original_color = animatedsprite2d.modulate
 	hurtbox.health_changed.connect(_on_player_health_changed)
+	_last_health = hurtbox.current_health
 	#unsheath_timer.timeout.connect(_on_unsheath_timer_timeout)
 	
 
@@ -109,12 +110,9 @@ func flash_color( color: Color, duration: float) -> void:
 
 
 func _on_player_health_changed(current: int, _max: int) -> void:
-	if _last_health == 0:
-		_last_health = current
-		return
 
 	if current < _last_health:
-		flash_color(Color.RED, 0.15)
+		flash_color(Color.RED, 0.2)
 
 	_last_health = current
 func change_state(state:String):

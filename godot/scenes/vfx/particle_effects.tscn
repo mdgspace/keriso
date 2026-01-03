@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bmsr0phrcr3eg"]
+[gd_scene load_steps=57 format=3 uid="uid://bmsr0phrcr3eg"]
 
 [ext_resource type="Texture2D" uid="uid://ba1n2omeqee5j" path="res://assets/particles/leaves/ELR_SpringlLeaf.png" id="1_lu5xh"]
 [ext_resource type="Texture2D" uid="uid://b0qxesgi0tr3c" path="res://assets/particles/Pixel Fire Asset Pack Colored/fire asset red/Group 4 - 1/Group 4 - 1.png" id="2_illcw"]
@@ -311,6 +311,85 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_74jcf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_bre1f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_pxpbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_i0kj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5qkma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fv5fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ffo4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_v2301")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_0f453")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_i0vnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2g1av")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3nt2j")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"smoke2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7xyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysc38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8v0h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bre1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxpbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0kj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qkma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv5fo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffo4f")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"smoke2_b_w",
+"speed": 12.0
+}]
+
 [node name="ParticleEffects" type="Node2D"]
 
 [node name="Leaves" type="GPUParticles2D" parent="."]
@@ -361,3 +440,10 @@ sprite_frames = SubResource("SpriteFrames_mpjfw")
 animation = &"smoke2_b_w"
 frame = 10
 frame_progress = 1.0
+
+[node name="SpawnSmoke3" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -16)
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_74jcf")
+animation = &"smoke2_b_w"
+autoplay = "smoke2_b_w"

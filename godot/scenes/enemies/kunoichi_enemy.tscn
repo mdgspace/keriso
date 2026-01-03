@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ngcthb8yjthx"]
+[gd_scene load_steps=58 format=3 uid="uid://ngcthb8yjthx"]
 
 [ext_resource type="Texture2D" uid="uid://cuc2spu43l0ut" path="res://assets/characters/kunoichi/Attack_1.png" id="1_ah5tw"]
 [ext_resource type="Texture2D" uid="uid://d0iv7ylev7e0u" path="res://assets/characters/kunoichi/Attack_2.png" id="2_p760b"]
@@ -19,6 +19,18 @@
 [ext_resource type="Script" uid="uid://cj71hlqoxplrk" path="res://scripts/enemies/enemy_animation.gd" id="17_ihcg2"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cr7tsyty2pnde" path="res://assets/enemies/Animation_Trees/samuri_dash.tres" id="18_6obtf"]
 [ext_resource type="Script" uid="uid://gutd0dkiviyr" path="res://scripts/enemies/enemy_hurtbox.gd" id="19_tuk1b"]
+[ext_resource type="Texture2D" uid="uid://dmy64qb17ul3u" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_1.png" id="20_3e35e"]
+[ext_resource type="Texture2D" uid="uid://pyts6wpwohf4" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_2.png" id="21_t42wx"]
+[ext_resource type="Texture2D" uid="uid://n84vc3kha208" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_3.png" id="22_dr35s"]
+[ext_resource type="Texture2D" uid="uid://1b7xvfrqxene" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_4.png" id="23_ql5mm"]
+[ext_resource type="Texture2D" uid="uid://iiigxemsd5c1" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_5.png" id="24_rkhik"]
+[ext_resource type="Texture2D" uid="uid://def3wjk8bo36c" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_6.png" id="25_8eou3"]
+[ext_resource type="Texture2D" uid="uid://jj1aooch3m73" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_7.png" id="26_mosqb"]
+[ext_resource type="Texture2D" uid="uid://pcerejd13qw2" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_8.png" id="27_n5ykx"]
+[ext_resource type="Texture2D" uid="uid://d4ltrsac2ow14" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_9.png" id="28_mpssr"]
+[ext_resource type="Texture2D" uid="uid://cjllu0kwyt6bs" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_10.png" id="29_uhond"]
+[ext_resource type="Texture2D" uid="uid://c5wol87heqsbh" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/02 - PNG sequence with colors/Smoke 03/Smoke_03_11.png" id="30_xa8ep"]
+[ext_resource type="Texture2D" uid="uid://royp747chcx0" path="res://assets/particles/SmokeFX_by_TotallyNotPixels/03 - GIF black and white/Smoke_03-ezgif.com-gif-to-sprite-converter.png" id="31_pl1dl"]
 
 [sub_resource type="GDScript" id="GDScript_pghlm"]
 script/source = "class_name kunoichi_enemy1 extends Enemy
@@ -643,7 +655,122 @@ _data = {
 radius = 7.0
 height = 25.0
 
-[node name="kunoichi_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7xyp"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysc38"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(360, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v0h7"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(480, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bre1f"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(600, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxpbc"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(720, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0kj1"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(840, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qkma"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(960, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv5fo"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(1080, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffo4f"]
+atlas = ExtResource("31_pl1dl")
+region = Rect2(1200, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4pn58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_3e35e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_t42wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_dr35s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ql5mm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_rkhik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_8eou3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_mosqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_n5ykx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_mpssr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_uhond")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_xa8ep")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"smoke2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7xyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysc38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8v0h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bre1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxpbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0kj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qkma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv5fo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffo4f")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"smoke2_b_w",
+"speed": 12.0
+}]
+
+[node name="kunoichi_enemy" type="CharacterBody2D" node_paths=PackedStringArray("Attack1Hitbox", "Attack2Hitbox", "hurtbox")]
 scale = Vector2(2, 2)
 collision_layer = 2
 script = SubResource("GDScript_pghlm")
@@ -651,6 +778,7 @@ jump_force = 500
 near_detection_range = 50
 Attack1Hitbox = NodePath("Attack1Hitbox")
 Attack2Hitbox = NodePath("Attack2Hitbox")
+hurtbox = NodePath("Hurtbox_enemy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
@@ -779,6 +907,15 @@ max_health = 40
 visible = false
 position = Vector2(3.5, -4.5)
 shape = SubResource("CapsuleShape2D_5bxlp")
+
+[node name="SpawnSmoke3" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -16.5)
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_4pn58")
+animation = &"smoke2_b_w"
+autoplay = "smoke2_b_w"
+frame = 9
+frame_progress = 1.0
 
 [connection signal="area_entered" from="Attack1Hitbox" to="Attack1Hitbox" method="_on_area_entered"]
 [connection signal="area_entered" from="Attack2Hitbox" to="Attack2Hitbox" method="_on_area_entered"]

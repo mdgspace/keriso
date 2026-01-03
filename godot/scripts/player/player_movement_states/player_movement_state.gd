@@ -22,7 +22,7 @@ func process(_delta: float) -> void:
 		state_machine.transition("PlayerDashState")
 		
 	if InputManagerInstance.was_action_held_for("attack", 30):
-		print("HEAVY ATTACK triggered!")
+		#print("HEAVY ATTACK triggered!")
 		state_machine.transition("PlayerHeavyAttackState")
 
 # This will only be checked if the heavy attack condition wasn't met.

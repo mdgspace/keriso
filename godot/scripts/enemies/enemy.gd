@@ -35,6 +35,7 @@ var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player_ray2 = $PlayerRayCast2D3
 @export var Attack1Hitbox: Area2D
 @export var Attack2Hitbox: Area2D
+@export var hurtbox: Area2D
 
 var original_color: Color
 var _last_health: int
@@ -59,6 +60,7 @@ var to_player: Vector2 = Vector2.ZERO;
 var follow_end_timer: float = 50.0
 
 func _ready() -> void:
+	original_color = sprite.modulate
 	while PlayerGlobal.player_instance == null:
 		await get_tree().process_frame
 	while PlayerGlobal.player_instance.CharacterBody == null:
@@ -70,6 +72,13 @@ func _ready() -> void:
 	movement_state_machine.start_machine(movement_states)
 	action_state_machine.start_machine(action_states)
 	follow_end_timer = 100
+	_last_health = hurtbox.current_health
+	if hurtbox != null:
+		hurtbox.enemy_health_changed.connect(_on_enemy_health_changed)
+	else:
+		push_error("HurtBox Not Assigned")
+
+	
 	
 
 
@@ -167,6 +176,16 @@ func set_facing_direction(direction: float) -> void:
 func transition_to_state(state:String)-> void:
 	movement_state_machine.transition(state)
 
+func _on_enemy_health_changed(current: int, _max: int) -> void:
+
+	# Took damage
+	if current < _last_health:
+		flash_color(Color.RED, 0.15)
+		animatedplayer.play("Hurt")
+
+	_last_health = current
+
+	
 func handle_facing() -> void:
 	#print("calling handle facing")
 	var intended_direction: float = 0.0
@@ -210,13 +229,5 @@ func flash_color( color: Color, duration: float) -> void:
 	await get_tree().create_timer(duration).timeout
 	sprite.modulate = original_color
 	
-func _on_enemy_health_changed(current: int, _max: int) -> void:
-	if _last_health == 0:
-		_last_health = current
-		return
 
-	if current < _last_health:
-		flash_color(Color.RED, 0.15)
-
-	_last_health = current
 	

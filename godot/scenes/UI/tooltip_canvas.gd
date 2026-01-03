@@ -48,8 +48,8 @@ func spawn_enemy_once():
 	var enemy1_scene = enemy1.instantiate()
 	var enemy2_scene = enemy2.instantiate()
 
-	enemy1_scene.global_position = player_pos + Vector2(-100, 0)
-	enemy2_scene.global_position = player_pos + Vector2(100, 0)
+	enemy1_scene.global_position = player_pos + Vector2(-200, 0)
+	enemy2_scene.global_position = player_pos + Vector2(200, 0)
 	
 	get_tree().current_scene.add_child(enemy1_scene)
 	get_tree().current_scene.add_child(enemy2_scene)

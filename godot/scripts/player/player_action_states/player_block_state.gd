@@ -12,7 +12,8 @@ func enter() -> void:
 	player.animation_state = state_name
 	player.is_sheathed = false
 	player.start_sheath_timer()
-	player.hurtbox.is_invincible = true
+	#Setting invincible = true in animation only to keep it fair
+	#player.hurtbox.is_invincible = true
 	#animatedsprite2d.play("block")
 
 #func process(_delta: float) -> void:

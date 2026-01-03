@@ -40,6 +40,7 @@ frame_progress = 0.8160878
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_0fbtm")
+knockback_force = 400.0
 apply_knockback = true
 destroy_on_hit = true
 

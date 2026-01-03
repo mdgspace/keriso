@@ -4,7 +4,7 @@ signal health_changed(current_health: int, max_health: int)
 
 @export var max_health: int = 100
 var current_health: int = max_health
-var is_invincible: bool = false
+@export var is_invincible: bool = false
 
 func _ready() -> void:
 	current_health = max_health

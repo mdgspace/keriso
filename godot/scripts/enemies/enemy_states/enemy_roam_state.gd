@@ -26,7 +26,7 @@ func physics_process(delta: float) -> void:
 		# Hit wall - turn around
 		roam_direction *= -1
 		small_timer = 0.0
-		print("flipping ",roam_direction)
+		#print("flipping ",roam_direction)
 		#enemy.flip()
 		enemy.set_facing_direction(roam_direction)
 		roam_timer = roam_duration  # Reset timer

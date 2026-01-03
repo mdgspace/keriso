@@ -45,7 +45,7 @@ func process(_delta: float) -> void:
 func physics_process(_delta: float) -> void:
 	timer+=_delta
 	if player.horizontal_input != 0.0:
-		print("going to move state")
+		#print("going to move state")
 		state_machine.transition(PlayerMovementState.state_name)
 
 	#print(player.horizontal_input)
