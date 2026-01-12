@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bl3dnwhmbvq7e"]
+[gd_scene load_steps=51 format=3 uid="uid://bl3dnwhmbvq7e"]
 
 [ext_resource type="Script" uid="uid://bs7dxxskbxu4o" path="res://scripts/player/MainPlayerScripts/main_player.gd" id="1_3h6gf"]
 [ext_resource type="Script" uid="uid://d2q2ib2ysam0l" path="res://scripts/core/managers/InventoryManager.gd" id="2_vlwgi"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://htwtlegp2edw" path="res://assets/characters/MainPlayer/sword_out-Sheet.png" id="23_yeyqo"]
 [ext_resource type="Texture2D" uid="uid://blwfrnoswxsbs" path="res://assets/characters/MainPlayer/keriso_walk-Sheet.png" id="24_6b2ci"]
 [ext_resource type="Script" uid="uid://dcb1t1p75l52y" path="res://sprite_trail-2D.gd" id="29_e6xi4"]
+[ext_resource type="Texture2D" uid="uid://di1h0l1sg1tla" path="res://assets/visual/2d_lights_and_shadows_neutral_point_light.webp" id="30_ueg6m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_duqpn"]
 radius = 2.42424
@@ -920,6 +921,9 @@ _data = {
 &"walk_unsheath": SubResource("Animation_lr3tv")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e6xi4"]
+polygon = PackedVector2Array(2.9000015, -25, -5.700001, -24.3, -5.700001, -19.4, -10.900002, 7.299999, -12.700001, 7.299999, -12.700001, 26, 4.299999, 21.699997, 10.5, 21.699997)
+
 [node name="MainPlayer" type="Node"]
 script = ExtResource("1_3h6gf")
 
@@ -1108,6 +1112,18 @@ player = NodePath("..")
 frame_interval = 5
 lifetime = 0.6
 start_color = Color(1, 1, 1, 1)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="CharacterBody2D"]
+position = Vector2(-3.0302963, -15.151516)
+scale = Vector2(0.49, 0.402)
+occluder = SubResource("OccluderPolygon2D_e6xi4")
+
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D"]
+position = Vector2(19.39394, -8.48485)
+scale = Vector2(0.6060606, 0.6060606)
+color = Color(0.9999978, 0.6614299, 0.26190504, 1)
+energy = 0.91
+texture = ExtResource("30_ueg6m")
 
 [connection signal="timeout" from="CharacterBody2D/UnsheathTimer" to="CharacterBody2D" method="_on_unsheath_timer_timeout"]
 [connection signal="area_entered" from="CharacterBody2D/LightAttackHitBox" to="CharacterBody2D/LightAttackHitBox" method="_on_area_entered"]

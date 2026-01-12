@@ -1,17 +1,17 @@
-[gd_scene load_steps=27 format=3 uid="uid://chqbj3r8bo33h"]
+[gd_scene load_steps=27 format=3 uid="uid://crf6o0vshic8e"]
 
-[ext_resource type="PackedScene" uid="uid://bl3dnwhmbvq7e" path="res://scenes/players/MainPlayer.tscn" id="1_a5njp"]
-[ext_resource type="PackedScene" uid="uid://b3c4460otskxu" path="res://scenes/world/Camera.tscn" id="2_0cvd8"]
-[ext_resource type="Texture2D" uid="uid://ba1n2omeqee5j" path="res://assets/particles/leaves/ELR_SpringlLeaf.png" id="2_4hqdn"]
-[ext_resource type="Texture2D" uid="uid://jwi1fwa6potd" path="res://assets/background/forest_mid 2.png" id="2_fbno5"]
-[ext_resource type="Texture2D" uid="uid://diew1g0pu3oud" path="res://assets/background/forest_long 1.png" id="3_5iipk"]
-[ext_resource type="Texture2D" uid="uid://cui0k7egp7vsa" path="res://assets/background/forest_mountain 1.png" id="4_pjyds"]
-[ext_resource type="Texture2D" uid="uid://2nev54r4uhe7" path="res://assets/background/Ground.png" id="5_4hqdn"]
-[ext_resource type="Texture2D" uid="uid://c7wpmky8jb5oq" path="res://assets/background/forest_sky 1.png" id="6_0wyuw"]
-[ext_resource type="PackedScene" uid="uid://xn2xkw17jrxo" path="res://scenes/enemies/archer_ranged_enemy.tscn" id="7_5iipk"]
-[ext_resource type="PackedScene" uid="uid://dtkrwapu0b5qe" path="res://scenes/UI/TooltipCanvas.tscn" id="8_pjyds"]
-[ext_resource type="FontFile" uid="uid://cohkuuivrytuo" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="10_ojjnt"]
-[ext_resource type="Script" uid="uid://bq11sj4sufl4p" path="res://scripts/player/MainPlayerScripts/healthBar.gd" id="11_0cvd8"]
+[ext_resource type="PackedScene" uid="uid://bl3dnwhmbvq7e" path="res://scenes/players/MainPlayer.tscn" id="1_4euer"]
+[ext_resource type="Texture2D" uid="uid://ba1n2omeqee5j" path="res://assets/particles/leaves/ELR_SpringlLeaf.png" id="2_in6ac"]
+[ext_resource type="Texture2D" uid="uid://jwi1fwa6potd" path="res://assets/background/forest_mid 2.png" id="3_mfgp1"]
+[ext_resource type="Texture2D" uid="uid://diew1g0pu3oud" path="res://assets/background/forest_long 1.png" id="4_425u8"]
+[ext_resource type="Texture2D" uid="uid://cui0k7egp7vsa" path="res://assets/background/forest_mountain 1.png" id="5_x4g4c"]
+[ext_resource type="Texture2D" uid="uid://2nev54r4uhe7" path="res://assets/background/Ground.png" id="6_lmn56"]
+[ext_resource type="Texture2D" uid="uid://c7wpmky8jb5oq" path="res://assets/background/forest_sky 1.png" id="7_7a5kc"]
+[ext_resource type="PackedScene" uid="uid://xn2xkw17jrxo" path="res://scenes/enemies/archer_ranged_enemy.tscn" id="8_pxo5h"]
+[ext_resource type="PackedScene" uid="uid://dtkrwapu0b5qe" path="res://scenes/UI/TooltipCanvas.tscn" id="9_ybgax"]
+[ext_resource type="FontFile" uid="uid://cohkuuivrytuo" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="10_vqs8f"]
+[ext_resource type="Script" uid="uid://bq11sj4sufl4p" path="res://scripts/player/MainPlayerScripts/healthBar.gd" id="11_onweb"]
+[ext_resource type="Texture2D" uid="uid://dim5y1bha3odw" path="res://assets/visual/light_stream.jpg" id="13_mfgp1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0wyuw"]
 particles_animation = true
@@ -92,20 +92,20 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="Devtest" type="Node2D"]
+[node name="Visualtest" type="Node2D"]
 position = Vector2(-37, -10)
 
-[node name="MainPlayer" parent="." instance=ExtResource("1_a5njp")]
+[node name="MainPlayer" parent="." instance=ExtResource("1_4euer")]
 
-[node name="Camera2D" parent="MainPlayer" instance=ExtResource("2_0cvd8")]
-position = Vector2(-105, -11)
+[node name="Camera2D" type="Camera2D" parent="MainPlayer"]
+position = Vector2(-99, -53)
 zoom = Vector2(2.1, 2.1)
 
 [node name="Leaves" type="GPUParticles2D" parent="MainPlayer"]
 material = SubResource("CanvasItemMaterial_0wyuw")
 position = Vector2(-42, -292)
 amount = 25
-texture = ExtResource("2_4hqdn")
+texture = ExtResource("2_in6ac")
 lifetime = 10.0
 preprocess = 4.14
 visibility_rect = Rect2(-500, -200, 1000, 400)
@@ -142,7 +142,7 @@ repeat_times = 7
 [node name="TreesBehind" type="Sprite2D" parent="Parallax Nodes/Parallax2D"]
 position = Vector2(-764, -266.52502)
 scale = Vector2(0.27055666, 0.25758502)
-texture = ExtResource("2_fbno5")
+texture = ExtResource("3_mfgp1")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Parallax Nodes"]
 z_index = -1
@@ -154,7 +154,7 @@ repeat_times = 6
 [node name="TreesFront" type="Sprite2D" parent="Parallax Nodes/Parallax2D2"]
 position = Vector2(194.00002, -155)
 scale = Vector2(0.27055666, 0.25758502)
-texture = ExtResource("3_5iipk")
+texture = ExtResource("4_425u8")
 
 [node name="Parallax2D3" type="Parallax2D" parent="Parallax Nodes"]
 z_index = -1
@@ -167,7 +167,7 @@ repeat_times = 7
 z_index = -2
 position = Vector2(-717.00006, -199)
 scale = Vector2(0.27055666, 0.25758502)
-texture = ExtResource("4_pjyds")
+texture = ExtResource("5_x4g4c")
 
 [node name="Parallax2D4" type="Parallax2D" parent="Parallax Nodes"]
 scroll_offset = Vector2(-280, 8)
@@ -177,7 +177,7 @@ repeat_times = 20
 [node name="Ground" type="Sprite2D" parent="Parallax Nodes/Parallax2D4"]
 position = Vector2(-172, 2.0000153)
 scale = Vector2(0.40810812, 0.30593607)
-texture = ExtResource("5_4hqdn")
+texture = ExtResource("6_lmn56")
 
 [node name="Parallax2D5" type="Parallax2D" parent="Parallax Nodes"]
 scroll_scale = Vector2(0.1, 0.1)
@@ -186,15 +186,16 @@ repeat_size = Vector2(1400, 0)
 repeat_times = 5
 
 [node name="Sky" type="Sprite2D" parent="Parallax Nodes/Parallax2D5"]
+modulate = Color(1.5978808, 1.3661473, 0.87225133, 1)
 z_index = -4
 position = Vector2(-914.00006, -208)
 scale = Vector2(0.74289477, 0.42749998)
-texture = ExtResource("6_0wyuw")
+texture = ExtResource("7_7a5kc")
 
-[node name="necro_ranged_enemy" parent="." instance=ExtResource("7_5iipk")]
+[node name="necro_ranged_enemy" parent="." instance=ExtResource("8_pxo5h")]
 position = Vector2(-452, -12)
 
-[node name="Fight" parent="." instance=ExtResource("8_pjyds")]
+[node name="Fight" parent="." instance=ExtResource("9_ybgax")]
 visibility_layer = 495
 z_index = 9
 position = Vector2(18, -2)
@@ -211,8 +212,29 @@ offset_left = -226.0
 offset_right = -6.0
 offset_bottom = 27.0
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource("10_ojjnt")
+theme_override_fonts/font = ExtResource("10_vqs8f")
 theme_override_styles/background = SubResource("StyleBoxFlat_4458u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ob8kq")
 value = 50.0
-script = ExtResource("11_0cvd8")
+script = ExtResource("11_onweb")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.22745098, 0.22745098, 0.27058825, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.6837851, 0.6975417, 0.9931912, 1)
+energy = 0.6
+
+[node name="PointLight2D2" type="PointLight2D" parent="DirectionalLight2D"]
+position = Vector2(-158.99998, -207)
+rotation = 0.34286714
+scale = Vector2(0.27999938, 1.2503468)
+energy = 0.7
+texture = ExtResource("13_mfgp1")
+
+[node name="PointLight2D3" type="PointLight2D" parent="DirectionalLight2D"]
+position = Vector2(180.99995, -106.00001)
+rotation = 0.34286714
+scale = Vector2(0.35612485, 1.1773566)
+energy = 0.7
+texture = ExtResource("13_mfgp1")
