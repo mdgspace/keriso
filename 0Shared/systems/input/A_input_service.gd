@@ -4,7 +4,7 @@ signal input_snapshot_ready(snapshot)
 
 const ACTIONS := [
 	"move_left", "move_right",
-	"jump", "attack", "interact",
+	"jump", "light_attack", "heavy_attack", "interact",
 	"dash", "inventory"
 ]
 

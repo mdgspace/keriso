@@ -5,10 +5,6 @@ enum Type {
 	MOVE,
 	JUMP,
 	ATTACK,
-	INTERACT,
-	OPEN_INVENTORY,
-	USE_ITEM,
-	CHANGE_STATE
 }
 
 var type: Type = Type.NONE
@@ -16,4 +12,6 @@ var type: Type = Type.NONE
 # Optional payload
 var move_axis: float = 0.0
 var item_id: StringName
-var target_state: StringName
+
+# Attack (Offensive acts) i.e. "lightAttack", "heavyAttack", "bow" etc.
+var attack_kind: StringName = &""

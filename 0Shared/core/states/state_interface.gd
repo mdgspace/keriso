@@ -3,8 +3,8 @@ class_name IState
 func enter(_facts: Facts) -> void:
 	pass
 
-func update(_facts: Facts) -> Intent:
-	return Intent.new()
+func update(_facts: Facts) -> StateResult:
+	return StateResult.new()
 
 func exit() -> void:
 	pass

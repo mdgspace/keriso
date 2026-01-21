@@ -1,15 +1,18 @@
 extends CharacterBody2D
 class_name Character
 
-@export var move_speed := 200.0
+@export var move_speed := 150.0
 @export var gravity := 900.0
 @onready var inventory: InventoryComponent = $InventoryComponent
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+var current_animation: StringName = &""
 
 var brain: Brain
 var facts := Facts.new()
 
 func _ready() -> void:
-	InputService.input_snapshot_ready.connect(_on_input_snapshot)
+	pass
 
 func _on_input_snapshot(snapshot: InputSnapshot) -> void:
 	velocity.x = 0.0
@@ -29,18 +32,13 @@ func _execute_intent(intent: Intent) -> void:
 		
 		Intent.Type.JUMP:
 			if is_on_floor():
-				velocity.y = -400
-		
-		Intent.Type.CHANGE_STATE:
-			brain.change_state(intent.target_state, facts)
-		Intent.Type.USE_ITEM:
-			inventory.consume_item(intent.item_id)
+				pass
+				#velocity.y = -400
 
 func _physics_process(delta: float) -> void:
 	# Gravity (always physics-owned)
 	if not is_on_floor():
-		velocity.y += gravity * delta * 0
+		velocity.y += gravity * delta
 	
-	print(velocity)
 	# Apply motion ONCE per frame
 	move_and_slide()
